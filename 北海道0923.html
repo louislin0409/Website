@@ -1,0 +1,1462 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>👑 北海道初秋 5天4夜 家族奢華美食 × 5歲大寶寶放電 最終定案手冊</title>
+    <!-- Google Fonts Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        amber: {
+                            50: '#fffbeb',
+                            100: '#fef3c7',
+                            200: '#fde68a',
+                            300: '#fcd34d',
+                            400: '#fbbf24',
+                            500: '#f59e0b',
+                            600: '#d97706',
+                            700: '#b45309',
+                            800: '#92400e',
+                            900: '#78350f',
+                        },
+                        rust: {
+                            50: '#fdf4f2',
+                            100: '#fbe8e5',
+                            200: '#f7d5cf',
+                            300: '#f1b8ae',
+                            400: '#e69181',
+                            500: '#d86d59',
+                            600: '#c5523d',
+                            700: '#a53f2c',
+                            800: '#893526',
+                            900: '#723023',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #fcfbfa;
+        }
+        /* Custom scrollbar for premium look */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #f1ebd9;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #c5523d;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #a53f2c;
+        }
+    </style>
+</head>
+<body class="text-slate-800 antialiased selection:bg-rust-200">
+
+    <!-- TOP AUTUMN BANNER -->
+    <header class="relative bg-cover bg-center text-white overflow-hidden py-12 px-4 md:px-8 shadow-md" style="background-image: linear-gradient(rgba(114, 48, 35, 0.85), rgba(40, 20, 15, 0.95)), url('https://placehold.co/1200x400/723023/ffffff?text=%20Hokkaido%20Autumn%20Luxury%20Family%20Trip%20')">
+        <div class="max-w-6xl mx-auto flex flex-col md:flex-row items-center justify-between gap-8">
+            <div class="text-left">
+                <div class="inline-flex items-center gap-1.5 bg-rust-600 text-white text-xs px-3.5 py-1.5 rounded-full font-bold mb-4 tracking-wider uppercase shadow-sm">
+                    🍂 2026.09.23 - 09.27
+                </div>
+                <h1 class="text-2xl md:text-4xl font-extrabold tracking-tight text-amber-100 drop-shadow-sm leading-tight">
+                    👑 北海道初秋 5天4夜 家族奢華美食手冊
+                </h1>
+                <p class="text-amber-100/80 text-sm md:text-base mt-3 max-w-2xl leading-relaxed font-light">
+                    本手冊專為 <strong class="text-white font-bold">6 大 1 小（含長輩與 5 歲大寶寶）</strong> 家族旅行量身打造。
+                    制霸 7 大領域最強名店、完全不需扛行李地獄拉車、天天卡入寶寶放電王牌。
+                </p>
+                <div class="flex flex-wrap gap-2 mt-4">
+                    <span class="bg-white/10 text-amber-200 text-xs px-2.5 py-1 rounded-md border border-white/10">👵 長輩膝蓋友善</span>
+                    <span class="bg-white/10 text-amber-200 text-xs px-2.5 py-1 rounded-md border border-white/10">👶 5歲寶寶放電</span>
+                    <span class="bg-white/10 text-amber-200 text-xs px-2.5 py-1 rounded-md border border-white/10">🦀 7大天花板美食</span>
+                </div>
+            </div>
+            <!-- Live budget mini-card -->
+            <div class="bg-white/5 backdrop-blur-md border border-white/20 rounded-3xl p-6 min-w-[280px] shadow-2xl relative">
+                <div class="absolute -top-3 -right-3 bg-amber-400 text-amber-950 font-bold text-xxs px-2 py-0.5 rounded-full uppercase tracking-wider shadow">
+                    Live Calc
+                </div>
+                <div class="text-xs text-amber-200 font-semibold mb-3 tracking-wide flex items-center gap-1">
+                    📊 全家(6大1小)即時總預算
+                </div>
+                <div class="flex items-baseline justify-between mb-2">
+                    <span class="text-xs text-amber-100/70">全團估計費用:</span>
+                    <span class="text-2xl font-black text-amber-300" id="header-grand-total">NT$ 275,500</span>
+                </div>
+                <div class="flex items-baseline justify-between border-t border-white/10 pt-2">
+                    <span class="text-xs text-amber-100/70">每位大人均分:</span>
+                    <span class="text-lg font-extrabold text-white" id="header-per-adult">NT$ 45,917</span>
+                </div>
+                <p class="text-[10px] text-amber-100/50 mt-2 leading-tight">
+                    *人均已扣除不佔床不分攤之5歲大寶寶
+                </p>
+            </div>
+        </div>
+    </header>
+
+    <!-- NAVIGATION TABS -->
+    <nav class="bg-white border-b border-slate-200 sticky top-0 z-40 shadow-sm overflow-x-auto whitespace-nowrap">
+        <div class="max-w-6xl mx-auto flex">
+            <button onclick="switchTab('itinerary')" id="tab-itinerary" class="flex items-center gap-2 px-6 py-4 border-b-2 font-bold text-sm transition-all focus:outline-none border-rust-600 text-rust-600 bg-rust-50/40">
+                <span>📅 每日行程時間線</span>
+            </button>
+            <button onclick="switchTab('dinings')" id="tab-dinings" class="flex items-center gap-2 px-6 py-4 border-b-2 font-bold text-sm transition-all focus:outline-none border-transparent text-slate-500 hover:text-slate-800 hover:bg-slate-50">
+                <span>🦀 7大名店制霸 <span id="gourmet-count-badge" class="bg-rust-600 text-white text-[10px] px-1.5 py-0.5 rounded-full">0/7</span></span>
+            </button>
+            <button onclick="switchTab('hotels')" id="tab-hotels" class="flex items-center gap-2 px-6 py-4 border-b-2 font-bold text-sm transition-all focus:outline-none border-transparent text-slate-500 hover:text-slate-800 hover:bg-slate-50">
+                <span>♨️ 乃之風/溫泉攻略</span>
+            </button>
+            <button onclick="switchTab('budget')" id="tab-budget" class="flex items-center gap-2 px-6 py-4 border-b-2 font-bold text-sm transition-all focus:outline-none border-transparent text-slate-500 hover:text-slate-800 hover:bg-slate-50">
+                <span>📊 預算與人數計算機</span>
+            </button>
+            <button onclick="switchTab('packing')" id="tab-packing" class="flex items-center gap-2 px-6 py-4 border-b-2 font-bold text-sm transition-all focus:outline-none border-transparent text-slate-500 hover:text-slate-800 hover:bg-slate-50">
+                <span>🗂️ 5歲寶寶放電 & 打包</span>
+            </button>
+        </div>
+    </nav>
+
+    <main class="max-w-6xl mx-auto px-4 py-8">
+
+        <!-- ================= TAB 1: ITINERARY ================= -->
+        <section id="content-itinerary" class="tab-content">
+            <div class="grid grid-cols-1 lg:grid-cols-4 gap-8">
+                <!-- Left Day Selector -->
+                <div class="lg:col-span-1 flex lg:flex-col gap-2 overflow-x-auto pb-4 lg:pb-0 scrollbar-none">
+                    <button onclick="switchDay(1)" id="day-btn-1" class="flex-1 lg:flex-none text-left p-4 rounded-2xl border transition-all flex flex-col justify-between items-start bg-rust-800 text-white border-rust-800 shadow-md">
+                        <span class="text-xs font-bold opacity-80">DAY 1</span>
+                        <span class="text-sm font-extrabold mt-1">9月23日 (週三)</span>
+                        <span class="text-[10px] opacity-75 mt-0.5">大通電視塔 ➔ 👑樂軒燒肉</span>
+                    </button>
+                    <button onclick="switchDay(2)" id="day-btn-2" class="flex-1 lg:flex-none text-left p-4 rounded-2xl border transition-all flex flex-col justify-between items-start bg-white text-slate-700 border-slate-200 hover:border-rust-300">
+                        <span class="text-xs font-bold opacity-80">DAY 2</span>
+                        <span class="text-sm font-extrabold mt-1">9月24日 (週四)</span>
+                        <span class="text-[10px] opacity-75 mt-0.5">小樽活蟹 ➔ 👑達摩烤肉</span>
+                    </button>
+                    <button onclick="switchDay(3)" id="day-btn-3" class="flex-1 lg:flex-none text-left p-4 rounded-2xl border transition-all flex flex-col justify-between items-start bg-white text-slate-700 border-slate-200 hover:border-rust-300">
+                        <span class="text-xs font-bold opacity-80">DAY 3</span>
+                        <span class="text-sm font-extrabold mt-1">9月25日 (週五)</span>
+                        <span class="text-[10px] opacity-75 mt-0.5">👑AOAO企鵝 ➔ 乃之風煙火</span>
+                    </button>
+                    <button onclick="switchDay(4)" id="day-btn-4" class="flex-1 lg:flex-none text-left p-4 rounded-2xl border transition-all flex flex-col justify-between items-start bg-white text-slate-700 border-slate-200 hover:border-rust-300">
+                        <span class="text-xs font-bold opacity-80">DAY 4</span>
+                        <span class="text-sm font-extrabold mt-1">9月26日 (週六)</span>
+                        <span class="text-[10px] opacity-75 mt-0.5">👑根室花丸 ➔ 👑蝦蟹合戰</span>
+                    </button>
+                    <button onclick="switchDay(5)" id="day-btn-5" class="flex-1 lg:flex-none text-left p-4 rounded-2xl border transition-all flex flex-col justify-between items-start bg-white text-slate-700 border-slate-200 hover:border-rust-300">
+                        <span class="text-xs font-bold opacity-80">DAY 5</span>
+                        <span class="text-sm font-extrabold mt-1">9月27日 (週日)</span>
+                        <span class="text-[10px] opacity-75 mt-0.5">三井OUTLET ➔ 👑lavi湯咖哩</span>
+                    </button>
+
+                    <div class="hidden lg:block bg-gradient-to-br from-amber-50 to-orange-50 border border-amber-200 rounded-2xl p-4 mt-4">
+                        <h4 class="font-extrabold text-amber-900 text-sm flex items-center gap-1">👶 5歲寶寶放電王牌</h4>
+                        <p class="text-xs text-amber-800/90 mt-2 leading-relaxed">
+                            每天下午皆設計一個能讓他雙腳著地、瘋狂放電的「高爽度亮點」，放乾電力後晚上在餐廳最安穩！
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Right Timeline Content -->
+                <div class="lg:col-span-3">
+                    <!-- Day 1 Panel -->
+                    <div id="day-content-1" class="day-panel space-y-6">
+                        <div class="bg-white border border-slate-200 rounded-3xl p-6 shadow-sm">
+                            <div class="border-b border-slate-100 pb-4 mb-6 flex items-center justify-between flex-wrap gap-2">
+                                <div>
+                                    <span class="text-rust-600 text-xs font-bold tracking-wider uppercase">HOKKAIDO DAY 1</span>
+                                    <h2 class="text-xl md:text-2xl font-black text-slate-900 mt-1">
+                                        Day 1：9/23 (三) 【地標大滿貫散步 ➔ 狸小路突擊 ➔ 👑樂軒和牛】
+                                    </h2>
+                                </div>
+                                <div class="bg-amber-100 text-amber-900 text-xs px-3.5 py-1.5 rounded-full font-bold">
+                                    🎯 主題: 初秋札幌地標與尊榮和牛開局
+                                </div>
+                            </div>
+
+                            <div class="relative border-l-2 border-slate-100 pl-4 md:pl-6 ml-2 space-y-8">
+                                <!-- Node 1 -->
+                                <div class="relative">
+                                    <span class="absolute -left-10 top-0.5 bg-white border-2 border-rust-200 rounded-full w-7 h-7 flex items-center justify-center text-xs shadow-sm">✈️</span>
+                                    <div class="bg-slate-50 border border-slate-100 hover:border-slate-200 rounded-2xl p-5 transition-all">
+                                        <div class="flex items-center gap-3 mb-2 flex-wrap">
+                                            <span class="text-rust-600 font-extrabold text-xs tracking-wide bg-white border border-rust-100 px-2.5 py-1 rounded-md shadow-sm">11:05</span>
+                                            <h3 class="font-extrabold text-slate-800 text-base">抵達新千歲機場</h3>
+                                        </div>
+                                        <p class="text-xs md:text-sm text-slate-600 leading-relaxed">
+                                            搭乘台灣虎航 IT234 直飛。出關後直奔 JR 月台，搭乘「JR 快速 Airport 號」（車程37分鐘）直達札幌車站。
+                                        </p>
+                                        <div class="mt-3 inline-flex items-center gap-1.5 bg-amber-50 text-amber-800 text-xxs px-2.5 py-1 rounded-full font-bold border border-amber-100">
+                                            👵 長輩貼心：已提前為爸媽買好「指定席 u-seat」，保證上車有舒適大座位休息。
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Node 2 -->
+                                <div class="relative">
+                                    <span class="absolute -left-10 top-0.5 bg-white border-2 border-rust-200 rounded-full w-7 h-7 flex items-center justify-center text-xs shadow-sm">🏨</span>
+                                    <div class="bg-slate-50 border border-slate-100 hover:border-slate-200 rounded-2xl p-5 transition-all">
+                                        <div class="flex items-center gap-3 mb-2 flex-wrap">
+                                            <span class="text-rust-600 font-extrabold text-xs tracking-wide bg-white border border-rust-100 px-2.5 py-1 rounded-md shadow-sm">13:30</span>
+                                            <h3 class="font-extrabold text-slate-800 text-base">入住 La Vista 札幌大通酒店</h3>
+                                        </div>
+                                        <p class="text-xs md:text-sm text-slate-600 leading-relaxed">
+                                            辦理 Check-in 寄存行李，讓爸媽在舒適大廳稍作休息。洗臉換衣服，大行李與折疊推車輕裝上陣。
+                                        </p>
+                                    </div>
+                                </div>
+
+                                <!-- Node 3 -->
+                                <div class="relative">
+                                    <span class="absolute -left-10 top-0.5 bg-white border-2 border-rust-200 rounded-full w-7 h-7 flex items-center justify-center text-xs shadow-sm">🗼</span>
+                                    <div class="bg-slate-50 border border-slate-100 hover:border-slate-200 rounded-2xl p-5 transition-all">
+                                        <div class="flex items-center gap-3 mb-2 flex-wrap">
+                                            <span class="text-rust-600 font-extrabold text-xs tracking-wide bg-white border border-rust-100 px-2.5 py-1 rounded-md shadow-sm">14:30 - 16:30</span>
+                                            <h3 class="font-extrabold text-slate-800 text-base">【大通公園散步 × 5歲放電點 1】地標大滿貫散步</h3>
+                                        </div>
+                                        <p class="text-xs md:text-sm text-slate-600 leading-relaxed">
+                                            路邊買熱騰騰現烤玉米和現切哈密瓜分享。順路登上電視塔展望台俯瞰棋盤格市景，再到紅磚舊道廳巴洛克庭園看鴨子。
+                                        </p>
+                                        <div class="mt-3 flex flex-wrap gap-2">
+                                            <span class="inline-flex items-center bg-rose-50 text-rose-700 text-xxs px-2.5 py-1 rounded-full font-bold border border-rose-100">
+                                                👶 5歲放電：在噴水池旁看水舞、追逐大批不怕人的鴿子，徹底消耗體力！
+                                            </span>
+                                            <span class="inline-flex items-center bg-emerald-50 text-emerald-700 text-xxs px-2.5 py-1 rounded-full font-bold border border-emerald-100">
+                                                ♿ 無障礙：全線人行道平整寬大，對嬰兒車及長輩輪椅極為溫和。
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Node 4 -->
+                                <div class="relative">
+                                    <span class="absolute -left-10 top-0.5 bg-white border-2 border-rust-200 rounded-full w-7 h-7 flex items-center justify-center text-xs shadow-sm">☕</span>
+                                    <div class="bg-slate-50 border border-slate-100 hover:border-slate-200 rounded-2xl p-5 transition-all">
+                                        <div class="flex items-center gap-3 mb-2 flex-wrap">
+                                            <span class="text-rust-600 font-extrabold text-xs tracking-wide bg-white border border-rust-100 px-2.5 py-1 rounded-md shadow-sm">15:00</span>
+                                            <h3 class="font-extrabold text-slate-800 text-base">午後咖啡補給 1：【Baristart Coffee】</h3>
+                                        </div>
+                                        <p class="text-xs md:text-sm text-slate-600 leading-relaxed">
+                                            散步途中外帶這家傳奇拿鐵，可自選「美瑛」或「函館」牧場的特產鮮乳，奶香濃郁到爆炸，平輩與太太狂推！
+                                        </p>
+                                    </div>
+                                </div>
+
+                                <!-- Node 5 -->
+                                <div class="relative">
+                                    <span class="absolute -left-10 top-0.5 bg-white border-2 border-rust-200 rounded-full w-7 h-7 flex items-center justify-center text-xs shadow-sm">🛍️</span>
+                                    <div class="bg-slate-50 border border-slate-100 hover:border-slate-200 rounded-2xl p-5 transition-all">
+                                        <div class="flex items-center gap-3 mb-2 flex-wrap">
+                                            <span class="text-rust-600 font-extrabold text-xs tracking-wide bg-white border border-rust-100 px-2.5 py-1 rounded-md shadow-sm">16:30 - 17:50</span>
+                                            <h3 class="font-extrabold text-slate-800 text-base">【狸小路藥妝第 1 次突擊】</h3>
+                                        </div>
+                                        <p class="text-xs md:text-sm text-slate-600 leading-relaxed">
+                                            順路切進狸小路。把爸媽和寶寶安頓在寬敞座位茶屋坐著休息。你、太太與姐姐開啟戰鬥模式，衝藥妝店一次掃完合利他命、面膜等，直接堆進推車行李籃。
+                                        </p>
+                                    </div>
+                                </div>
+
+                                <!-- Node 6 -->
+                                <div class="relative">
+                                    <span class="absolute -left-10 top-0.5 bg-white border-2 border-rust-200 rounded-full w-7 h-7 flex items-center justify-center text-xs shadow-sm">🥩</span>
+                                    <div class="bg-slate-50 border border-slate-100 hover:border-slate-200 rounded-2xl p-5 transition-all">
+                                        <div class="flex items-center gap-3 mb-2 flex-wrap">
+                                            <span class="text-rust-600 font-extrabold text-xs tracking-wide bg-white border border-rust-100 px-2.5 py-1 rounded-md shadow-sm">18:00</span>
+                                            <h3 class="font-extrabold text-slate-800 text-base">【美食 1 / 7】頂級松阪和牛 👑【樂軒松阪亭】</h3>
+                                        </div>
+                                        <p class="text-xs md:text-sm text-slate-600 leading-relaxed">
+                                            第一晚長輩坐飛機辛苦，特別預訂了全隱私獨立包廂。享受一對一專人代烤、入口即化的松阪牛與黑毛和牛。大寶寶備上特製日本米飯與香濃蛋花湯。
+                                        </p>
+                                        <div class="mt-3 inline-flex items-center gap-1.5 bg-rust-50 text-rust-800 text-xxs px-2.5 py-1 rounded-full font-bold border border-rust-100">
+                                            👑 戰略：必須在出發前 1~2 個月完成豪華大包廂預訂。
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Node 7 -->
+                                <div class="relative">
+                                    <span class="absolute -left-10 top-0.5 bg-white border-2 border-rust-200 rounded-full w-7 h-7 flex items-center justify-center text-xs shadow-sm">🍜</span>
+                                    <div class="bg-slate-50 border border-slate-100 hover:border-slate-200 rounded-2xl p-5 transition-all">
+                                        <div class="flex items-center gap-3 mb-2 flex-wrap">
+                                            <span class="text-rust-600 font-extrabold text-xs tracking-wide bg-white border border-rust-100 px-2.5 py-1 rounded-md shadow-sm">21:30</span>
+                                            <h3 class="font-extrabold text-slate-800 text-base">La Vista 飯店免費宵夜拉麵</h3>
+                                        </div>
+                                        <p class="text-xs md:text-sm text-slate-600 leading-relaxed">
+                                            全家人回到飯店頂樓泡完天然溫泉大眾池（男湯女湯皆附有傳統檜木桶大浴池），到餐廳享用免費限煮「日式醬油拉麵 (夜鳴きそば)」，暖胃入睡。
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Day 2 Panel -->
+                    <div id="day-content-2" class="day-panel hidden space-y-6">
+                        <div class="bg-white border border-slate-200 rounded-3xl p-6 shadow-sm">
+                            <div class="border-b border-slate-100 pb-4 mb-6 flex items-center justify-between flex-wrap gap-2">
+                                <div>
+                                    <span class="text-rust-600 text-xs font-bold tracking-wider uppercase">HOKKAIDO DAY 2</span>
+                                    <h2 class="text-xl md:text-2xl font-black text-slate-900 mt-1">
+                                        Day 2：9/24 (四) 【La Vista痛風早餐 ➔ 👑三角市場活蟹 ➔ 👑籔半烏龍麵 ➔ 👑達摩烤羊】
+                                    </h2>
+                                </div>
+                                <div class="bg-amber-100 text-amber-900 text-xs px-3.5 py-1.5 rounded-full font-bold">
+                                    🎯 主題: 小樽極致活蟹與大正復古老街慢活
+                                </div>
+                            </div>
+
+                            <div class="relative border-l-2 border-slate-100 pl-4 md:pl-6 ml-2 space-y-8">
+                                <!-- Node 1 -->
+                                <div class="relative">
+                                    <span class="absolute -left-10 top-0.5 bg-white border-2 border-rust-200 rounded-full w-7 h-7 flex items-center justify-center text-xs shadow-sm">🦪</span>
+                                    <div class="bg-slate-50 border border-slate-100 hover:border-slate-200 rounded-2xl p-5 transition-all">
+                                        <div class="flex items-center gap-3 mb-2 flex-wrap">
+                                            <span class="text-rust-600 font-extrabold text-xs tracking-wide bg-white border border-rust-100 px-2.5 py-1 rounded-md shadow-sm">07:30</span>
+                                            <h3 class="font-extrabold text-slate-800 text-base">La Vista 傳奇海鮮早餐大餐</h3>
+                                        </div>
+                                        <p class="text-xs md:text-sm text-slate-600 leading-relaxed">
+                                            在飯店餐廳享用全日本排名前三的夢幻海鮮丼早餐！鮭魚卵、甜蝦、生干貝無限續挖，自己做一碗爆量痛風丼，爸媽一早笑逐顏開。
+                                        </p>
+                                    </div>
+                                </div>
+
+                                <!-- Node 2 -->
+                                <div class="relative">
+                                    <span class="absolute -left-10 top-0.5 bg-white border-2 border-rust-200 rounded-full w-7 h-7 flex items-center justify-center text-xs shadow-sm">🚊</span>
+                                    <div class="bg-slate-50 border border-slate-100 hover:border-slate-200 rounded-2xl p-5 transition-all">
+                                        <div class="flex items-center gap-3 mb-2 flex-wrap">
+                                            <span class="text-rust-600 font-extrabold text-xs tracking-wide bg-white border border-rust-100 px-2.5 py-1 rounded-md shadow-sm">09:30</span>
+                                            <h3 class="font-extrabold text-slate-800 text-base">搭乘 JR 特急火車直達小樽</h3>
+                                        </div>
+                                        <p class="text-xs md:text-sm text-slate-600 leading-relaxed">
+                                            （幫長輩買好 JR u-seat 指定席），一路沿著日本海岸線，40 分鐘舒舒服服抵達小樽站。
+                                        </p>
+                                    </div>
+                                </div>
+
+                                <!-- Node 3 -->
+                                <div class="relative">
+                                    <span class="absolute -left-10 top-0.5 bg-white border-2 border-rust-200 rounded-full w-7 h-7 flex items-center justify-center text-xs shadow-sm">🦀</span>
+                                    <div class="bg-slate-50 border border-slate-100 hover:border-slate-200 rounded-2xl p-5 transition-all">
+                                        <div class="flex items-center gap-3 mb-2 flex-wrap">
+                                            <span class="text-rust-600 font-extrabold text-xs tracking-wide bg-white border border-rust-100 px-2.5 py-1 rounded-md shadow-sm">10:30</span>
+                                            <h3 class="font-extrabold text-slate-800 text-base">【美食 2 / 7】新鮮現撈帝王蟹 👑【小樽三角市場】</h3>
+                                        </div>
+                                        <p class="text-xs md:text-sm text-slate-600 leading-relaxed">
+                                            出站右轉步行 1 分鐘直奔市場。現場在水槽挑選一隻大活帝王蟹，直接「清蒸 ＋ 炭火現烤」兩吃。活蟹肉質極度鮮甜多汁！開吃前，先請水果攤現切一顆富良野哈密瓜當豪華開胃菜。
+                                        </p>
+                                        <div class="mt-3 inline-flex items-center gap-1.5 bg-rust-50 text-rust-800 text-xxs px-2.5 py-1 rounded-full font-bold border border-rust-100">
+                                            🦀 戰略：今日避開重複的海鮮丼，主攻純蟹肉，以免重複膩口。
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Node 4 -->
+                                <div class="relative">
+                                    <span class="absolute -left-10 top-0.5 bg-white border-2 border-rust-200 rounded-full w-7 h-7 flex items-center justify-center text-xs shadow-sm">🍲</span>
+                                    <div class="bg-slate-50 border border-slate-100 hover:border-slate-200 rounded-2xl p-5 transition-all">
+                                        <div class="flex items-center gap-3 mb-2 flex-wrap">
+                                            <span class="text-rust-600 font-extrabold text-xs tracking-wide bg-white border border-rust-100 px-2.5 py-1 rounded-md shadow-sm">12:00</span>
+                                            <h3 class="font-extrabold text-slate-800 text-base">【美食 3 / 7】百年老店砂鍋烏龍麵 👑【籔半 (Yabuhan)】</h3>
+                                        </div>
+                                        <p class="text-xs md:text-sm text-slate-600 leading-relaxed">
+                                            帶全家走進充滿歷史感的大正木造老屋。幫小寶寶和想吃熱食的長輩點一鍋吸滿昆布柴魚高湯、熱騰騰的「日式鍋燒烏龍麵」，有雞蛋與炸蝦，高湯微甜暖胃，適合大寶寶剪碎分食。
+                                        </p>
+                                    </div>
+                                </div>
+
+                                <!-- Node 5 -->
+                                <div class="relative">
+                                    <span class="absolute -left-10 top-0.5 bg-white border-2 border-rust-200 rounded-full w-7 h-7 flex items-center justify-center text-xs shadow-sm">☕</span>
+                                    <div class="bg-slate-50 border border-slate-100 hover:border-slate-200 rounded-2xl p-5 transition-all">
+                                        <div class="flex items-center gap-3 mb-2 flex-wrap">
+                                            <span class="text-rust-600 font-extrabold text-xs tracking-wide bg-white border border-rust-100 px-2.5 py-1 rounded-md shadow-sm">13:00</span>
+                                            <h3 class="font-extrabold text-slate-800 text-base">午後咖啡補給 2：【Otaru Coffee (小樽珈琲物語)】</h3>
+                                        </div>
+                                        <p class="text-xs md:text-sm text-slate-600 leading-relaxed">
+                                            本格派職人自家烘焙！你喝一杯職人慢工手沖的「小樽黑珈琲」解膩醒腦；太太和姐姐點傳奇的冰鮮奶油黑咖啡「琥珀女王」。坐在大正風格皮沙發上，長輩和小寶寶得到最舒適的午睡充電。
+                                        </p>
+                                    </div>
+                                </div>
+
+                                <!-- Node 6 -->
+                                <div class="relative">
+                                    <span class="absolute -left-10 top-0.5 bg-white border-2 border-rust-200 rounded-full w-7 h-7 flex items-center justify-center text-xs shadow-sm">🧱</span>
+                                    <div class="bg-slate-50 border border-slate-100 hover:border-slate-200 rounded-2xl p-5 transition-all">
+                                        <div class="flex items-center gap-3 mb-2 flex-wrap">
+                                            <span class="text-rust-600 font-extrabold text-xs tracking-wide bg-white border border-rust-100 px-2.5 py-1 rounded-md shadow-sm">14:15 - 17:15</span>
+                                            <h3 class="font-extrabold text-slate-800 text-base">【復古老街 × 5歲放電點 2】小樽老街 ➔ 音樂盒堂</h3>
+                                        </div>
+                                        <p class="text-xs md:text-sm text-slate-600 leading-relaxed">
+                                            推車順下坡慢逛老街、看北一硝子館。帶大寶寶去看蒸汽鐘噴煙鳴笛，逛擺滿幾萬個發光音樂盒的本館。隨後在 LeTAO 本店享用招牌雙層乳酪蛋糕下午茶。
+                                        </p>
+                                    </div>
+                                </div>
+
+                                <!-- Node 7 -->
+                                <div class="relative">
+                                    <span class="absolute -left-10 top-0.5 bg-white border-2 border-rust-200 rounded-full w-7 h-7 flex items-center justify-center text-xs shadow-sm">📸</span>
+                                    <div class="bg-slate-50 border border-slate-100 hover:border-slate-200 rounded-2xl p-5 transition-all">
+                                        <div class="flex items-center gap-3 mb-2 flex-wrap">
+                                            <span class="text-rust-600 font-extrabold text-xs tracking-wide bg-white border border-rust-100 px-2.5 py-1 rounded-md shadow-sm">17:30</span>
+                                            <h3 class="font-extrabold text-slate-800 text-base">小樽運河點燈（瓦斯燈初秋夜景）</h3>
+                                        </div>
+                                        <p class="text-xs md:text-sm text-slate-600 leading-relaxed">
+                                            傍晚天色漸暗，欣賞復古瓦斯燈照亮老倉庫的明信片美景，拍下最溫馨的初秋全家大合照，晚風拂面極為舒適。
+                                        </p>
+                                    </div>
+                                </div>
+
+                                <!-- Node 8 -->
+                                <div class="relative">
+                                    <span class="absolute -left-10 top-0.5 bg-white border-2 border-rust-200 rounded-full w-7 h-7 flex items-center justify-center text-xs shadow-sm">🐑</span>
+                                    <div class="bg-slate-50 border border-slate-100 hover:border-slate-200 rounded-2xl p-5 transition-all">
+                                        <div class="flex items-center gap-3 mb-2 flex-wrap">
+                                            <span class="text-rust-600 font-extrabold text-xs tracking-wide bg-white border border-rust-100 px-2.5 py-1 rounded-md shadow-sm">19:15</span>
+                                            <h3 class="font-extrabold text-slate-800 text-base">【美食 4 / 7】成吉思汗烤羊肉 👑【達摩 5.5號店】</h3>
+                                        </div>
+                                        <p class="text-xs md:text-sm text-slate-600 leading-relaxed">
+                                            坐火車回札幌。衝薄野大口吃炭火銅盤烤極嫩羊肉、蘸上特製蒜泥甜醬油，大配北海道生啤酒。
+                                        </p>
+                                        <div class="mt-3 inline-flex items-center gap-1.5 bg-rust-50 text-rust-800 text-xxs px-2.5 py-1 rounded-full font-bold border border-rust-100">
+                                            🐑 戰術：此店不接受預約，由平輩先去排隊，長輩和寶寶在隔壁商場等，有位子再叫大家。
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Day 3 Panel -->
+                    <div id="day-content-3" class="day-panel hidden space-y-6">
+                        <div class="bg-white border border-slate-200 rounded-3xl p-6 shadow-sm">
+                            <div class="border-b border-slate-100 pb-4 mb-6 flex items-center justify-between flex-wrap gap-2">
+                                <div>
+                                    <span class="text-rust-600 text-xs font-bold tracking-wider uppercase">HOKKAIDO DAY 3</span>
+                                    <h2 class="text-xl md:text-2xl font-black text-slate-900 mt-1">
+                                        Day 3：9/25 (五) 【👑AOAO水族館 ➔ 狸小路補貨 ➔ 👑乃之風頂級溫泉煙火】
+                                    </h2>
+                                </div>
+                                <div class="bg-amber-100 text-amber-900 text-xs px-3.5 py-1.5 rounded-full font-bold">
+                                    🎯 主題: 企鵝親密接觸與洞爺湖第一排花火大會
+                                </div>
+                            </div>
+
+                            <div class="relative border-l-2 border-slate-100 pl-4 md:pl-6 ml-2 space-y-8">
+                                <!-- Node 1 -->
+                                <div class="relative">
+                                    <span class="absolute -left-10 top-0.5 bg-white border-2 border-rust-200 rounded-full w-7 h-7 flex items-center justify-center text-xs shadow-sm">🐧</span>
+                                    <div class="bg-slate-50 border border-slate-100 hover:border-slate-200 rounded-2xl p-5 transition-all">
+                                        <div class="flex items-center gap-3 mb-2 flex-wrap">
+                                            <span class="text-rust-600 font-extrabold text-xs tracking-wide bg-white border border-rust-100 px-2.5 py-1 rounded-md shadow-sm">10:00</span>
+                                            <h3 class="font-extrabold text-slate-800 text-base">【全新景點 × 5歲放電點 3】AOAO SAPPORO 城市水族館</h3>
+                                        </div>
+                                        <p class="text-xs md:text-sm text-slate-600 leading-relaxed">
+                                            這是換掉神宮後的全新王牌！全室內空調超舒服，5 歲寶寶可以近距離（僅幾十公分，無大玻璃阻隔）看企鵝跳水、在數碼互動投影水母牆上跑跳，大寶寶絕對看呆！
+                                        </p>
+                                    </div>
+                                </div>
+
+                                <!-- Node 2 -->
+                                <div class="relative">
+                                    <span class="absolute -left-10 top-0.5 bg-white border-2 border-rust-200 rounded-full w-7 h-7 flex items-center justify-center text-xs shadow-sm">🛍️</span>
+                                    <div class="bg-slate-50 border border-slate-100 hover:border-slate-200 rounded-2xl p-5 transition-all">
+                                        <div class="flex items-center gap-3 mb-2 flex-wrap">
+                                            <span class="text-rust-600 font-extrabold text-xs tracking-wide bg-white border border-rust-100 px-2.5 py-1 rounded-md shadow-sm">11:30</span>
+                                            <h3 class="font-extrabold text-slate-800 text-base">【狸小路藥妝第 2 次大補貨】</h3>
+                                        </div>
+                                        <p class="text-xs md:text-sm text-slate-600 leading-relaxed">
+                                            從水族館坐電梯下樓就是狸小路 3 丁目。一次補齊要帶回台灣的所有伴手禮、零食與防蚊液等。中午在商場美食街輕鬆解決，完全無風雨干擾。
+                                        </p>
+                                    </div>
+                                </div>
+
+                                <!-- Node 3 -->
+                                <div class="relative">
+                                    <span class="absolute -left-10 top-0.5 bg-white border-2 border-rust-200 rounded-full w-7 h-7 flex items-center justify-center text-xs shadow-sm">🚶</span>
+                                    <div class="bg-slate-50 border border-slate-100 hover:border-slate-200 rounded-2xl p-5 transition-all">
+                                        <div class="flex items-center gap-3 mb-2 flex-wrap">
+                                            <span class="text-rust-600 font-extrabold text-xs tracking-wide bg-white border border-rust-100 px-2.5 py-1 rounded-md shadow-sm">12:45</span>
+                                            <h3 class="font-extrabold text-slate-800 text-base">地下街回飯店，無障礙出發</h3>
+                                        </div>
+                                        <p class="text-xs md:text-sm text-slate-600 leading-relaxed">
+                                            利用有冷氣、全平坦的「札幌地下步行空間 (Chi-Ka-Ho)」推推車步行至 La Vista 拿隨身背包，再前往札幌車站南口的指定接駁集合點。大行李留在 La Vista 寄存（輕裝去溫泉！）。
+                                        </p>
+                                    </div>
+                                </div>
+
+                                <!-- Node 4 -->
+                                <div class="relative">
+                                    <span class="absolute -left-10 top-0.5 bg-white border-2 border-rust-200 rounded-full w-7 h-7 flex items-center justify-center text-xs shadow-sm">🚌</span>
+                                    <div class="bg-slate-50 border border-slate-100 hover:border-slate-200 rounded-2xl p-5 transition-all">
+                                        <div class="flex items-center gap-3 mb-2 flex-wrap">
+                                            <span class="text-rust-600 font-extrabold text-xs tracking-wide bg-white border border-rust-100 px-2.5 py-1 rounded-md shadow-sm">13:30</span>
+                                            <h3 class="font-extrabold text-slate-800 text-base">【免拉車神級移動】乃之風專屬直達大巴士</h3>
+                                        </div>
+                                        <p class="text-xs md:text-sm text-slate-600 leading-relaxed">
+                                            長輩和小孩在大型巴士車上舒服睡午覺。途中會停靠標高最高、風景壯麗的「中山峠休息站」（此時山頭通常最早染黃、可遠眺羊蹄山，買好名物炸馬鈴薯分食）。
+                                        </p>
+                                    </div>
+                                </div>
+
+                                <!-- Node 5 -->
+                                <div class="relative">
+                                    <span class="absolute -left-10 top-0.5 bg-white border-2 border-rust-200 rounded-full w-7 h-7 flex items-center justify-center text-xs shadow-sm">♨️</span>
+                                    <div class="bg-slate-50 border border-slate-100 hover:border-slate-200 rounded-2xl p-5 transition-all">
+                                        <div class="flex items-center gap-3 mb-2 flex-wrap">
+                                            <span class="text-rust-600 font-extrabold text-xs tracking-wide bg-white border border-rust-100 px-2.5 py-1 rounded-md shadow-sm">16:00</span>
+                                            <h3 class="font-extrabold text-slate-800 text-base">入住頂級 👑【乃之風渡假酒店】& 溫泉大眾池</h3>
+                                        </div>
+                                        <p class="text-xs md:text-sm text-slate-600 leading-relaxed">
+                                            抵達飯店。大廳一邊聽著古典鋼琴演奏、一邊喝迎賓茶。
+                                        </p>
+                                        <div class="mt-3 flex flex-wrap gap-2">
+                                            <span class="inline-flex items-center bg-rust-50 text-rust-800 text-xxs px-2.5 py-1 rounded-full font-bold border border-rust-100">
+                                                🔑 關鍵：你本人立刻手刀衝櫃檯辦 Check-in，現場搶先預約 50 分鐘的私人湯屋「天空の湯」！
+                                            </span>
+                                            <span class="inline-flex items-center bg-amber-50 text-amber-800 text-xxs px-2.5 py-1 rounded-full font-bold border border-amber-100">
+                                                ♨️ 泡湯：平輩與大寶寶去頂樓泡與湖水連成一線的「天空露天風呂」大眾池，極致享受。
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Node 6 -->
+                                <div class="relative">
+                                    <span class="absolute -left-10 top-0.5 bg-white border-2 border-rust-200 rounded-full w-7 h-7 flex items-center justify-center text-xs shadow-sm">🍱</span>
+                                    <div class="bg-slate-50 border border-slate-100 hover:border-slate-200 rounded-2xl p-5 transition-all">
+                                        <div class="flex items-center gap-3 mb-2 flex-wrap">
+                                            <span class="text-rust-600 font-extrabold text-xs tracking-wide bg-white border border-rust-100 px-2.5 py-1 rounded-md shadow-sm">18:30</span>
+                                            <h3 class="font-extrabold text-slate-800 text-base">乃之風頂級豪華 Buffet 晚餐</h3>
+                                        </div>
+                                        <p class="text-xs md:text-sm text-slate-600 leading-relaxed">
+                                            享用大受好評的日西式豪華百匯！現切北海道和牛牛排、精緻握壽司、天婦羅以及超多大寶寶最愛的現作甜點，大人大飽口福。
+                                        </p>
+                                    </div>
+                                </div>
+
+                                <!-- Node 7 -->
+                                <div class="relative">
+                                    <span class="absolute -left-10 top-0.5 bg-white border-2 border-rust-200 rounded-full w-7 h-7 flex items-center justify-center text-xs shadow-sm">🎆</span>
+                                    <div class="bg-slate-50 border border-slate-100 hover:border-slate-200 rounded-2xl p-5 transition-all">
+                                        <div class="flex items-center gap-3 mb-2 flex-wrap">
+                                            <span class="text-rust-600 font-extrabold text-xs tracking-wide bg-white border border-rust-100 px-2.5 py-1 rounded-md shadow-sm">20:45</span>
+                                            <h3 class="font-extrabold text-slate-800 text-base">【煙火 × 5歲放電點 4】洞爺湖百萬花火大會</h3>
+                                        </div>
+                                        <p class="text-xs md:text-sm text-slate-600 leading-relaxed">
+                                            乃之風本館所有標準面湖房皆正對湖景第一排。全家人吃飽後回到溫馨的各自房間。躺在寬敞舒適的席夢思床上，透過整面落地大窗，在房內以頭等艙視野觀賞長達 20 分鐘的湖畔花火，大寶寶興奮尖叫！
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Day 4 Panel -->
+                    <div id="day-content-4" class="day-panel hidden space-y-6">
+                        <div class="bg-white border border-slate-200 rounded-3xl p-6 shadow-sm">
+                            <div class="border-b border-slate-100 pb-4 mb-6 flex items-center justify-between flex-wrap gap-2">
+                                <div>
+                                    <span class="text-rust-600 text-xs font-bold tracking-wider uppercase">HOKKAIDO DAY 4</span>
+                                    <h2 class="text-xl md:text-2xl font-black text-slate-900 mt-1">
+                                        Day 4：9/26 (六) 【回札幌北口 ➔ 👑根室花丸 ➔ HARBS蛋糕 ➔ 👑白色戀人 ➔ 👑三大蟹】
+                                    </h2>
+                                </div>
+                                <div class="bg-amber-100 text-amber-900 text-xs px-3.5 py-1.5 rounded-full font-bold">
+                                    🎯 主題: 札幌車站共構無障礙切換與螃蟹制霸
+                                </div>
+                            </div>
+
+                            <div class="relative border-l-2 border-slate-100 pl-4 md:pl-6 ml-2 space-y-8">
+                                <!-- Node 1 -->
+                                <div class="relative">
+                                    <span class="absolute -left-10 top-0.5 bg-white border-2 border-rust-200 rounded-full w-7 h-7 flex items-center justify-center text-xs shadow-sm">🚌</span>
+                                    <div class="bg-slate-50 border border-slate-100 hover:border-slate-200 rounded-2xl p-5 transition-all">
+                                        <div class="flex items-center gap-3 mb-2 flex-wrap">
+                                            <span class="text-rust-600 font-extrabold text-xs tracking-wide bg-white border border-rust-100 px-2.5 py-1 rounded-md shadow-sm">10:00 - 12:30</span>
+                                            <h3 class="font-extrabold text-slate-800 text-base">搭回程接駁車返札幌車站</h3>
+                                        </div>
+                                        <p class="text-xs md:text-sm text-slate-600 leading-relaxed">
+                                            早上享受平靜的朝陽湖景溫泉，吃完早餐上免費接駁大巴士。中午回到札幌車站。
+                                        </p>
+                                    </div>
+                                </div>
+
+                                <!-- Node 2 -->
+                                <div class="relative">
+                                    <span class="absolute -left-10 top-0.5 bg-white border-2 border-rust-200 rounded-full w-7 h-7 flex items-center justify-center text-xs shadow-sm">⬇️</span>
+                                    <div class="bg-slate-50 border border-slate-100 hover:border-slate-200 rounded-2xl p-5 transition-all">
+                                        <div class="flex items-center gap-3 mb-2 flex-wrap">
+                                            <span class="text-rust-600 font-extrabold text-xs tracking-wide bg-white border border-rust-100 px-2.5 py-1 rounded-md shadow-sm">12:35</span>
+                                            <h3 class="font-extrabold text-slate-800 text-base">【神級動線調度】入住車站北口飯店</h3>
+                                        </div>
+                                        <p class="text-xs md:text-sm text-slate-600 leading-relaxed">
+                                            下巴士步行 1 分鐘，直入隔壁的 **【JR 東日本札幌 METS 飯店】** 寄存背包。順便走回旁邊的 La Vista 領取 Day 3 寄存的大行李集中送到 METS，推推車完全平坦、免曬太陽流汗！
+                                        </p>
+                                    </div>
+                                </div>
+
+                                <!-- Node 3 -->
+                                <div class="relative">
+                                    <span class="absolute -left-10 top-0.5 bg-white border-2 border-rust-200 rounded-full w-7 h-7 flex items-center justify-center text-xs shadow-sm">🍣</span>
+                                    <div class="bg-slate-50 border border-slate-100 hover:border-slate-200 rounded-2xl p-5 transition-all">
+                                        <div class="flex items-center gap-3 mb-2 flex-wrap">
+                                            <span class="text-rust-600 font-extrabold text-xs tracking-wide bg-white border border-rust-100 px-2.5 py-1 rounded-md shadow-sm">12:45</span>
+                                            <h3 class="font-extrabold text-slate-800 text-base">【美食 5 / 7】最強迴轉壽司 👑【根室花丸 (STELLAR PLACE 店)】</h3>
+                                        </div>
+                                        <p class="text-xs md:text-sm text-slate-600 leading-relaxed">
+                                            下車你手刀衝 STELLAR PLACE 6 樓抽號碼牌（手機看進度）。全家回房放好行李，到點直接上樓坐寬敞沙發大桌。狂點爆量鮭魚卵軍艦、極厚甜干貝，坐沙發座極為舒服。
+                                        </p>
+                                    </div>
+                                </div>
+
+                                <!-- Node 4 -->
+                                <div class="relative">
+                                    <span class="absolute -left-10 top-0.5 bg-white border-2 border-rust-200 rounded-full w-7 h-7 flex items-center justify-center text-xs shadow-sm">🍰</span>
+                                    <div class="bg-slate-50 border border-slate-100 hover:border-slate-200 rounded-2xl p-5 transition-all">
+                                        <div class="flex items-center gap-3 mb-2 flex-wrap">
+                                            <span class="text-rust-600 font-extrabold text-xs tracking-wide bg-white border border-rust-100 px-2.5 py-1 rounded-md shadow-sm">14:45</span>
+                                            <h3 class="font-extrabold text-slate-800 text-base">大丸百貨 HARBS 蛋糕 ＋ 飯店房間咖啡派對</h3>
+                                        </div>
+                                        <p class="text-xs md:text-sm text-slate-600 leading-relaxed">
+                                            大丸百貨 3 樓直接外帶 4 片【HARBS 水果千層蛋糕】回隔壁的 METS 飯店房間。全家人一邊喝著樓下買的熱黑咖啡，一邊享受鮮奶油千層，大滿足！長輩躺床徹底補滿體力。
+                                        </p>
+                                    </div>
+                                </div>
+
+                                <!-- Node 5 -->
+                                <div class="relative">
+                                    <span class="absolute -left-10 top-0.5 bg-white border-2 border-rust-200 rounded-full w-7 h-7 flex items-center justify-center text-xs shadow-sm">🏰</span>
+                                    <div class="bg-slate-50 border border-slate-100 hover:border-slate-200 rounded-2xl p-5 transition-all">
+                                        <div class="flex items-center gap-3 mb-2 flex-wrap">
+                                            <span class="text-rust-600 font-extrabold text-xs tracking-wide bg-white border border-rust-100 px-2.5 py-1 rounded-md shadow-sm">15:40 - 17:40</span>
+                                            <h3 class="font-extrabold text-slate-800 text-base">【經典夢幻 × 5歲放電點 5】白色戀人公園</h3>
+                                        </div>
+                                        <p class="text-xs md:text-sm text-slate-600 leading-relaxed">
+                                            搭地鐵直達。帶 5 歲大寶寶搭乘穿梭在歐式城堡花園間的「蒸汽嘟嘟小火車」、鑽進 100 公分高的精靈小屋開門拍照，背景超級治癒，拍下完美的家族大合影！
+                                        </p>
+                                    </div>
+                                </div>
+
+                                <!-- Node 6 -->
+                                <div class="relative">
+                                    <span class="absolute -left-10 top-0.5 bg-white border-2 border-rust-200 rounded-full w-7 h-7 flex items-center justify-center text-xs shadow-sm">🦀</span>
+                                    <div class="bg-slate-50 border border-slate-100 hover:border-slate-200 rounded-2xl p-5 transition-all">
+                                        <div class="flex items-center gap-3 mb-2 flex-wrap">
+                                            <span class="text-rust-600 font-extrabold text-xs tracking-wide bg-white border border-rust-100 px-2.5 py-1 rounded-md shadow-sm">18:30</span>
+                                            <h3 class="font-extrabold text-slate-800 text-base">【美食 6 / 7】三大螃蟹吃到飽 👑【蝦蟹合戰 (えびかに合戦)】</h3>
+                                        </div>
+                                        <p class="text-xs md:text-sm text-slate-600 leading-relaxed">
+                                            入座大包廂。帝王蟹、松葉蟹、毛蟹腳無限量瘋狂續盤！大人拿專用剪刀剪蟹腳，搭配冰涼生啤酒，極限爽度！小寶寶餵他吃熱騰騰茶碗蒸和壽司。
+                                        </p>
+                                        <div class="mt-3 inline-flex items-center gap-1.5 bg-rust-50 text-rust-800 text-xxs px-2.5 py-1 rounded-full font-bold border border-rust-100">
+                                            🦀 戰術：必須提前 1~2 個月完成大桌/包廂預約，保證不吃閉門羹！
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Day 5 Panel -->
+                    <div id="day-content-5" class="day-panel hidden space-y-6">
+                        <div class="bg-white border border-slate-200 rounded-3xl p-6 shadow-sm">
+                            <div class="border-b border-slate-100 pb-4 mb-6 flex items-center justify-between flex-wrap gap-2">
+                                <div>
+                                    <span class="text-rust-600 text-xs font-bold tracking-wider uppercase">HOKKAIDO DAY 5</span>
+                                    <h2 class="text-xl md:text-2xl font-black text-slate-900 mt-1">
+                                        Day 5：9/27 (日) 【三井OUTLET最終血拼 ➔ 新千歲機場 ➔ 👑哆啦A夢 ➔ 👑lavi湯咖哩】
+                                    </h2>
+                                </div>
+                                <div class="bg-amber-100 text-amber-900 text-xs px-3.5 py-1.5 rounded-full font-bold">
+                                    🎯 主題: 最終三井血拼與機場多啦A夢樂園放電
+                                </div>
+                            </div>
+
+                            <div class="relative border-l-2 border-slate-100 pl-4 md:pl-6 ml-2 space-y-8">
+                                <!-- Node 1 -->
+                                <div class="relative">
+                                    <span class="absolute -left-10 top-0.5 bg-white border-2 border-rust-200 rounded-full w-7 h-7 flex items-center justify-center text-xs shadow-sm">🚌</span>
+                                    <div class="bg-slate-50 border border-slate-100 hover:border-slate-200 rounded-2xl p-5 transition-all">
+                                        <div class="flex items-center gap-3 mb-2 flex-wrap">
+                                            <span class="text-rust-600 font-extrabold text-xs tracking-wide bg-white border border-rust-100 px-2.5 py-1 rounded-md shadow-sm">09:00</span>
+                                            <h3 class="font-extrabold text-slate-800 text-base">退房後，樓下搭三井 OUTLET 直達巴士</h3>
+                                        </div>
+                                        <p class="text-xs md:text-sm text-slate-600 leading-relaxed">
+                                            退房後直接到飯店下方的巴士轉運站上車。所有大行李箱塞大巴下層，免拖行李箱轉車。
+                                        </p>
+                                    </div>
+                                </div>
+
+                                <!-- Node 2 -->
+                                <div class="relative">
+                                    <span class="absolute -left-10 top-0.5 bg-white border-2 border-rust-200 rounded-full w-7 h-7 flex items-center justify-center text-xs shadow-sm">🛍️</span>
+                                    <div class="bg-slate-50 border border-slate-100 hover:border-slate-200 rounded-2xl p-5 transition-all">
+                                        <div class="flex items-center gap-3 mb-2 flex-wrap">
+                                            <span class="text-rust-600 font-extrabold text-xs tracking-wide bg-white border border-rust-100 px-2.5 py-1 rounded-md shadow-sm">10:00 - 12:30</span>
+                                            <h3 class="font-extrabold text-slate-800 text-base">【北廣島三井 OUTLET】最後瘋狂大採購</h3>
+                                        </div>
+                                        <p class="text-xs md:text-sm text-slate-600 leading-relaxed">
+                                            擁有足足 2.5 小時完整的運動品牌、日系服飾、潮流單品血拼。中午在寬敞美食街享用熱熱的帶廣名物豚丼或拉麵。
+                                        </p>
+                                    </div>
+                                </div>
+
+                                <!-- Node 3 -->
+                                <div class="relative">
+                                    <span class="absolute -left-10 top-0.5 bg-white border-2 border-rust-200 rounded-full w-7 h-7 flex items-center justify-center text-xs shadow-sm">🚌</span>
+                                    <div class="bg-slate-50 border border-slate-100 hover:border-slate-200 rounded-2xl p-5 transition-all">
+                                        <div class="flex items-center gap-3 mb-2 flex-wrap">
+                                            <span class="text-rust-600 font-extrabold text-xs tracking-wide bg-white border border-rust-100 px-2.5 py-1 rounded-md shadow-sm">12:45</span>
+                                            <h3 class="font-extrabold text-slate-800 text-base">直達機場，行李再次塞巴士下層</h3>
+                                        </div>
+                                        <p class="text-xs md:text-sm text-slate-600 leading-relaxed">
+                                            OUTLET 巴士站搭直達車（車程 30 分鐘）直接抵達新千歲機場國內線 3 樓，無比流暢。
+                                        </p>
+                                    </div>
+                                </div>
+
+                                <!-- Node 4 -->
+                                <div class="relative">
+                                    <span class="absolute -left-10 top-0.5 bg-white border-2 border-rust-200 rounded-full w-7 h-7 flex items-center justify-center text-xs shadow-sm">🍛</span>
+                                    <div class="bg-slate-50 border border-slate-100 hover:border-slate-200 rounded-2xl p-5 transition-all">
+                                        <div class="flex items-center gap-3 mb-2 flex-wrap">
+                                            <span class="text-rust-600 font-extrabold text-xs tracking-wide bg-white border border-rust-100 px-2.5 py-1 rounded-md shadow-sm">13:30</span>
+                                            <h3 class="font-extrabold text-slate-800 text-base">【美食 7 / 7】最強機場湯咖哩 👑【lavi 湯咖哩】</h3>
+                                        </div>
+                                        <p class="text-xs md:text-sm text-slate-600 leading-relaxed">
+                                            新千歲機場 3 樓國內線美食街直奔 lavi。濃香撲鼻的特色藥膳辛香料湯頭，搭配燉得骨肉分離的嫩雞腿與各種甜脆油炸時蔬。這碗暖洋洋的湯咖哩作為整趟美食之旅的頂級壓軸！
+                                        </p>
+                                    </div>
+                                </div>
+
+                                <!-- Node 5 -->
+                                <div class="relative">
+                                    <span class="absolute -left-10 top-0.5 bg-white border-2 border-rust-200 rounded-full w-7 h-7 flex items-center justify-center text-xs shadow-sm">🎈</span>
+                                    <div class="bg-slate-50 border border-slate-100 hover:border-slate-200 rounded-2xl p-5 transition-all">
+                                        <div class="flex items-center gap-3 mb-2 flex-wrap">
+                                            <span class="text-rust-600 font-extrabold text-xs tracking-wide bg-white border border-rust-100 px-2.5 py-1 rounded-md shadow-sm">14:30</span>
+                                            <h3 class="font-extrabold text-slate-800 text-base">【終極驚喜 × 5歲放電點 6】機場國內線 3 樓遊樂園</h3>
+                                        </div>
+                                        <p class="text-xs md:text-sm text-slate-600 leading-relaxed">
+                                            帶大寶寶去「哆啦A夢空中樂園」與巨型藍胖胖合影。再去 Royce' 巧克力工廠看巨型機械爪現場全自動切割與包裝。寶寶黏在玻璃前挪不動步，放乾最後一絲精力，上飛機 IT235（18:45起飛）一落座直接秒睡，爸媽安靜返台。
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ================= TAB 2: DININGS ================= -->
+        <section id="content-dinings" class="tab-content hidden">
+            <div class="bg-gradient-to-r from-rust-800 to-amber-800 text-white rounded-3xl p-6 md:p-8 mb-8 shadow-md">
+                <h2 class="text-xl md:text-2xl font-black flex items-center gap-2">🦀 7大最強名店制霸戰術盤點</h2>
+                <p class="text-xs md:text-sm text-amber-100/90 mt-2 max-w-4xl leading-relaxed">
+                    北海道的餐飲實力傲視全日。這套手冊精心為您選出了這 7 種類別裡無可動搖的第一名（松阪牛燒肉、活帝王蟹兩吃、手沖琥珀咖啡、百年砂鍋烏龍、炭火烤羊肉、最強迴轉壽司與三大蟹吃到飽），不踩雷不罰站，請按下方預約進度更新您的「全美食解鎖進度條」！
+                </p>
+                <div class="mt-6 bg-white/10 rounded-2xl p-4 border border-white/10">
+                    <div class="flex items-center justify-between mb-2">
+                        <span class="text-xs font-bold uppercase tracking-wider text-amber-200">👑 全家美食解鎖進度:</span>
+                        <span id="progress-text" class="text-xs font-extrabold text-white">0 / 7 已預訂</span>
+                    </div>
+                    <div class="w-full bg-black/20 rounded-full h-3">
+                        <div id="progress-bar" class="bg-amber-400 h-3 rounded-full transition-all duration-500" style="width: 0%"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Dining 1 -->
+                <div class="bg-white border border-slate-200 rounded-3xl overflow-hidden shadow-sm hover:shadow-md transition-all flex flex-col justify-between">
+                    <div class="p-6">
+                        <div class="flex items-center justify-between mb-3">
+                            <span class="text-2xl">🥩</span>
+                            <span class="bg-amber-100 text-amber-800 text-xxs px-2.5 py-1 rounded-full font-bold uppercase tracking-wider">頂級燒肉</span>
+                        </div>
+                        <h3 class="font-extrabold text-slate-900 text-lg">樂軒松阪亭</h3>
+                        <p class="text-rust-600 text-xs font-bold mt-1">🗓️ 預計時段：Day 1 18:00</p>
+                        <div class="bg-slate-50 border border-slate-100 rounded-xl p-3.5 mt-3 text-xs text-slate-600 leading-relaxed">
+                            <strong>💡 經理人戰略：</strong>一對一專人代烤，已預約獨立包廂，對長輩尊榮感極致，大寶寶吃蛋花湯和越光米。
+                        </div>
+                    </div>
+                    <div class="px-6 pb-6 pt-3 border-t border-slate-100 flex items-center justify-between">
+                        <div>
+                            <span class="text-xxs text-slate-400 block">人均預估</span>
+                            <span class="text-sm font-extrabold text-slate-700">NT$ 3,500</span>
+                        </div>
+                        <button onclick="toggleGourmet(0)" id="gourmet-btn-0" class="bg-rust-600 text-white hover:bg-rust-700 px-4 py-2 rounded-xl text-xs font-bold transition-all shadow-sm">
+                            ✏️ 標記已預約
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Dining 2 -->
+                <div class="bg-white border border-slate-200 rounded-3xl overflow-hidden shadow-sm hover:shadow-md transition-all flex flex-col justify-between">
+                    <div class="p-6">
+                        <div class="flex items-center justify-between mb-3">
+                            <span class="text-2xl">🦀</span>
+                            <span class="bg-amber-100 text-amber-800 text-xxs px-2.5 py-1 rounded-full font-bold uppercase tracking-wider">現撈帝王蟹</span>
+                        </div>
+                        <h3 class="font-extrabold text-slate-900 text-lg">小樽三角市場</h3>
+                        <p class="text-rust-600 text-xs font-bold mt-1">🗓️ 預計時段：Day 2 10:30</p>
+                        <div class="bg-slate-50 border border-slate-100 rounded-xl p-3.5 mt-3 text-xs text-slate-600 leading-relaxed">
+                            <strong>💡 經理人戰略：</strong>活水槽現場挑蟹，秤重後清蒸＋現烤雙吃。直接略過飯類以免重複膩口，先請老闆現切哈密瓜開胃！
+                        </div>
+                    </div>
+                    <div class="px-6 pb-6 pt-3 border-t border-slate-100 flex items-center justify-between">
+                        <div>
+                            <span class="text-xxs text-slate-400 block">全隻分攤</span>
+                            <span class="text-sm font-extrabold text-slate-700">NT$ 2,000</span>
+                        </div>
+                        <button onclick="toggleGourmet(1)" id="gourmet-btn-1" class="bg-rust-600 text-white hover:bg-rust-700 px-4 py-2 rounded-xl text-xs font-bold transition-all shadow-sm">
+                            ✏️ 標記已預約
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Dining 3 -->
+                <div class="bg-white border border-slate-200 rounded-3xl overflow-hidden shadow-sm hover:shadow-md transition-all flex flex-col justify-between">
+                    <div class="p-6">
+                        <div class="flex items-center justify-between mb-3">
+                            <span class="text-2xl">🍲</span>
+                            <span class="bg-amber-100 text-amber-800 text-xxs px-2.5 py-1 rounded-full font-bold uppercase tracking-wider">百年烏龍</span>
+                        </div>
+                        <h3 class="font-extrabold text-slate-900 text-lg">蕎麥・料理 籔半</h3>
+                        <p class="text-rust-600 text-xs font-bold mt-1">🗓️ 預計時段：Day 2 12:00</p>
+                        <div class="bg-slate-50 border border-slate-100 rounded-xl p-3.5 mt-3 text-xs text-slate-600 leading-relaxed">
+                            <strong>💡 經理人戰略：</strong>百年砂鍋老店。點一鍋吸滿柴魚高湯、熱騰騰的「鍋燒烏龍麵」，對長輩暖胃，大寶寶剪碎分食。
+                        </div>
+                    </div>
+                    <div class="px-6 pb-6 pt-3 border-t border-slate-100 flex items-center justify-between">
+                        <div>
+                            <span class="text-xxs text-slate-400 block">人均預估</span>
+                            <span class="text-sm font-extrabold text-slate-700">NT$ 400</span>
+                        </div>
+                        <button onclick="toggleGourmet(2)" id="gourmet-btn-2" class="bg-rust-600 text-white hover:bg-rust-700 px-4 py-2 rounded-xl text-xs font-bold transition-all shadow-sm">
+                            ✏️ 標記已預約
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Dining 4 -->
+                <div class="bg-white border border-slate-200 rounded-3xl overflow-hidden shadow-sm hover:shadow-md transition-all flex flex-col justify-between">
+                    <div class="p-6">
+                        <div class="flex items-center justify-between mb-3">
+                            <span class="text-2xl">🐑</span>
+                            <span class="bg-amber-100 text-amber-800 text-xxs px-2.5 py-1 rounded-full font-bold uppercase tracking-wider">炭火烤羊</span>
+                        </div>
+                        <h3 class="font-extrabold text-slate-900 text-lg">成吉思汗 達摩 5.5號</h3>
+                        <p class="text-rust-600 text-xs font-bold mt-1">🗓️ 預計時段：Day 2 19:15</p>
+                        <div class="bg-slate-50 border border-slate-100 rounded-xl p-3.5 mt-3 text-xs text-slate-600 leading-relaxed">
+                            <strong>💡 經理人戰略：</strong>用銅盤炭火烤無騷味嫩羊肉片。平輩在門口排隊，長輩和小寶寶在隔壁商場等，有位再呼叫。
+                        </div>
+                    </div>
+                    <div class="px-6 pb-6 pt-3 border-t border-slate-100 flex items-center justify-between">
+                        <div>
+                            <span class="text-xxs text-slate-400 block">人均預估</span>
+                            <span class="text-sm font-extrabold text-slate-700">NT$ 1,000</span>
+                        </div>
+                        <button onclick="toggleGourmet(3)" id="gourmet-btn-3" class="bg-rust-600 text-white hover:bg-rust-700 px-4 py-2 rounded-xl text-xs font-bold transition-all shadow-sm">
+                            ✏️ 標記已預約
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Dining 5 -->
+                <div class="bg-white border border-slate-200 rounded-3xl overflow-hidden shadow-sm hover:shadow-md transition-all flex flex-col justify-between">
+                    <div class="p-6">
+                        <div class="flex items-center justify-between mb-3">
+                            <span class="text-2xl">🍣</span>
+                            <span class="bg-amber-100 text-amber-800 text-xxs px-2.5 py-1 rounded-full font-bold uppercase tracking-wider">最強迴轉壽司</span>
+                        </div>
+                        <h3 class="font-extrabold text-slate-900 text-lg">根室花丸 (Stellar Place店)</h3>
+                        <p class="text-rust-600 text-xs font-bold mt-1">🗓️ 預計時段：Day 4 12:45</p>
+                        <div class="bg-slate-50 border border-slate-100 rounded-xl p-3.5 mt-3 text-xs text-slate-600 leading-relaxed">
+                            <strong>💡 經理人戰略：</strong>下乃之風接駁巴士你立刻衝 6 樓抽號碼牌（手機盯進度），放完隨身行李直接去坐沙發大桌。狂點生大干貝！
+                        </div>
+                    </div>
+                    <div class="px-6 pb-6 pt-3 border-t border-slate-100 flex items-center justify-between">
+                        <div>
+                            <span class="text-xxs text-slate-400 block">人均預估</span>
+                            <span class="text-sm font-extrabold text-slate-700">NT$ 800</span>
+                        </div>
+                        <button onclick="toggleGourmet(4)" id="gourmet-btn-4" class="bg-rust-600 text-white hover:bg-rust-700 px-4 py-2 rounded-xl text-xs font-bold transition-all shadow-sm">
+                            ✏️ 標記已預約
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Dining 6 -->
+                <div class="bg-white border border-slate-200 rounded-3xl overflow-hidden shadow-sm hover:shadow-md transition-all flex flex-col justify-between">
+                    <div class="p-6">
+                        <div class="flex items-center justify-between mb-3">
+                            <span class="text-2xl">🦀</span>
+                            <span class="bg-amber-100 text-amber-800 text-xxs px-2.5 py-1 rounded-full font-bold uppercase tracking-wider">三大蟹吃到飽</span>
+                        </div>
+                        <h3 class="font-extrabold text-slate-900 text-lg">蝦蟹合戰</h3>
+                        <p class="text-rust-600 text-xs font-bold mt-1">🗓️ 預計時段：Day 4 18:30</p>
+                        <div class="bg-slate-50 border border-slate-100 rounded-xl p-3.5 mt-3 text-xs text-slate-600 leading-relaxed">
+                            <strong>💡 經理人戰略：</strong>帝王蟹、松葉蟹、毛蟹腳狂吃！大人雙手剪蟹配大口生啤。大寶寶配熱騰騰茶碗蒸和壽司，極致奢華！
+                        </div>
+                    </div>
+                    <div class="px-6 pb-6 pt-3 border-t border-slate-100 flex items-center justify-between">
+                        <div>
+                            <span class="text-xxs text-slate-400 block">人均預估</span>
+                            <span class="text-sm font-extrabold text-slate-700">NT$ 2,200</span>
+                        </div>
+                        <button onclick="toggleGourmet(5)" id="gourmet-btn-5" class="bg-rust-600 text-white hover:bg-rust-700 px-4 py-2 rounded-xl text-xs font-bold transition-all shadow-sm">
+                            ✏️ 標記已預約
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Dining 7 -->
+                <div class="bg-white border border-slate-200 rounded-3xl overflow-hidden shadow-sm hover:shadow-md transition-all flex flex-col justify-between">
+                    <div class="p-6">
+                        <div class="flex items-center justify-between mb-3">
+                            <span class="text-2xl">🍛</span>
+                            <span class="bg-amber-100 text-amber-800 text-xxs px-2.5 py-1 rounded-full font-bold uppercase tracking-wider">最強湯咖哩</span>
+                        </div>
+                        <h3 class="font-extrabold text-slate-900 text-lg">lavi 湯咖哩</h3>
+                        <p class="text-rust-600 text-xs font-bold mt-1">🗓️ 預計時段：Day 5 13:30</p>
+                        <div class="bg-slate-50 border border-slate-100 rounded-xl p-3.5 mt-3 text-xs text-slate-600 leading-relaxed">
+                            <strong>💡 經理人戰略：</strong>機場國內線 3 樓直接開吃。濃郁藥膳辛香料湯底配燉爛雞腿與甜炸蔬菜，完美的旅行收尾！
+                        </div>
+                    </div>
+                    <div class="px-6 pb-6 pt-3 border-t border-slate-100 flex items-center justify-between">
+                        <div>
+                            <span class="text-xxs text-slate-400 block">人均預估</span>
+                            <span class="text-sm font-extrabold text-slate-700">NT$ 500</span>
+                        </div>
+                        <button onclick="toggleGourmet(6)" id="gourmet-btn-6" class="bg-rust-600 text-white hover:bg-rust-700 px-4 py-2 rounded-xl text-xs font-bold transition-all shadow-sm">
+                            ✏️ 標記已預約
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ================= TAB 3: HOTELS ================= -->
+        <section id="content-hotels" class="tab-content hidden space-y-8">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <!-- Hotel 1 -->
+                <div class="bg-white border border-slate-200 rounded-3xl p-6 shadow-sm flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-center gap-3 mb-4">
+                            <span class="text-3xl">🦪</span>
+                            <div>
+                                <h3 class="font-black text-slate-900 text-base leading-tight">La Vista 札幌大通酒店</h3>
+                                <span class="text-rust-600 text-xs font-extrabold">Day 1 ~ Day 2 (共 2 晚)</span>
+                            </div>
+                        </div>
+                        <ul class="space-y-2.5 mt-4 text-xs text-slate-600 leading-relaxed border-t border-slate-100 pt-4">
+                            <li class="flex items-start gap-1.5"><span class="text-amber-500 font-bold">•</span> 全國前三名「海鮮丼吃到飽」早餐，鮭魚卵甜蝦自由！</li>
+                            <li class="flex items-start gap-1.5"><span class="text-amber-500 font-bold">•</span> 頂樓設有天然溫泉大眾池（帶傳統檜木桶大浴池）。</li>
+                            <li class="flex items-start gap-1.5"><span class="text-amber-500 font-bold">•</span> 晚上 21:30 飯店餐廳免費提供現煮日式醬油拉麵。</li>
+                            <li class="flex items-start gap-1.5"><span class="text-amber-500 font-bold">•</span> 車站南口附近，推嬰兒車步行大通公園極為順暢。</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Hotel 2 -->
+                <div class="bg-white border border-slate-200 rounded-3xl p-6 shadow-sm flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-center gap-3 mb-4">
+                            <span class="text-3xl">♨️</span>
+                            <div>
+                                <h3 class="font-black text-slate-900 text-base leading-tight">洞爺湖乃之風渡假酒店</h3>
+                                <span class="text-rust-600 text-xs font-extrabold">Day 3 (共 1 晚)</span>
+                            </div>
+                        </div>
+                        <ul class="space-y-2.5 mt-4 text-xs text-slate-600 leading-relaxed border-t border-slate-100 pt-4">
+                            <li class="flex items-start gap-1.5"><span class="text-amber-500 font-bold">•</span> 全館客房正對湖景，床上躺看百萬湖畔花火大會。</li>
+                            <li class="flex items-start gap-1.5"><span class="text-amber-500 font-bold">•</span> 頂樓「天空露天風呂」大眾池，與湖水連成一線。</li>
+                            <li class="flex items-start gap-1.5"><span class="text-amber-500 font-bold">•</span> 日西式豪華百匯一泊二食，現切牛排和甜品極讚。</li>
+                            <li class="flex items-start gap-1.5"><span class="text-amber-500 font-bold">•</span> 札幌車站往返免費大型接駁巴士，長輩與小孩無痛直達。</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Hotel 3 -->
+                <div class="bg-white border border-slate-200 rounded-3xl p-6 shadow-sm flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-center gap-3 mb-4">
+                            <span class="text-3xl">🏨</span>
+                            <div>
+                                <h3 class="font-black text-slate-900 text-base leading-tight">JR 東日本札幌 METS 飯店</h3>
+                                <span class="text-rust-600 text-xs font-extrabold">Day 4 (共 1 晚)</span>
+                            </div>
+                        </div>
+                        <ul class="space-y-2.5 mt-4 text-xs text-slate-600 leading-relaxed border-t border-slate-100 pt-4">
+                            <li class="flex items-start gap-1.5"><span class="text-amber-500 font-bold">•</span> 札幌車站北口步行 1 分鐘，平坦平路，推嬰兒車最順。</li>
+                            <li class="flex items-start gap-1.5"><span class="text-amber-500 font-bold">•</span> 「乾濕分離獨立衛浴」設計，長輩和小寶寶洗澡最安全。</li>
+                            <li class="flex items-start gap-1.5"><span class="text-amber-500 font-bold">•</span> 大丸百貨和 Bic Camera 在正隔壁，買完隨時拿回房。</li>
+                            <li class="flex items-start gap-1.5"><span class="text-amber-500 font-bold">•</span> 退房後下樓就是巴士站，直達三井 OUTLET 及機場。</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Private Bath Strategic Card -->
+            <div class="bg-gradient-to-br from-amber-50 to-orange-50 border border-amber-200 rounded-3xl p-6 md:p-8 shadow-sm">
+                <div class="flex flex-col md:flex-row items-start gap-6">
+                    <div class="bg-amber-100 p-4 rounded-2xl text-4xl text-amber-800">🔑</div>
+                    <div class="flex-1">
+                        <h3 class="font-black text-amber-900 text-lg md:text-xl">乃之風貸切風呂 (私人湯屋) 預約截擊小抄</h3>
+                        <p class="text-xs md:text-sm text-amber-800/90 mt-2 leading-relaxed">
+                            乃之風設有極奢華的「天空の湯」私人湯屋（50分鐘/3,300日圓）。由於<strong>不接受網路或提前預定，只能入住當天現場櫃檯搶先劃位！</strong>請務必在 Day 3 下大巴士時，你本人帶著全團護照第一時間衝到櫃檯辦理！
+                        </p>
+                        <button onclick="openBathModal()" class="mt-5 bg-rust-600 hover:bg-rust-700 text-white text-xs px-5 py-3 rounded-xl font-bold transition-all shadow-md flex items-center gap-2">
+                            🗣️ 開啟「櫃檯日語對話小抄」
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Private Bath Booking Modal -->
+            <div id="bath-modal" class="fixed inset-0 bg-black/60 backdrop-blur-sm hidden items-center justify-center p-4 z-50 transition-opacity">
+                <div class="bg-white border border-slate-200 rounded-3xl p-6 md:p-8 max-w-lg w-full shadow-2xl relative">
+                    <button onclick="closeBathModal()" class="absolute top-4 right-4 text-slate-400 hover:text-slate-600 text-xl font-bold">✕</button>
+                    <h3 class="font-black text-slate-900 text-lg md:text-xl flex items-center gap-2 mb-3 text-rust-700">
+                        🗣️ 櫃檯現場日語對話複製框
+                    </h3>
+                    <p class="text-xs text-slate-500 mb-4 leading-relaxed">
+                        當天一到乃之風櫃檯辦理 Check-in 時，請直接複製此段文字或向飯店櫃檯人員出示本網頁：
+                    </p>
+
+                    <div class="bg-slate-50 border border-slate-200 rounded-2xl p-5 text-slate-700 text-xs font-mono leading-relaxed space-y-4 mb-5 shadow-inner">
+                        <p class="font-bold text-slate-900 text-sm">「貸切風呂『天空の湯』の予約をお願いします。」</p>
+                        <p class="text-slate-400 border-b border-slate-200 pb-2 italic">(請幫我預訂貸切風呂「天空之湯」)</p>
+                        <div class="space-y-1 text-slate-800">
+                            <p class="font-bold">• 第一希望時段：16:30 ~ 17:20</p>
+                            <p class="font-bold">• 第二希望時段：17:30 ~ 18:20</p>
+                            <p class="font-bold">• 第三希望時段 (看花火)：20:30 ~ 21:20</p>
+                        </div>
+                    </div>
+
+                    <p class="text-xxs md:text-xs text-amber-800 bg-amber-50 rounded-xl p-3 border border-amber-100 leading-relaxed mb-5">
+                        💡 <strong>經理人策略提示：</strong>16:30 / 17:30 黃昏落日最美，泡完剛好接著吃 18:30 的 Buffet 晚餐；若選擇 20:30 則可以一邊享受溫泉一邊平視看 20:45 開放的湖畔煙火！
+                    </p>
+
+                    <div class="flex gap-2">
+                        <button onclick="copyJapaneseScript()" class="flex-1 bg-rust-600 hover:bg-rust-700 text-white text-xs py-3 rounded-xl font-bold transition-all shadow-md">
+                            📋 複製日文小抄
+                        </button>
+                        <button onclick="closeBathModal()" class="bg-slate-100 hover:bg-slate-200 text-slate-600 text-xs px-4 py-3 rounded-xl font-bold transition-all">
+                            關閉
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ================= TAB 4: BUDGET CALCULATOR ================= -->
+        <section id="content-budget" class="tab-content hidden">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+                <!-- Left Sliders -->
+                <div class="lg:col-span-7 bg-white border border-slate-200 rounded-3xl p-6 md:p-8 shadow-sm space-y-6">
+                    <h3 class="font-black text-slate-900 text-base md:text-lg border-b border-slate-100 pb-3 flex items-center gap-2">
+                        ⚙️ 拖曳調整預算因子 (全團：6大1小)
+                    </h3>
+
+                    <!-- Sliders 1 -->
+                    <div>
+                        <div class="flex justify-between items-center mb-1 text-xs md:text-sm">
+                            <span class="font-bold text-slate-700">✈️ 國際機票 — 每個大人</span>
+                            <span class="text-rust-600 font-extrabold text-sm md:text-base">NT$ <span id="val-flight-adult-text">25,600</span></span>
+                        </div>
+                        <input id="slider-flight-adult" type="range" min="15000" max="35000" step="500" value="25600" oninput="calculateBudget()" class="w-full accent-rust-600 bg-slate-100 h-2 rounded-lg appearance-none cursor-pointer">
+                        <div class="flex justify-between text-[10px] text-slate-400 mt-1">
+                            <span>廉航平日 (NT$15,000)</span>
+                            <span>傳統旺季 (NT$35,000)</span>
+                        </div>
+                    </div>
+
+                    <!-- Sliders 2 -->
+                    <div>
+                        <div class="flex justify-between items-center mb-1 text-xs md:text-sm">
+                            <span class="font-bold text-slate-700">👶 國際機票 — 5歲大寶寶</span>
+                            <span class="text-rust-600 font-extrabold text-sm md:text-base">NT$ <span id="val-flight-child-text">18,000</span></span>
+                        </div>
+                        <input id="slider-flight-child" type="range" min="12000" max="30000" step="500" value="18000" oninput="calculateBudget()" class="w-full accent-rust-600 bg-slate-100 h-2 rounded-lg appearance-none cursor-pointer">
+                    </div>
+
+                    <!-- Sliders 3 -->
+                    <div>
+                        <div class="flex justify-between items-center mb-1 text-xs md:text-sm">
+                            <span class="font-bold text-slate-700">🏨 全家住宿總預算 (含札幌 3 晚 ＋ 乃之風 1 晚)</span>
+                            <span class="text-rust-600 font-extrabold text-sm md:text-base">NT$ <span id="val-hotel-text">72,000</span></span>
+                        </div>
+                        <input id="slider-hotel" type="range" min="50000" max="120000" step="1000" value="72000" oninput="calculateBudget()" class="w-full accent-rust-600 bg-slate-100 h-2 rounded-lg appearance-none cursor-pointer">
+                        <div class="flex justify-between text-[10px] text-slate-400 mt-1">
+                            <span>精省商旅 (NT$50,000)</span>
+                            <span>頂級溫泉行政房 (NT$120,000)</span>
+                        </div>
+                    </div>
+
+                    <!-- Sliders 4 -->
+                    <div>
+                        <div class="flex justify-between items-center mb-1 text-xs md:text-sm">
+                            <span class="font-bold text-slate-700">🍽️ 家族餐飲公積金 (不含溫泉飯店 Buffet 晚餐)</span>
+                            <span class="text-rust-600 font-extrabold text-sm md:text-base">NT$ <span id="val-food-text">39,000</span></span>
+                        </div>
+                        <input id="slider-food" type="range" min="20000" max="70000" step="1000" value="39000" oninput="calculateBudget()" class="w-full accent-rust-600 bg-slate-100 h-2 rounded-lg appearance-none cursor-pointer">
+                        <div class="flex justify-between text-[10px] text-slate-400 mt-1">
+                            <span>普通簡餐 (NT$20,000)</span>
+                            <span>頂級活蟹吃到飽 (NT$70,000)</span>
+                        </div>
+                    </div>
+
+                    <!-- Sliders 5 -->
+                    <div>
+                        <div class="flex justify-between items-center mb-1 text-xs md:text-sm">
+                            <span class="font-bold text-slate-700">🚌 交通費全團預估 (快速火車 ＋ 市區巴士 ＋ 接駁)</span>
+                            <span class="text-rust-600 font-extrabold text-sm md:text-base">NT$ <span id="val-transport-text">10,500</span></span>
+                        </div>
+                        <input id="slider-transport" type="range" min="6000" max="20000" step="500" value="10500" oninput="calculateBudget()" class="w-full accent-rust-600 bg-slate-100 h-2 rounded-lg appearance-none cursor-pointer">
+                    </div>
+                </div>
+
+                <!-- Right Side Calculation results -->
+                <div class="lg:col-span-5 flex flex-col gap-6">
+                    <!-- Live Cost Card -->
+                    <div class="bg-slate-900 text-white rounded-3xl p-6 md:p-8 shadow-md flex-1 flex flex-col justify-between">
+                        <div>
+                            <h3 class="font-bold text-slate-300 text-xs md:text-sm mb-4 uppercase tracking-wider">👑 全團預算即時計算 (6大1小)</h3>
+
+                            <div class="space-y-5">
+                                <div>
+                                    <div class="text-[10px] text-slate-400 uppercase tracking-wider">機票費小計 (6大 ＋ 1小):</div>
+                                    <div class="text-lg font-bold text-amber-200" id="total-flight-text">NT$ 171,600</div>
+                                </div>
+
+                                <div class="border-t border-slate-800 pt-4">
+                                    <div class="text-[10px] text-slate-400 uppercase tracking-wider">全團總預算 (含機票、飯店、餐食、交通):</div>
+                                    <div class="text-3xl font-black text-rust-400" id="grand-total-text">NT$ 275,500</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="border-t border-slate-800 pt-6 mt-6">
+                            <div class="text-[10px] text-slate-400 uppercase tracking-wider">每位大人分攤金額 (5歲寶寶不分攤):</div>
+                            <div class="text-2xl font-black text-amber-300" id="per-adult-text">NT$ 45,917</div>
+                            <p class="text-[10px] text-slate-400 mt-2 leading-relaxed">
+                                💡 此人均金額已全含虎航機票、La Vista痛風早餐、乃之風一泊二食、小樽活蟹、頂級松阪燒肉、成吉思汗烤肉與三大蟹吃到飽，無敵豪華！
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Money-saving Highlight -->
+                    <div class="bg-emerald-50 border border-emerald-100 rounded-3xl p-5 md:p-6">
+                        <h4 class="font-extrabold text-emerald-900 text-sm flex items-center gap-1.5">💸 經理人精算大省錢重點</h4>
+                        <p class="text-xs text-emerald-800 mt-2 leading-relaxed font-light">
+                            這套行程不拉車，我們巧妙預約了乃之風免費接駁大巴與 JR METS 飯店共構，<strong>直接省去了全團 6 位大人購買「JR 北海道 5 日 Pass」的費用（現省台幣 NT$ 28,800 元！）</strong>。省下來的錢剛好用來制霸雙朝市與活帝王蟹大餐！
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ================= TAB 5: PACKING & PLAY ================= -->
+        <section id="content-packing" class="tab-content hidden grid grid-cols-1 lg:grid-cols-12 gap-8">
+            <!-- Packing Checklist -->
+            <div class="lg:col-span-7 bg-white border border-slate-200 rounded-3xl p-6 md:p-8 shadow-sm">
+                <h3 class="font-black text-slate-900 text-base md:text-lg border-b border-slate-100 pb-3 mb-5 flex items-center gap-2">
+                    🎒 家族行前準備 & 打包清單
+                </h3>
+
+                <div class="space-y-3">
+                    <label onclick="toggleCheckItem('c1')" class="flex items-start gap-3 p-3.5 bg-slate-50 border border-slate-100 hover:bg-slate-100/30 rounded-2xl cursor-pointer transition-all">
+                        <input id="chk-c1" type="checkbox" checked class="mt-1 accent-rust-600 rounded">
+                        <div>
+                            <span class="text-[10px] font-bold text-rust-600 uppercase mr-2 bg-white border border-rust-100 px-1.5 py-0.5 rounded shadow-sm">必備證件</span>
+                            <span id="txt-c1" class="text-xs md:text-sm text-slate-700 font-bold">6大1小護照（確認效期大於 6 個月）</span>
+                        </div>
+                    </label>
+
+                    <label onclick="toggleCheckItem('c2')" class="flex items-start gap-3 p-3.5 bg-slate-50 border border-slate-100 hover:bg-slate-100/30 rounded-2xl cursor-pointer transition-all">
+                        <input id="chk-c2" type="checkbox" class="mt-1 accent-rust-600 rounded">
+                        <div>
+                            <span class="text-[10px] font-bold text-rust-600 uppercase mr-2 bg-white border border-rust-100 px-1.5 py-0.5 rounded shadow-sm">必備證件</span>
+                            <span id="txt-c2" class="text-xs md:text-sm text-slate-700 font-bold">電子機票列印、乃之風免費接駁巴士預約確認信</span>
+                        </div>
+                    </label>
+
+                    <label onclick="toggleCheckItem('c3')" class="flex items-start gap-3 p-3.5 bg-slate-50 border border-slate-100 hover:bg-slate-100/30 rounded-2xl cursor-pointer transition-all">
+                        <input id="chk-c3" type="checkbox" checked class="mt-1 accent-rust-600 rounded">
+                        <div>
+                            <span class="text-[10px] font-bold text-rust-600 uppercase mr-2 bg-white border border-rust-100 px-1.5 py-0.5 rounded shadow-sm">大寶寶專區</span>
+                            <span id="txt-c3" class="text-xs md:text-sm text-slate-700 font-bold">5歲大寶寶常備藥物（退燒、咳嗽藥、防蚊液）</span>
+                        </div>
+                    </label>
+
+                    <label onclick="toggleCheckItem('c4')" class="flex items-start gap-3 p-3.5 bg-slate-50 border border-slate-100 hover:bg-slate-100/30 rounded-2xl cursor-pointer transition-all">
+                        <input id="chk-c4" type="checkbox" class="mt-1 accent-rust-600 rounded">
+                        <div>
+                            <span class="text-[10px] font-bold text-rust-600 uppercase mr-2 bg-white border border-rust-100 px-1.5 py-0.5 rounded shadow-sm">大寶寶專區</span>
+                            <span id="txt-c4" class="text-xs md:text-sm text-slate-700 font-bold">折疊推車（三角市場、機場放電必備，走累可睡）</span>
+                        </div>
+                    </label>
+
+                    <label onclick="toggleCheckItem('c5')" class="flex items-start gap-3 p-3.5 bg-slate-50 border border-slate-100 hover:bg-slate-100/30 rounded-2xl cursor-pointer transition-all">
+                        <input id="chk-c5" type="checkbox" checked class="mt-1 accent-rust-600 rounded">
+                        <div>
+                            <span class="text-[10px] font-bold text-rust-600 uppercase mr-2 bg-white border border-rust-100 px-1.5 py-0.5 rounded shadow-sm">長輩貼心</span>
+                            <span id="txt-c5" class="text-xs md:text-sm text-slate-700 font-bold">長輩慢性疾病/日常常備藥物（帶足 5 天份量）</span>
+                        </div>
+                    </label>
+
+                    <label onclick="toggleCheckItem('c6')" class="flex items-start gap-3 p-3.5 bg-slate-50 border border-slate-100 hover:bg-slate-100/30 rounded-2xl cursor-pointer transition-all">
+                        <input id="chk-c6" type="checkbox" class="mt-1 accent-rust-600 rounded">
+                        <div>
+                            <span class="text-[10px] font-bold text-rust-600 uppercase mr-2 bg-white border border-rust-100 px-1.5 py-0.5 rounded-sm shadow-sm">長輩貼心</span>
+                            <span id="txt-c6" class="text-xs md:text-sm text-slate-700 font-bold">保暖防風外套（9月底洞爺湖山頂風大體感較涼，務必攜帶）</span>
+                        </div>
+                    </label>
+
+                    <label onclick="toggleCheckItem('c7')" class="flex items-start gap-3 p-3.5 bg-slate-50 border border-slate-100 hover:bg-slate-100/30 rounded-2xl cursor-pointer transition-all">
+                        <input id="chk-c7" type="checkbox" class="mt-1 accent-rust-600 rounded">
+                        <div>
+                            <span class="text-[10px] font-bold text-rust-600 uppercase mr-2 bg-white border border-rust-100 px-1.5 py-0.5 rounded shadow-sm">網路配備</span>
+                            <span id="txt-c7" class="text-xs md:text-sm text-slate-700 font-bold">日圓現金（三角市場與小樽海鮮攤位通常只收日圓現金）</span>
+                        </div>
+                    </label>
+                </div>
+            </div>
+
+            <!-- Kid Spots -->
+            <div class="lg:col-span-5 flex flex-col gap-6">
+                <div class="bg-rose-50 border border-rose-100 rounded-3xl p-6 md:p-8">
+                    <h3 class="font-black text-rose-950 text-base md:text-lg flex items-center gap-1.5">
+                        👶 5歲大寶寶放電看點大整理
+                    </h3>
+                    <p class="text-xs text-rose-800 mt-2 leading-relaxed font-light">
+                        5 歲正是電力最強、充滿好奇心的年紀！本行程每天都卡入一個讓他興奮尖叫的遊樂亮點：
+                    </p>
+
+                    <div class="space-y-4 mt-5">
+                        <div class="bg-white/95 border border-rose-100/50 rounded-2xl p-4 shadow-sm">
+                            <h4 class="font-extrabold text-rose-950 text-xs">⛲ Day 1: 大通公園看鴿子與水舞</h4>
+                            <p class="text-[11px] text-slate-600 mt-1 leading-relaxed">在巨大的噴水池前跑跳、追逐不怕人的肥鴿子，坐飛機的緊繃電力瞬間釋放！</p>
+                        </div>
+                        <div class="bg-white/95 border border-rose-100/50 rounded-2xl p-4 shadow-sm">
+                            <h4 class="font-extrabold text-rose-950 text-xs">🧱 Day 2: 音樂盒堂鳴笛蒸汽鐘</h4>
+                            <p class="text-[11px] text-slate-600 mt-1 leading-relaxed">看閃閃發光的蒸汽鐘每 15 分鐘噴氣唱歌，逛擺滿幾萬個閃亮音樂盒的本館。</p>
+                        </div>
+                        <div class="bg-white/95 border border-rose-100/50 rounded-2xl p-4 shadow-sm">
+                            <h4 class="font-extrabold text-rose-950 text-xs">🐧 Day 3: AOAO水族館近距離企鵝</h4>
+                            <p class="text-[11px] text-slate-600 mt-1 leading-relaxed">無大玻璃阻隔，寶寶跟企鵝僅幾十公分距離！還有互動水母地板，大寶寶最愛。</p>
+                        </div>
+                        <div class="bg-white/95 border border-rose-100/50 rounded-2xl p-4 shadow-sm">
+                            <h4 class="font-extrabold text-rose-950 text-xs">🏰 Day 4: 白色戀人迷你小火車</h4>
+                            <p class="text-[11px] text-slate-600 mt-1 leading-relaxed">搭乘穿梭城堡花園間的蒸汽火車，鑽進 100 公分高的精靈小屋開門拍照。</p>
+                        </div>
+                        <div class="bg-white/95 border border-rose-100/50 rounded-2xl p-4 shadow-sm">
+                            <h4 class="font-extrabold text-rose-950 text-xs">🎈 Day 5: 機場多啦A夢與自動化包裝</h4>
+                            <p class="text-[11px] text-slate-600 mt-1 leading-relaxed">在多啦A夢樂園奔跑，看 Royce' 巧克力巨大的機械爪自動包裝。放完最後電力，登機秒睡！</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="bg-slate-900 text-slate-400 py-12 px-4 mt-16 text-center border-t border-slate-800">
+        <div class="max-w-6xl mx-auto space-y-3">
+            <p class="font-bold text-amber-200 text-sm md:text-base">👑 北海道初秋 5天4夜 家族奢華美食 × 5歲大寶寶放電 最終定案手冊</p>
+            <p class="text-xs text-slate-500 leading-relaxed max-w-2xl mx-auto">
+                此網頁為互動版手冊，所有動線皆專為長輩推車設計，全餐餐天花板名店，祝全家 6大1小 旅途愉快、大飽口福！
+            </p>
+            <div class="pt-4 text-[10px] text-slate-600">
+                &copy; 2026 北海道家族旅行企劃小組. Created for the ultimate luxury gourmet experience.
+            </div>
+        </div>
+    </footer>
+
+    <!-- JAVASCRIPT LOGIC -->
+    <script>
+        // Array to manage the check states of the 7 Gourmet highlights
+        let gourmetStates = [false, false, false, false, false, false, false];
+
+        // 1. Tab switching function
+        function switchTab(tabId) {
+            // Hide all tab contents
+            const contents = document.querySelectorAll('.tab-content');
+            contents.forEach(content => content.classList.add('hidden'));
+
+            // Show active tab content
+            document.getElementById(`content-${tabId}`).classList.remove('hidden');
+
+            // Reset navigation tab button classes
+            const tabs = ['itinerary', 'dinings', 'hotels', 'budget', 'packing'];
+            tabs.forEach(tab => {
+                const btn = document.getElementById(`tab-${tab}`);
+                if (tab === tabId) {
+                    btn.className = "flex items-center gap-2 px-6 py-4 border-b-2 font-bold text-sm transition-all focus:outline-none border-rust-600 text-rust-600 bg-rust-50/40";
+                } else {
+                    btn.className = "flex items-center gap-2 px-6 py-4 border-b-2 font-bold text-sm transition-all focus:outline-none border-transparent text-slate-500 hover:text-slate-800 hover:bg-slate-50";
+                }
+            });
+        }
+
+        // 2. Day timeline switching function
+        function switchDay(dayNum) {
+            // Hide all day panels
+            const panels = document.querySelectorAll('.day-panel');
+            panels.forEach(panel => panel.classList.add('hidden'));
+
+            // Show active day panel
+            document.getElementById(`day-content-day` ? `day-content-${dayNum}` : '').classList.remove('hidden');
+
+            // Reset selector buttons styling
+            for (let i = 1; i <= 5; i++) {
+                const btn = document.getElementById(`day-btn-${i}`);
+                if (i === dayNum) {
+                    btn.className = "flex-1 lg:flex-none text-left p-4 rounded-2xl border transition-all flex flex-col justify-between items-start bg-rust-800 text-white border-rust-800 shadow-md";
+                } else {
+                    btn.className = "flex-1 lg:flex-none text-left p-4 rounded-2xl border transition-all flex flex-col justify-between items-start bg-white text-slate-700 border-slate-200 hover:border-rust-300";
+                }
+            }
+        }
+
+        // 3. Gourmet highlights reservation toggle
+        function toggleGourmet(index) {
+            gourmetStates[index] = !gourmetStates[index];
+            const btn = document.getElementById(`gourmet-btn-${index}`);
+            if (gourmetStates[index]) {
+                btn.className = "bg-emerald-100 text-emerald-800 border border-emerald-200 px-4 py-2 rounded-xl text-xs font-bold transition-all shadow-sm";
+                btn.innerText = "✓ 已預約成功";
+            } else {
+                btn.className = "bg-rust-600 text-white hover:bg-rust-700 px-4 py-2 rounded-xl text-xs font-bold transition-all shadow-sm";
+                btn.innerText = "✏️ 標記已預約";
+            }
+            updateGourmetProgress();
+        }
+
+        // Update progress bar & counts
+        function updateGourmetProgress() {
+            const bookedCount = gourmetStates.filter(state => state).length;
+            document.getElementById('gourmet-count-badge').innerText = `${bookedCount}/7`;
+            document.getElementById('progress-text').innerText = `${bookedCount} / 7 已預訂`;
+            
+            const pct = Math.round((bookedCount / 7) * 100);
+            document.getElementById('progress-bar').style.width = `${pct}%`;
+        }
+
+        // 4. Modal actions for private bath guide
+        function openBathModal() {
+            const modal = document.getElementById('bath-modal');
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+        }
+
+        function closeBathModal() {
+            const modal = document.getElementById('bath-modal');
+            modal.classList.remove('flex');
+            modal.classList.add('hidden');
+        }
+
+        // Fallback Copy to Clipboard
+        function copyJapaneseScript() {
+            const tempInput = document.createElement("textarea");
+            tempInput.value = "貸切風呂『天空の湯』の予約をお願いします。第一希望：16:30、第二希望：17:30、第三希望：20:30。";
+            document.body.appendChild(tempInput);
+            tempInput.select();
+            document.execCommand("copy");
+            document.body.removeChild(tempInput);
+            
+            // Custom beautiful temporary alert box instead of window.alert()
+            showToast("小抄日文已成功複製到剪貼簿！");
+        }
+
+        // Styled Toast Message
+        function showToast(msg) {
+            const toast = document.createElement("div");
+            toast.className = "fixed bottom-5 right-5 bg-slate-900 text-amber-200 font-extrabold text-xs py-3.5 px-6 rounded-2xl shadow-2xl z-50 transition-all duration-300 transform translate-y-10 opacity-0";
+            toast.innerText = msg;
+            document.body.appendChild(toast);
+            
+            setTimeout(() => {
+                toast.classList.remove('translate-y-10', 'opacity-0');
+            }, 100);
+
+            setTimeout(() => {
+                toast.classList.add('translate-y-10', 'opacity-0');
+                setTimeout(() => {
+                    document.body.removeChild(toast);
+                }, 300);
+            }, 3000);
+        }
+
+        // 5. Budget Calculator Logic
+        function calculateBudget() {
+            const flightAdult = Number(document.getElementById('slider-flight-adult').value);
+            const flightChild = Number(document.getElementById('slider-flight-child').value);
+            const hotel = Number(document.getElementById('slider-hotel').value);
+            const food = Number(document.getElementById('slider-food').value);
+            const transport = Number(document.getElementById('slider-transport').value);
+
+            // Update range slider text values dynamically
+            document.getElementById('val-flight-adult-text').innerText = flightAdult.toLocaleString();
+            document.getElementById('val-flight-child-text').innerText = flightChild.toLocaleString();
+            document.getElementById('val-hotel-text').innerText = hotel.toLocaleString();
+            document.getElementById('val-food-text').innerText = food.toLocaleString();
+            document.getElementById('val-transport-text').innerText = transport.toLocaleString();
+
+            // Total Calculations (6 Adults, 1 Child)
+            const totalFlight = (flightAdult * 6) + flightChild;
+            const grandTotal = totalFlight + hotel + food + transport;
+            const perAdult = Math.round(grandTotal / 6);
+
+            // Update Result texts on screen
+            document.getElementById('total-flight-text').innerText = `NT$ ${totalFlight.toLocaleString()}`;
+            document.getElementById('grand-total-text').innerText = `NT$ ${grandTotal.toLocaleString()}`;
+            document.getElementById('per-adult-text').innerText = `NT$ ${perAdult.toLocaleString()}`;
+            
+            // Sync up Mini Card on the Header
+            document.getElementById('header-grand-total').innerText = `NT$ ${grandTotal.toLocaleString()}`;
+            document.getElementById('header-per-adult').innerText = `NT$ ${perAdult.toLocaleString()}`;
+        }
+
+        // 6. Packing Checklist strike toggle
+        function toggleCheckItem(id) {
+            const chk = document.getElementById(`chk-${id}`);
+            const text = document.getElementById(`txt-${id}`);
+            if (chk.checked) {
+                text.className = "text-xs md:text-sm text-slate-700 font-bold";
+            } else {
+                text.className = "text-xs md:text-sm text-slate-400 line-through";
+            }
+        }
+
+        // Initial setup on window load
+        window.onload = function() {
+            calculateBudget();
+            updateGourmetProgress();
+        }
+    </script>
+</body>
+</html>
