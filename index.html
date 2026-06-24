@@ -1,1158 +1,882 @@
 <!DOCTYPE html>
 <html lang="zh-TW">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>北海道尊榮家庭自駕與無腦速攻 (2026秋季版)</title>
-    
-    <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
-    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
-    
-    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
-    
-    <script src="https://cdn.tailwindcss.com"></script>
-    
-    <style>
-        /* 確保全螢幕平滑滾動與字體優化 */
-        html { scroll-behavior: smooth; }
-        body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif; }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>👑 北海道 5 天 4 夜家庭尊榮自由行電子行程表</title>
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- FontAwesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Noto Sans TC', sans-serif;
+    }
+    /* 自訂平滑過渡 */
+    .tab-content {
+      display: none;
+    }
+    .tab-content.active {
+      display: block;
+    }
+    /* 列印樣式優化 */
+    @media print {
+      .no-print {
+        display: none !important;
+      }
+      body {
+        background-color: white !important;
+        color: black !important;
+      }
+      .print-page-break {
+        page-break-before: always;
+      }
+      .tab-content {
+        display: block !important;
+      }
+    }
+    /* 滾動條美化 */
+    ::-webkit-scrollbar {
+      width: 6px;
+      height: 6px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #f1f1f1;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #cbd5e1;
+      border-radius: 3px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #94a3b8;
+    }
+  </style>
 </head>
-<body class="bg-slate-50 text-slate-800 antialiased">
+<body class="bg-slate-50 text-slate-800 antialiased min-h-screen pb-12">
 
-    <div id="root"></div>
+  <!-- 頂部奢華 Hero Banner -->
+  <header class="relative bg-gradient-to-r from-blue-900 via-indigo-900 to-slate-900 text-white overflow-hidden shadow-lg no-print">
+    <!-- 背景裝飾圈 -->
+    <div class="absolute top-0 right-0 w-96 h-96 bg-white/5 rounded-full -mr-20 -mt-20 blur-2xl"></div>
+    <div class="absolute bottom-0 left-0 w-80 h-80 bg-blue-500/10 rounded-full -ml-32 -mb-32 blur-xl"></div>
+    
+    <div class="max-w-6xl mx-auto px-4 py-8 md:py-12 relative z-10">
+      <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-6">
+        <div>
+          <div class="inline-flex items-center gap-2 px-3 py-1 bg-amber-500/20 border border-amber-500/40 rounded-full text-amber-300 text-xs font-semibold mb-3">
+            <i class="fa-solid fa-crown text-amber-400"></i> 6大1小 · 長輩幼童舒適定製版
+          </div>
+          <h1 class="text-3xl md:text-5xl font-black tracking-tight mb-2">北海道初秋黃金渡假旅</h1>
+          <p class="text-slate-300 text-sm md:text-base font-light">
+            <i class="fa-regular fa-calendar-days mr-1 text-blue-400"></i> 9月23日 (三) ～ 9月27日 (日) &nbsp;|&nbsp; 
+            <i class="fa-solid fa-snowflake mr-1 text-blue-400"></i> 初秋微涼防寒特調動線
+          </p>
+        </div>
+        
+        <!-- 大管家控制台 -->
+        <div class="bg-white/10 backdrop-blur-md rounded-2xl p-4 border border-white/10 flex flex-col sm:flex-row gap-4 items-center self-start md:self-auto w-full md:w-auto">
+          <div class="flex items-center gap-3 justify-between w-full sm:w-auto">
+            <div>
+              <p class="text-xs text-slate-300 font-medium">切換檢視視角</p>
+              <p id="view-mode-label" class="text-sm font-bold text-amber-300">👑 總管大指揮官模式</p>
+            </div>
+            <!-- 切換按鈕 -->
+            <label class="relative inline-flex items-center cursor-pointer ml-4">
+              <input type="checkbox" id="mode-toggle" checked class="sr-only peer">
+              <div class="w-11 h-6 bg-slate-700 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-amber-500"></div>
+            </label>
+          </div>
+          <div class="h-px sm:h-8 w-full sm:w-px bg-white/20"></div>
+          <button onclick="window.print()" class="w-full sm:w-auto px-4 py-2 bg-blue-600 hover:bg-blue-500 transition-colors rounded-xl text-xs font-bold flex items-center justify-center gap-2 shadow-lg">
+            <i class="fa-solid fa-print"></i> 列印 / 儲存 PDF 行程
+          </button>
+        </div>
+      </div>
 
-    <script type="text/babel">
-        const { useState, useEffect } = React;
+      <!-- 核心指針摘要 -->
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-3 mt-8">
+        <div class="bg-white/5 rounded-xl p-3 border border-white/5">
+          <span class="text-xs text-slate-400 block mb-1">D1 - D2 住宿 (兩晚不挪窩)</span>
+          <span class="text-sm font-bold text-slate-100 flex items-center gap-1">
+            <i class="fa-solid fa-hotel text-blue-400 text-xs"></i> Dormy Inn 札幌本館
+          </span>
+        </div>
+        <div class="bg-white/5 rounded-xl p-3 border border-white/5">
+          <span class="text-xs text-slate-400 block mb-1">D3 煙火大主秀 (行政湖景房)</span>
+          <span class="text-sm font-bold text-slate-100 flex items-center gap-1">
+            <i class="fa-solid fa-fireworks text-amber-400 text-xs"></i> 洞爺湖乃之風渡假村
+          </span>
+        </div>
+        <div class="bg-white/5 rounded-xl p-3 border border-white/5">
+          <span class="text-xs text-slate-400 block mb-1">D4 住宿 (地下直通避寒)</span>
+          <span class="text-sm font-bold text-slate-100 flex items-center gap-1">
+            <i class="fa-solid fa-hotel text-emerald-400 text-xs"></i> 札幌格拉斯麗酒店
+          </span>
+        </div>
+        <div class="bg-white/5 rounded-xl p-3 border border-white/5">
+          <span class="text-xs text-slate-400 block mb-1">大交通戰術</span>
+          <span class="text-sm font-bold text-slate-100 flex items-center gap-1">
+            <i class="fa-solid fa-train text-rose-400 text-xs"></i> JR U-Seat & 乃之風大巴
+          </span>
+        </div>
+      </div>
+    </div>
+  </header>
 
-        function App() {
-          const [activeTab, setActiveTab] = useState('itinerary'); 
-          const [selectedDay, setSelectedDay] = useState(1);
-          const [searchQuery, setSearchQuery] = useState('');
-          
-          // Custom Planner States
-          const [customNotes, setCustomNotes] = useState('');
-          const [checklist, setChecklist] = useState({
-            passport: false,
-            vjw: false,
-            useat: false,
-            warmClothes: false,
-            stroller: false,
-            taxFreeQr: false,
-          });
-          
-          // Custom Trip List
-          const [myTripList, setMyTripList] = useState([
-            { id: 't1', day: 1, time: '17:30', title: 'Toriton 迴轉壽司平日離峰速攻', done: false },
-            { id: 't2', day: 2, time: '11:00', title: '三角市場現撈現烤帝王蟹', done: false },
-            { id: 't3', day: 3, time: '20:45', title: '乃之風湖畔煙火房間首排觀看', done: false },
-            { id: 't4', day: 4, time: '13:00', title: '函館うにむらかみ生海膽大餐', done: false },
-            { id: 't5', day: 5, time: '11:00', title: 'GARAKU 機場店湯咖哩速攻', done: false }
-          ]);
-          const [newTripTitle, setNewTripTitle] = useState('');
-          const [newTripTime, setNewTripTime] = useState('12:00');
-          const [newTripDay, setNewTripDay] = useState(1);
+  <!-- 導航 Tabs -->
+  <nav class="sticky top-0 bg-white border-b border-slate-200 z-40 shadow-sm no-print">
+    <div class="max-w-6xl mx-auto px-2 flex justify-between overflow-x-auto whitespace-nowrap scrollbar-none">
+      <div class="flex" id="tab-headers">
+        <button onclick="switchTab('all')" id="tab-all" class="px-4 py-4 text-sm font-bold border-b-2 border-transparent hover:text-blue-600 transition-all flex items-center gap-2 text-slate-600">
+          <i class="fa-solid fa-globe"></i> 完整覽
+        </button>
+        <button onclick="switchTab(1)" id="tab-1" class="px-4 py-4 text-sm font-bold border-b-2 border-blue-600 text-blue-600 transition-all flex items-center gap-2">
+          <span class="bg-blue-100 text-blue-600 px-1.5 py-0.5 rounded text-xs">D1</span> 9/23 (三)
+        </button>
+        <button onclick="switchTab(2)" id="tab-2" class="px-4 py-4 text-sm font-bold border-b-2 border-transparent text-slate-600 hover:text-blue-600 transition-all flex items-center gap-2">
+          <span class="bg-slate-100 text-slate-600 px-1.5 py-0.5 rounded text-xs">D2</span> 9/24 (四)
+        </button>
+        <button onclick="switchTab(3)" id="tab-3" class="px-4 py-4 text-sm font-bold border-b-2 border-transparent text-slate-600 hover:text-blue-600 transition-all flex items-center gap-2">
+          <span class="bg-slate-100 text-slate-600 px-1.5 py-0.5 rounded text-xs">D3</span> 9/25 (五)
+        </button>
+        <button onclick="switchTab(4)" id="tab-4" class="px-4 py-4 text-sm font-bold border-b-2 border-transparent text-slate-600 hover:text-blue-600 transition-all flex items-center gap-2">
+          <span class="bg-slate-100 text-slate-600 px-1.5 py-0.5 rounded text-xs">D4</span> 9/26 (六)
+        </button>
+        <button onclick="switchTab(5)" id="tab-5" class="px-4 py-4 text-sm font-bold border-b-2 border-transparent text-slate-600 hover:text-blue-600 transition-all flex items-center gap-2">
+          <span class="bg-slate-100 text-slate-600 px-1.5 py-0.5 rounded text-xs">D5</span> 9/27 (日)
+        </button>
+      </div>
+      <button onclick="scrollToChecklist()" class="px-4 py-4 text-sm text-emerald-600 hover:text-emerald-700 font-bold flex items-center gap-1.5">
+        <i class="fa-solid fa-clipboard-check"></i> 行前清單
+      </button>
+    </div>
+  </nav>
 
-          // Notification Toast State
-          const [toast, setToast] = useState({ show: false, message: '', type: 'success' });
+  <!-- 主要內容區 -->
+  <main class="max-w-6xl mx-auto px-4 mt-6">
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+      
+      <!-- 左邊/中間：每日行程詳情 (佔 2 欄) -->
+      <div class="lg:col-span-2 space-y-6">
 
-          const showToast = (message, type = 'success') => {
-            setToast({ show: true, message, type });
-            setTimeout(() => {
-              setToast({ show: false, message: '', type: 'success' });
-            }, 3000);
-          };
+        <!-- ==================== DAY 1 ==================== -->
+        <section id="content-1" class="tab-content active bg-white rounded-2xl p-6 shadow-sm border border-slate-100">
+          <div class="flex items-center justify-between border-b border-slate-100 pb-4 mb-6">
+            <div class="flex items-center gap-3">
+              <span class="w-10 h-10 rounded-xl bg-blue-600 text-white flex items-center justify-center font-black text-lg">D1</span>
+              <div>
+                <h2 class="text-xl font-black">9/23 (三) 落地舒壓溫泉流</h2>
+                <p class="text-xs text-slate-400">第一天最辛苦，不排繁重購物，以速進飯店泡湯、大口吃壽司為主！</p>
+              </div>
+            </div>
+            <span class="text-xs px-2.5 py-1 bg-blue-50 text-blue-600 rounded-full font-bold">札幌入住 D1</span>
+          </div>
 
-          const vjwSteps = [
-            {
-              step: "Step 1",
-              title: "註冊帳戶與基礎資料",
-              desc: "前往 Visit Japan Web 註冊，填寫姓名、出生日期、國籍與護照號碼。同行家人（如5歲小孩與長輩）可直接新增為「同行家人」，免去重複申請之苦！"
-            },
-            {
-              step: "Step 2",
-              title: "登錄入境與回國預定",
-              desc: "新增您的「2026年9月北海道家族行」計畫，輸入抵達日期、亞航航班 FD242，以及入住第一晚的飯店資訊「Dormy Inn Premium 札幌本館」（可輸入郵遞區號自動填寫地址）。"
-            },
-            {
-              step: "Step 3",
-              title: "填寫外國人線上入境卡",
-              desc: "登記「外國人入境紀錄」，填寫旅行目的、停留天數等，系統將自動產生專屬的「入境審查 QR Code」。"
-            },
-            {
-              step: "Step 4",
-              title: "攜帶品與後送物品申報",
-              desc: "大總管代表全家填寫一份海關申報即可，回答攜帶物品等安全問題後，獲取「海關申報 QR Code」。"
-            },
-            {
-              step: "Step 5",
-              title: "【新功能】免稅 QR Code 建立",
-              desc: "2026新制：在系統內以手機相機對準護照內的「上陸許可證」貼紙，即可免稅掃碼！但仍建議攜帶紙本護照備查，免稅商店過濾更無痛。"
-            }
-          ];
+          <!-- Timeline -->
+          <div class="relative border-l-2 border-indigo-100 ml-4 pl-6 space-y-8">
+            <!-- Item -->
+            <div class="relative">
+              <span class="absolute -left-[31px] top-0 w-4 h-4 rounded-full bg-blue-600 border-4 border-white shadow"></span>
+              <div class="flex items-center gap-2 text-xs font-bold text-slate-400 mb-1">
+                <span>12:30 - 13:30</span>
+                <span class="px-1.5 py-0.5 bg-slate-100 text-slate-600 rounded">抵達</span>
+              </div>
+              <h3 class="text-base font-bold text-slate-800">降落新千歲機場 ➔ 光速出關</h3>
+              <p class="text-slate-500 text-sm mt-1">帶全家直奔海關提取 6 個大行李箱，推上嬰兒車下到 B1 的 JR 火車站。</p>
+            </div>
 
-          const daysData = {
-            1: {
-              date: "9月23日 (三)",
-              theme: "落地無腦速攻 ➔ 啤酒博物館 ➔ Toriton 厚切壽司 ➔ 溫泉生蠔宵夜",
-              spots: [
-                {
-                  time: "05:40",
-                  title: "桃園機場第一航廈大會師",
-                  desc: "全家集合辦理泰國亞航 FD242 登機報到。大總管核對 6 個大行李箱托運、嬰兒推車、防寒衣物及長輩與小孩的隨身藥品，準時過海關。",
-                  type: "transit",
-                  tip: "亞航隨身行李抓得嚴，記得大件箱子一律拖運。推車可在登機口再收折托運。"
-                },
-                {
-                  time: "12:40",
-                  title: "新千歲機場光速出關 ＆ 買名產墊胃",
-                  desc: "協助長輩過海關（開啟 Visit Japan Web 準備好的二維碼截圖）。下到 B1 JR 火車站前，大總管直攻 【BENTOSS】買三大蟹火車便當，或到【KINOTOYA】買現烤起司塔與蘋果派，絕不讓 5 歲小孩與長輩捱餓。",
-                  type: "food",
-                  tip: "日本火車上可以飲食，帶熱呼呼的點心上車吃，是暖胃第一步！"
-                },
-                {
-                  time: "13:45",
-                  title: "JR 快速 Airport 號（舒適 U-Seat 指定席）",
-                  desc: "大總管絕招：務必預約 U-Seat 指定席！車廂後方有專屬大型行李放置處，長輩幼童一律有座，邊吃名產邊欣賞北海道初秋風光，40 分鐘直達札幌車站。",
-                  type: "transit",
-                  tip: "車票可提前線上預訂，大行李箱在車廂末端有防滑帶鎖，非常省心。"
-                },
-                {
-                  time: "14:45",
-                  title: "Dormy Inn 快速進房，大行李定位",
-                  desc: "札幌車站南口直接攔 2 台計程車（5分鐘，省去推行李步行苦痛），直送 Dormy Inn Premium 札幌本館。辦理入住時特別強調：「明天續住，不換房！」放妥 6 大行李箱，全家換輕裝出發。",
-                  type: "hotel",
-                  tip: "跟櫃台告知續住，可避免隔天早晨還需要整理行李退房的麻煩。"
-                },
-                {
-                  time: "15:15",
-                  title: "第一站：札幌啤酒博物館（百年紅磚古蹟）",
-                  desc: "門口直接攔 2 台計程車直奔博物館。在巨大糖化槽前拍下全家福！走免費參觀動線到二樓觀看廣告畫報。最後在「星星大廳」花 ¥1,000 點三款生啤酒綜合組暢飲，並搶購「SAPPORO經典啤酒凍巧克力」！",
-                  type: "sight",
-                  tip: "生啤酒組含三款精選啤酒和起司/堅果小點，非開車的家長絕對要喝！小孩也有不含酒精的緞帶絲帶果汁。"
-                },
-                {
-                  time: "16:35",
-                  title: "Ario 巨型商場超市（採購宵夜與伴手禮）",
-                  desc: "步行穿過隔壁 Ario，主攻現切北海道赤肉哈密瓜、地產低溫殺菌鮮乳、水蜜桃果凍與各式零食，為接下來幾天常備物資打底。",
-                  type: "shop",
-                  tip: "超市內可以退稅，並備有推車，適合長輩在此短暫坐下休息。"
-                },
-                {
-                  time: "17:20",
-                  title: "小黃卡位戰 ➔ Toriton 北8条光星店",
-                  desc: "在 Ario 門口直接攔 2 台計程車，2 分鐘神速直送最近的超人氣排隊名店 【Toriton 北8条光星店】。",
-                  type: "transit",
-                  tip: "這家店是當地人信仰，平日下午 17:30 剛到晚餐期，是「免排隊/少排隊」的黃金空檔！"
-                },
-                {
-                  time: "17:30",
-                  title: "晚餐大主秀：Toriton 迴轉壽司極致享受",
-                  desc: "全家無痛直接入座大桌！瘋狂點點厚切炙燒鮭魚、爆量蟹膏、巨無霸干貝與特大牡丹蝦。第一晚就用北海道最頂級、高性價比的壽司震撼全家人！",
-                  type: "food",
-                  tip: "對著平板直接下單，干貝、鮭魚必點；為長輩與小孩可點熱茶碗蒸、炸雞與熟熟肉壽司。"
-                },
-                {
-                  time: "19:20",
-                  title: "小黃極速回防 ＆ 飯店溫泉大會師",
-                  desc: "餐後搭計程車帶物資回 Dormy Inn。全家上頂樓享受「石狩之湯」天然溫泉，泡完湯大嗑休息區免費供應的冰棒、21:30 後有免費 Dormy 醬油拉麵！",
-                  type: "hotel",
-                  tip: "泡溫泉請注意小孩與長輩的水溫，每次泡 10-15 分鐘為宜。"
-                },
-                {
-                  time: "21:40",
-                  title: "夜生活追加：狸小路牡蠣小屋生蠔大宴",
-                  desc: "長輩與小孩在暖氣房舒服入睡。主辦人帶領平輩組與媽媽，微醺偷溜步行至狸小路天棚下的 【狸小路牡蠣小屋】，大點厚岸產現開生蠔、炭烤爆汁扇貝，搭配生啤酒！",
-                  type: "food",
-                  tip: "厚岸生蠔肉質極度飽滿，擠上檸檬汁一口悶，是老饕專屬的奢華宵夜！"
-                }
-              ]
-            },
-            2: {
-              date: "9月24日 (四)",
-              theme: "三角市場現撈現烤帝王蟹 ➔ 小樽浪漫散步 ➔ 燒肉 GINGA 頂級和牛包廂",
-              spots: [
-                {
-                  time: "08:30",
-                  title: "神級早餐：Dormy Inn 鮭魚卵爆盛海鮮丼",
-                  desc: "享用全日本排名前五的 Dormy Inn 早餐！鮭魚卵、鮮干貝無限裝，自製一碗在外面要賣 3000 日圓的爆量海鮮丼，長輩與小孩大讚滿分。",
-                  type: "food",
-                  tip: "有熟食烤魚、熱味噌湯與各式精緻西點，適合全家人不同胃口。"
-                },
-                {
-                  time: "09:45",
-                  title: "海景火車移防（JR 快速 Airport 號）",
-                  desc: "搭乘火車前往小樽。大總管絕招：火車務必坐「右側」！一路上看著極其壯麗的日本海，隨著浪花拍打，40 分鐘一晃眼就到小樽站。",
-                  type: "transit",
-                  tip: "去程坐右側（看海），回程坐左側。U-Seat 也有此大窗景優勢。"
-                },
-                {
-                  time: "11:00",
-                  title: "午餐大主秀：三角市場現撈現烤帝王蟹",
-                  desc: "出站左轉 1 分鐘進【三角市場】。直接挑選特大活體帝王蟹二吃（烤蟹腳、清蒸蟹身），搭配鮮美爆棚的海鮮丼！5 歲小孩可吃多汁的烤花鯽魚配白飯。",
-                  type: "food",
-                  tip: "防坑指南：貨比三家，活蟹秤重時務必確認價格與含盆重量，店員會現場在您面前將活蟹撈起拍照，美味又安心！"
-                },
-                {
-                  time: "13:15",
-                  title: "小樽浪漫下午茶與平坦無障礙散步",
-                  desc: "順著下坡漫步至小樽運河，再沿著堺町通散步到童話十字路口。沿途平緩無大石階，推嬰兒車十分流暢。沿路探訪音樂盒堂，最後在 LeTAO 本店享用雙層乳酪蛋糕、北菓樓享用爆漿泡芙！",
-                  type: "sight",
-                  tip: "LeTAO 三樓有免費展望台，可以俯瞰整個小樽童話十字路口與歐風古建築，有電梯直達！"
-                },
-                {
-                  time: "16:45",
-                  title: "市區移防與全家充電休整",
-                  desc: "搭車返回札幌薄野 Dormy Inn 飯店。長輩、媽媽、5 歲小孩在暖氣房大睡一覺或去溫泉，徹底恢復體力，為晚上的和牛饗宴蓄力。",
-                  type: "hotel",
-                  tip: "保留這一段空檔非常關鍵，能確保後半天大家精神百倍、不鬧情緒。"
-                },
-                {
-                  time: "18:45",
-                  title: "全室內天棚無痛推進",
-                  desc: "餐廳就在 G-DINING 大樓 6 樓，全家推著嬰兒車直接走狸小路商店街天棚，步行 4 分鐘直達，將外頭的冷風雨水完全封殺！",
-                  type: "transit",
-                  tip: "下雨、下雪完全不沾濕，全場無階梯，嬰兒車非常順暢。"
-                },
-                {
-                  time: "19:00",
-                  title: "晚餐大主秀：燒肉 GINGA 頂級和牛包廂會席",
-                  desc: "享用高檔獨立包廂。因為是整頭黑毛和牛購買，肉質現點現切。13種肉類套餐讓大人狂喜。長輩與小孩推薦炭火大烤「島腸（極品稀有部位）」、鴨肉與鮮嫩鹿肉；5 歲小孩配著「山葵飯」或自製香腸。大人配 Perfect Classic 鮮榨生啤酒！",
-                  type: "food",
-                  tip: "這家店有包廂，小孩稍微吵鬧也不尷尬。點不辣的冷麵與蛋花湯很適合小孩墊肚子。"
-                }
-              ]
-            },
-            3: {
-              date: "9月25日 (五)",
-              theme: "二條市場極鮮現烤海鮮 ➔ 乃之風煙火行政房 ➔ 豪華百匯",
-              spots: [
-                {
-                  time: "08:30",
-                  title: "房間內慢活打底",
-                  desc: "睡到自然醒，在溫暖的房間內享用前一天 Ario 買的赤肉哈密瓜、道產鮮乳與美味麵包，穿上防寒衣物。",
-                  type: "hotel",
-                  tip: "哈密瓜如果切不方便，可請超市協助或在房間內以塑膠刀處理，香甜多汁。"
-                },
-                {
-                  time: "09:15",
-                  title: "退房與行李寄放",
-                  desc: "在 Dormy Inn 辦理退房，將 6 個大行李箱免費寄存在櫃台，推著輕便推車準備去二條市場。",
-                  type: "transit",
-                  tip: "飯店人員會給予行李吊牌，保管極度安全，直接告知晚點會搭車回來提領。"
-                },
-                {
-                  time: "09:30",
-                  title: "午餐大主秀：二條市場·極鮮現烤海鮮大宴",
-                  desc: "漫步 5 分鐘抵達。平輩與媽媽大啖現開厚岸生蠔、現剖爆甜海膽。長輩與 5 歲小孩大嗑炭火澆日式醬油烤到焦香冒泡的特大扇貝、熟蟹腳。甜點以切片夕張哈密瓜、水果玉米壓軸！",
-                  type: "food",
-                  tip: "防坑指南：內側小巷價格偏觀光客，直攻外圍攤位，可直接挑選並在攤位旁立吞或小桌坐著吃，性價比極高！"
-                },
-                {
-                  time: "11:30",
-                  title: "體力中繼站：BARISTART COFFEE",
-                  desc: "散步 2 分鐘到附近的網紅咖啡店，幫長輩、媽媽們點杯用北海道極致鮮乳調配的熱拿鐵，在這裡暖和地坐著休息 50 分鐘，補滿精神。",
-                  type: "food",
-                  tip: "這家店可以自選北海道不同牧場（如十勝、美瑛）的鮮乳，風味截然不同，奶香濃郁！"
-                },
-                {
-                  time: "12:25",
-                  title: "行李提取與前進車站（小黃分流戰術）",
-                  desc: "大總管妙計：攔 2 台計程車。平輩組搭車回 Dormy Inn 提領 6 個大行李箱推進後車廂；長輩與小孩搭另一台計程車直達札幌車站北口，在溫暖的大巴士站大會師！",
-                  type: "transit",
-                  tip: "這樣免去長輩提著重行李走上走下，一站式接駁無縫對接。"
-                },
-                {
-                  time: "13:30",
-                  title: "野口觀光專屬接駁大巴（無縫補眠）",
-                  desc: "大巴從札幌車站發車直達洞爺湖。大行李放車底，全員在溫暖的車上大睡午覺 2.5 小時，下車即抵達溫泉度假村！",
-                  type: "transit",
-                  tip: "接駁巴士需要提前跟飯店預約（乃之風提供此貼心接駁，費用遠低於自行搭火車）。"
-                },
-                {
-                  time: "16:00",
-                  title: "乃之風行政房進房，享受私人觀景溫泉",
-                  desc: "抵達「湖景 TOYA 乃之風度假酒店」，入住煙火頭等艙房型：【乃之風俱樂部 — 觀景溫泉行政房】。房間超大，大落地窗直接面對洞爺湖，還能在房內一邊泡湯一邊看湖景。",
-                  type: "hotel",
-                  tip: "這是飯店最尊榮的房型，特別適合不方便去大浴場的長輩與害羞的小孩。"
-                },
-                {
-                  time: "18:30",
-                  title: "晚餐：波之音頂級 Buffet ➔ 湖畔煙火大秀",
-                  desc: "大啖現煎十勝和牛排、現炸天婦羅與現切赤肉哈密瓜。20:45 煙火施放，全體集合在爸媽房間的超大落地窗前！巨大煙火就在窗前近距離炸開，完全不用在戶外受凍，極致尊榮！",
-                  type: "food",
-                  tip: "湖畔煙火是由船隻移動施放，在房內大窗觀賞能將整條移動軌跡與爆炸火花一覽無遺。"
-                }
-              ]
-            },
-            4: {
-              date: "9月26日 (六)",
-              theme: "13:00 純海膽大秀 ➔ 客製化枕頭 ➔ 地下街大血拼 ➔ 高空和牛蒸蟹 ➔ 夜聖代",
-              spots: [
-                {
-                  time: "08:00",
-                  title: "乃之風絕美湖畔早晨",
-                  desc: "一邊欣賞清晨絕美湖面與羊蹄山（蝦夷富士）遠景，一邊享用波之音豐盛的晨間 Buffet，有現烤蘋果派與地產新鮮優酪乳。",
-                  type: "hotel",
-                  tip: "清晨的湖面有霧氣時宛如仙境，建議提早起在窗邊喝杯咖啡。"
-                },
-                {
-                  time: "10:00",
-                  title: "接駁大巴返程，車上補眠",
-                  desc: "於飯店大廳搭乘接駁大巴，一路大睡返回札幌，12:30 準時在札幌車站南口下車。",
-                  type: "transit",
-                  tip: "中途會在停靠站稍作休息，可以買杯道產牛奶或優格喝。"
-                },
-                {
-                  time: "12:30",
-                  title: "格拉斯麗酒店無縫寄存行李",
-                  desc: "大總管精準卡位：直接推行李走進車站地下街 APIA，直入位於車站上方的 【格拉斯麗酒店】 寄存 6 個大行李箱。雙手徹底解脫！",
-                  type: "hotel",
-                  tip: "格拉斯麗酒店地理位置極佳，與地鐵、地下街、大丸百貨完全連通，完全不用走到地面風吹日曬。"
-                },
-                {
-                  time: "12:45",
-                  title: "全室內神盾推進（一秒都不出地面）",
-                  desc: "全員直接走 Chi-Ka-Ho 地下街，步行 3 分鐘從專屬連通道直切「日本生命札幌大樓 B1」。完美的將外頭的天氣冷風完全封殺！",
-                  type: "transit",
-                  tip: "推車、輪椅無障礙通道全程覆蓋，非常安全。"
-                },
-                {
-                  time: "13:00",
-                  title: "午餐大主秀：函館うに むらかみ 札幌店",
-                  desc: "大嗑 100% 完全不加明礬、直營店限定的頂級無明礬極致生海膽丼，甜美濃郁！長輩與小孩貼心熱食：店內備有熱騰騰的「海膽蛋花雜炊粥」與「海膽茶碗蒸」，暖胃又鮮美。",
-                  type: "food",
-                  tip: "無明礬海膽入口即化、完全沒有苦澀味，是北海道海鮮的海膽天花板！"
-                },
-                {
-                  time: "14:20",
-                  title: "大丸百貨 7 樓：西川客製化枕頭",
-                  desc: "走地下街直通大丸百貨。由西川專業睡眠測量師為大總管（或爸媽）進行一對一頸椎弧度測量，現場填充蕎麥、羽絨或乳膠，當天直接免稅提走！",
-                  type: "shop",
-                  tip: "這是最奢華實用的伴手禮，能徹底改善睡眠品質，送給長輩誠意滿滿！"
-                },
-                {
-                  time: "15:30",
-                  title: "地下街大縱走 ➔ 狸小路（大總管分流調度）",
-                  desc: "戰力爆棚組：沿著地下街狂掃藥妝、日系服飾、帶小孩去狸小路遊戲中心瘋狂扭蛋。疼愛長輩防累優化：長輩若腳酸，立刻在地下街電梯口攔 1 台計程車，5分鐘直送格拉斯麗酒店房間，躺平吹暖氣大休息！",
-                  type: "shop",
-                  tip: "分流調度是核心！不要強求長輩陪逛藥妝，讓他們回飯店休息，晚點直接在餐廳大會師。"
-                },
-                {
-                  time: "17:45",
-                  title: "蟹座 KANIZA 頂層大會師",
-                  desc: "大部隊與睡飽的長輩直接在南4西2大樓 9 樓「蟹座 KANIZA」餐廳電梯口集合，準時進大包廂入座！",
-                  type: "transit",
-                  tip: "格拉斯麗搭計程車過來只需 6 分鐘，非常快速。"
-                },
-                {
-                  time: "18:00",
-                  title: "晚餐大主秀：蟹座 KANIZA 高空夜景蒸蟹和牛會席（Buffet 吃到飽）",
-                  desc: "高空大包廂飽覽薄野夜景。服務生將預先開好殼的巨大帝王蟹腳、松葉蟹腳直送桌邊，大嚼海膽高湯鴛鴦鍋涮頂級和牛！長輩完全免手忙腳亂剪蟹殼，尊榮感直接拉滿！",
-                  type: "food",
-                  tip: "預先去殼的蟹腳對長輩與 5 歲小孩非常友善，直接大口咬下肥美蟹肉，無痛大吃！"
-                },
-                {
-                  time: "20:15",
-                  title: "壓軸宵夜：佐藤堂 本店 夜聖代",
-                  desc: "餐後漫步 2 分鐘直攻札幌聖代天花板 【佐藤堂 本店】！藝術品般的季節限定聖代與手工雪酪，冷熱交織、層次感爆炸，一秒驚艷全家人！",
-                  type: "food",
-                  tip: "札幌有「吃完正餐吃夜聖代收尾」的獨特文化，佐藤堂是精緻度最高的名店。"
-                },
-                {
-                  time: "21:40",
-                  title: "極速回防：計程車回格拉斯麗酒店",
-                  desc: "在佐藤堂門口直接攔 2 台計程車，6 分鐘直送格拉斯麗酒店。緊鄰札幌車站，上樓洗個熱水澡，舒舒服服進入夢鄉。",
-                  type: "hotel",
-                  tip: "今晚入住格拉斯麗（Hotel Gracery），明早進機場最方便。"
-                }
-              ]
-            },
-            5: {
-              date: "9月27日 (日)",
-              theme: "機場超前部署 ➔ 0元行李甩包術 ➔ 11:00 湯咖哩速攻 ➔ 國內線夢幻大縱走",
-              spots: [
-                {
-                  time: "08:30",
-                  title: "市區快速退房 ＆ JR 快速 Airport 號（U-Seat 指定席）",
-                  desc: "格拉斯麗退房後，走 2 分鐘室內地下街直達札幌車站。搭乘 09:05 的 JR 快速 Airport 號（U-Seat 指定席），舒適前往新千歲機場。",
-                  type: "transit",
-                  tip: "預留充分時間，最後一天不急不躁。"
-                },
-                {
-                  time: "09:42",
-                  title: "超前抵達新千歲機場（多砸出 1.5 小時逛街時間）",
-                  desc: "下火車後全員走全室內溫暖電動步道，一路推進到「國際線航廈 3 樓亞航出發大廳」。",
-                  type: "transit",
-                  tip: "提早抵達是為了避開後續排隊人潮，讓時間完全掌控在自己手裡。"
-                },
-                {
-                  time: "09:45",
-                  title: "行李神盾：0 元行李甩包分流術",
-                  desc: "大總管調度：在國際線免費抓 2-3 台行李手推車，把 6 個大箱子疊上去。留下 1-2 位平輩在國際線舒服的沙發區滑手機顧行李。其餘大部隊（長輩、媽媽們、5歲小孩）雙手彻底空空、推著嬰兒車悠閒重返國內線 3 樓開始逛街！",
-                  type: "transit",
-                  tip: "不用推著大行李箱擠人滿為患的國內線商圈，這招 0 元甩包戰術是老天祥神技！"
-                },
-                {
-                  time: "10:30",
-                  title: "GARAKU 湯咖哩前哨排隊戰術",
-                  desc: "平輩特攻隊先在國內線 3 樓 GARAKU 門口排隊守候第一輪（11:00 開門），此時人潮最少、排隊最輕鬆。",
-                  type: "food",
-                  tip: "排隊訣竅：機場店比市區本店容易排，但黃金開門前 30 分鐘卡位，100% 保證第一批進店大桌！"
-                },
-                {
-                  time: "11:00",
-                  title: "午餐大主秀：GARAKU 湯咖哩機場戰",
-                  desc: "11:00 準時開門，全家第一批直接進店開大桌！在國際線顧行李的平輩換班過來一起大嗑熱騰騰、辛香暖胃的帶骨雞腿湯咖哩、滿滿地產蔬菜！",
-                  type: "food",
-                  tip: "辛香的咖哩配上炙燒起司飯，湯頭醇厚。不辣的野菜湯咖哩極適合小孩與不吃辣的長輩。"
-                },
-                {
-                  time: "12:05",
-                  title: "亞航開櫃：無縫掛行李",
-                  desc: "吃飽後推著行李手推車，直接送進已開櫃的亞航國際線櫃檯正式託運！全家人的 6 大箱行李徹底消失在傳送帶上，雙手解脫！",
-                  type: "transit",
-                  tip: "行李託運後，距離登機還有 2 小時，是最後的免稅店衝刺期。"
-                },
-                {
-                  time: "12:35",
-                  title: "國內線 2 樓伴手禮商圈 ＆ 3 樓樂園大縱走",
-                  desc: "平輩放電組：衝「哆啦A夢空中樂園」與「Hello Kitty 飛行公園」看機器人生產線，讓 5 歲小孩上飛機前電力耗盡！長輩血拼組：在 2 樓狂掃六花亭、北菓樓伴手禮，臨走前排隊搶購 Kinotoya 極上生乳霜淇淋（鮮乳濃度天花板，大推！）",
-                  type: "shop",
-                  tip: "Kinotoya 霜淇淋極高、極濃，拿著邊走邊吃簡置幸福感爆表！"
-                },
-                {
-                  time: "14:20",
-                  title: "過海關登機 ➔ 平安返台（泰國亞航 FD243）",
-                  desc: "全員帶著滿滿的戰利品、哈密瓜香甜與溫泉餘溫，走回國際線過安檢。14:40 航班起飛，預計台灣時間 18:00 順利降落桃園第一航廈，完美收官！",
-                  type: "transit",
-                  tip: "飛機上可好好補眠，4小時航程輕鬆度過，圓滿完成尊榮北國孝親親子之旅！"
-                }
-              ]
-            }
-          };
+            <!-- Item -->
+            <div class="relative">
+              <span class="absolute -left-[31px] top-0 w-4 h-4 rounded-full bg-indigo-500 border-4 border-white shadow"></span>
+              <div class="flex items-center gap-2 text-xs font-bold text-slate-400 mb-1">
+                <span>13:45 - 14:30</span>
+                <span class="px-1.5 py-0.5 bg-blue-50 text-blue-600 rounded"><i class="fa-solid fa-train"></i> JR 快速</span>
+              </div>
+              <h3 class="text-base font-bold text-slate-800">機場 ➔ 札幌車站 (搶訂 U-Seat 指定席)</h3>
+              <p class="text-slate-500 text-sm mt-1">全家人舒舒服服乘坐 37 分鐘特快火車。</p>
+              <div class="manager-tip bg-amber-50 border border-amber-200 rounded-xl p-3 mt-2 text-xs text-amber-800">
+                <strong><i class="fa-solid fa-lightbulb"></i> 大總管提示：</strong>
+                務必買 <strong>U-Seat 指定席</strong>！有專屬大型行李放置處，長輩幼童一律有座，不用站立。
+              </div>
+            </div>
 
-          const currentSpots = daysData[selectedDay].spots.filter(spot => 
-            spot.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
-            spot.desc.toLowerCase().includes(searchQuery.toLowerCase()) ||
-            spot.time.includes(searchQuery)
-          );
+            <!-- Item -->
+            <div class="relative">
+              <span class="absolute -left-[31px] top-0 w-4 h-4 rounded-full bg-emerald-500 border-4 border-white shadow"></span>
+              <div class="flex items-center gap-2 text-xs font-bold text-slate-400 mb-1">
+                <span>14:45 - 15:00</span>
+                <span class="px-1.5 py-0.5 bg-emerald-50 text-emerald-600 rounded"><i class="fa-solid fa-taxi"></i> 接駁車/小黃</span>
+              </div>
+              <h3 class="text-base font-bold text-slate-800">車站 ➔ 飯店 Check-in (第一波計程車流)</h3>
+              <p class="text-slate-500 text-sm mt-1">直接在南口攔 2 台計程車（約 1,000 日圓/台），5 分鐘直達 <strong>Dormy Inn Premium 札幌本館</strong>。辦理入住，行李直接進房。</p>
+              <div class="manager-tip bg-amber-50 border border-amber-200 rounded-xl p-3 mt-2 text-xs text-amber-800">
+                <strong><i class="fa-solid fa-comment-dots"></i> 備註攻防：</strong>
+                辦理入住時務必跟櫃檯強調：<strong>明天續住，不換房！</strong>
+              </div>
+            </div>
 
-          const getBadgeStyle = (type) => {
-            switch(type) {
-              case 'transit': return 'bg-indigo-50 text-indigo-700 border-indigo-200';
-              case 'food': return 'bg-amber-50 text-amber-700 border-amber-200';
-              case 'hotel': return 'bg-emerald-50 text-emerald-700 border-emerald-200';
-              case 'sight': return 'bg-sky-50 text-sky-700 border-sky-200';
-              case 'shop': return 'bg-rose-50 text-rose-700 border-rose-200';
-              default: return 'bg-gray-50 text-gray-700 border-gray-200';
-            }
-          };
+            <!-- Item -->
+            <div class="relative">
+              <span class="absolute -left-[31px] top-0 w-4 h-4 rounded-full bg-orange-500 border-4 border-white shadow"></span>
+              <div class="flex items-center gap-2 text-xs font-bold text-slate-400 mb-1">
+                <span>15:15 - 16:30</span>
+                <span class="px-1.5 py-0.5 bg-orange-50 text-orange-600 rounded"><i class="fa-solid fa-hot-tub-person"></i> 泡湯</span>
+              </div>
+              <h3 class="text-base font-bold text-slate-800">頂樓天然溫泉與免費冰棒</h3>
+              <p class="text-slate-500 text-sm mt-1">帶長輩與小孩去頂樓「石狩之湯」泡湯回血。泡完湯可到休息區免費享用美味雪糕冰棒。</p>
+            </div>
 
-          const getBadgeIcon = (type) => {
-            switch(type) {
-              case 'transit': return '🚃';
-              case 'food': return '🍣';
-              case 'hotel': return '🏨';
-              case 'sight': return '⛩️';
-              case 'shop': return '🛒';
-              default: return '📍';
-            }
-          };
+            <!-- Item -->
+            <div class="relative">
+              <span class="absolute -left-[31px] top-0 w-4 h-4 rounded-full bg-rose-500 border-4 border-white shadow"></span>
+              <div class="flex items-center gap-2 text-xs font-bold text-slate-400 mb-1">
+                <span>16:45 - 17:45</span>
+                <span class="px-1.5 py-0.5 bg-rose-50 text-rose-600 rounded"><i class="fa-solid fa-camera"></i> 踩點</span>
+              </div>
+              <h3 class="text-base font-bold text-slate-800">札幌啤酒博物館與紅磚合照</h3>
+              <p class="text-slate-500 text-sm mt-1">在大紅磚古蹟前拍全家福，大人體驗三種鮮榨生啤酒試飲，幼童與長輩享用限定哈密瓜蘇打水或牛乳。</p>
+            </div>
 
-          const handleToggleChecklist = (key) => {
-            setChecklist(prev => ({ ...prev, [key]: !prev[key] }));
-            showToast(`狀態已更新！`, 'success');
-          };
+            <!-- Item -->
+            <div class="relative">
+              <span class="absolute -left-[31px] top-0 w-4 h-4 rounded-full bg-red-600 border-4 border-white shadow"></span>
+              <div class="flex items-center gap-2 text-xs font-bold text-slate-400 mb-1">
+                <span>18:00 - 19:30</span>
+                <span class="px-1.5 py-0.5 bg-red-50 text-red-600 rounded"><i class="fa-solid fa-utensils"></i> 晚餐</span>
+              </div>
+              <h3 class="text-base font-bold text-slate-800">TORITON 迴轉壽司 (在地排隊天王)</h3>
+              <p class="text-slate-500 text-sm mt-1">大口大口品嚐產地直送的牡丹蝦、大干貝、鮭魚卵軍艦與茶碗蒸！</p>
+              <div class="manager-tip bg-indigo-50 border border-indigo-200 rounded-xl p-3 mt-2 text-xs text-indigo-800">
+                <strong><i class="fa-solid fa-hourglass-half"></i> 避寒免排隊神操作：</strong>
+                抵達 Ario 商場一樓 TORITON 門口立即用機器抽 7 人號碼牌。<strong>不要讓長輩罰站！</strong> 派人盯著，帶長輩逛一樓日式雜貨、平輩帶 5 歲小孩去二樓玩具反斗城。快到號時一通電話大會師無痛入座。
+              </div>
+            </div>
 
-          const handleToggleTripDone = (id) => {
-            setMyTripList(prev => prev.map(t => t.id === id ? { ...t, done: !t.done } : t));
-            showToast(`景點狀態已變更！`, 'info');
-          };
+            <!-- Item -->
+            <div class="relative">
+              <span class="absolute -left-[31px] top-0 w-4 h-4 rounded-full bg-teal-500 border-4 border-white shadow"></span>
+              <div class="flex items-center gap-2 text-xs font-bold text-slate-400 mb-1">
+                <span>19:45 - 20:15</span>
+                <span class="px-1.5 py-0.5 bg-teal-50 text-teal-600 rounded"><i class="fa-solid fa-cart-shopping"></i> 超市補貨</span>
+              </div>
+              <h3 class="text-base font-bold text-slate-800">Ario 巨型超市掃貨 & 宵夜</h3>
+              <p class="text-slate-500 text-sm mt-1">買現切北海道哈密瓜、濃郁鮮乳，以及 Donguri 橡實果麵包店著名的竹輪麵包。</p>
+            </div>
+          </div>
+        </section>
 
-          const handleAddCustomTrip = (e) => {
-            e.preventDefault();
-            if (!newTripTitle.trim()) {
-              showToast('請輸入景點或行程名稱！', 'warning');
-              return;
-            }
-            const newTrip = {
-              id: `custom_${Date.now()}`,
-              day: parseInt(newTripDay),
-              time: newTripTime,
-              title: newTripTitle,
-              done: false
-            };
-            setMyTripList(prev => [...prev, newTrip].sort((a, b) => {
-              if (a.day !== b.day) return a.day - b.day;
-              return a.time.localeCompare(b.time);
-            }));
-            setNewTripTitle('');
-            showToast(`成功新增行程至 Day ${newTripDay}！`, 'success');
-          };
+        <!-- ==================== DAY 2 ==================== -->
+        <section id="content-2" class="tab-content bg-white rounded-2xl p-6 shadow-sm border border-slate-100">
+          <div class="flex items-center justify-between border-b border-slate-100 pb-4 mb-6">
+            <div class="flex items-center gap-3">
+              <span class="w-10 h-10 rounded-xl bg-indigo-600 text-white flex items-center justify-center font-black text-lg">D2</span>
+              <div>
+                <h2 class="text-xl font-black">9/24 (四) 小樽運河海鮮黑馬 ➔ 爆汁黑屋烤羊肉</h2>
+                <p class="text-xs text-slate-400">平坦推車老街，提早大吃帝王蟹避開人潮，下午老派咖啡，晚間驚艷烤羊！</p>
+              </div>
+            </div>
+            <span class="text-xs px-2.5 py-1 bg-indigo-50 text-indigo-600 rounded-full font-bold">小樽漫步 D2</span>
+          </div>
 
-          const handleDeleteTrip = (id) => {
-            setMyTripList(prev => prev.filter(t => t.id !== id));
-            showToast('行程已刪除', 'info');
-          };
+          <!-- Timeline -->
+          <div class="relative border-l-2 border-indigo-100 ml-4 pl-6 space-y-8">
+            <!-- Item -->
+            <div class="relative">
+              <span class="absolute -left-[31px] top-0 w-4 h-4 rounded-full bg-indigo-600 border-4 border-white shadow"></span>
+              <div class="flex items-center gap-2 text-xs font-bold text-slate-400 mb-1">
+                <span>08:30 - 09:30</span>
+                <span class="px-1.5 py-0.5 bg-yellow-50 text-yellow-600 rounded"><i class="fa-solid fa-egg"></i> 奢華早餐</span>
+              </div>
+              <h3 class="text-base font-bold text-slate-800">Dormy Inn 全國排名前五神級海鮮早餐</h3>
+              <p class="text-slate-500 text-sm mt-1">鮭魚卵、黑鮪魚生魚片、大干貝無限盛裝！自製爆量海鮮丼，長輩從早上就充滿驚喜。</p>
+            </div>
 
-          const handleCopyPlanner = () => {
-            const tripSummary = myTripList
-              .map(t => `[Day ${t.day} | ${t.time}] ${t.title} ${t.done ? '(已核對)' : '(計畫中)'}`)
-              .join('\n');
-            
-            const checklistSummary = Object.entries(checklist)
-              .map(([k, v]) => `${k.toUpperCase()}: ${v ? '✅ 已準備' : '❌ 待處理'}`)
-              .join('\n');
+            <!-- Item -->
+            <div class="relative">
+              <span class="absolute -left-[31px] top-0 w-4 h-4 rounded-full bg-blue-500 border-4 border-white shadow"></span>
+              <div class="flex items-center gap-2 text-xs font-bold text-slate-400 mb-1">
+                <span>10:00 - 10:45</span>
+                <span class="px-1.5 py-0.5 bg-blue-50 text-blue-600 rounded"><i class="fa-solid fa-train"></i> 海景火車</span>
+              </div>
+              <h3 class="text-base font-bold text-slate-800">JR 快速 Airport 號直達小樽 (火車右側戰術)</h3>
+              <p class="text-slate-500 text-sm mt-1">全家坐火車<strong>右側</strong>，看著一整片極其壯麗的日本海，40 分鐘一晃眼就到了。</p>
+            </div>
 
-            const textToCopy = `=== 2026 北海道尊榮家庭旅遊客製計畫 ===\n\n【重要準備檢核表】\n${checklistSummary}\n\n【精選景點備忘】\n${tripSummary}\n\n【大總管隨身備註】\n${customNotes || '無額外備註'}\n\n產生時間: 2026-06-01\n祝您旅途愉快！`;
+            <!-- Item -->
+            <div class="relative">
+              <span class="absolute -left-[31px] top-0 w-4 h-4 rounded-full bg-red-600 border-4 border-white shadow"></span>
+              <div class="flex items-center gap-2 text-xs font-bold text-slate-400 mb-1">
+                <span>10:45 - 12:15</span>
+                <span class="px-1.5 py-0.5 bg-red-50 text-red-600 rounded"><i class="fa-solid fa-crab"></i> 午餐大主秀</span>
+              </div>
+              <h3 class="text-base font-bold text-slate-800">三角市場現烤帝王蟹大宴</h3>
+              <p class="text-slate-500 text-sm mt-1">
+                小樽站一出站左轉 1 分鐘進 <strong>【三角市場】</strong> (武田鮮魚店或滝波食堂)。
+                選一隻特大現烤帝王蟹，蟹肉甜美肥多汁！5 歲小孩可吃烤花鯽魚配白飯。
+              </p>
+              <div class="manager-tip bg-amber-50 border border-amber-200 rounded-xl p-3 mt-2 text-xs text-amber-800">
+                <strong><i class="fa-solid fa-clock"></i> 搶位提醒：</strong>
+                11:00 之前殺進市場，完全不需要排隊，輕鬆坐大桌！三角市場內石地有些微濕滑，牽好長輩喔。
+              </div>
+            </div>
 
-            const el = document.createElement('textarea');
-            el.value = textToCopy;
-            document.body.appendChild(el);
-            el.select();
-            const success = document.execCommand('copy');
-            document.body.removeChild(el);
+            <!-- Item -->
+            <div class="relative">
+              <span class="absolute -left-[31px] top-0 w-4 h-4 rounded-full bg-amber-500 border-4 border-white shadow"></span>
+              <div class="flex items-center gap-2 text-xs font-bold text-slate-400 mb-1">
+                <span>12:20 - 13:30</span>
+                <span class="px-1.5 py-0.5 bg-amber-50 text-amber-600 rounded"><i class="fa-solid fa-mug-hot"></i> 優雅下午茶</span>
+              </div>
+              <h3 class="text-base font-bold text-slate-800">小樽咖啡物語 - 老派沙龍與自選古董杯</h3>
+              <p class="text-slate-500 text-sm mt-1">步行 5 分鐘進入極其安靜奢華的沙龍。自己挑選心儀的骨瓷咖啡杯，欣賞老闆虹吸咖啡表演。長輩喝高雅熱咖啡，小孩大嗑聖代。在此坐足一小時，疲勞歸零！</p>
+            </div>
 
-            if (success) {
-              showToast('📋 計畫已複製到剪貼簿！可直接貼在 LINE 家族群組分享。', 'success');
-            } else {
-              showToast('複製失敗，請手動選取複製。', 'warning');
-            }
-          };
+            <!-- Item -->
+            <div class="relative">
+              <span class="absolute -left-[31px] top-0 w-4 h-4 rounded-full bg-teal-500 border-4 border-white shadow"></span>
+              <div class="flex items-center gap-2 text-xs font-bold text-slate-400 mb-1">
+                <span>13:40 - 16:30</span>
+                <span class="px-1.5 py-0.5 bg-teal-50 text-teal-600 rounded"><i class="fa-solid fa-baby-carriage"></i> 散步</span>
+              </div>
+              <h3 class="text-base font-bold text-slate-800">小樽運河 ➔ 八音盒堂 ➔ LeTAO 本店</h3>
+              <p class="text-slate-500 text-sm mt-1">路面平坦極度推車友善，沿街欣賞哨子館玻璃工藝。最後到 LeTAO 本店上樓大吃著名的雙層乳酪蛋糕與免費奉茶，愜意無比。</p>
+            </div>
 
-          return (
-            <div className="min-h-screen bg-slate-50 text-slate-800 font-sans antialiased">
-              <header className="sticky top-0 z-50 bg-gradient-to-r from-blue-900 to-indigo-900 text-white shadow-md">
-                <div className="max-w-7xl mx-auto px-4 py-3 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4">
-                  <div className="flex items-center gap-3">
-                    <span className="text-3xl">❄️</span>
-                    <div>
-                      <h1 className="text-xl sm:text-2xl font-bold tracking-tight">北海道尊榮家庭自駕與無腦速攻</h1>
-                      <p className="text-xs text-blue-200">2026/09/23 - 09/27 5天4夜 ‧ 長輩幼童神盾護航</p>
-                    </div>
-                  </div>
-                  <nav className="flex space-x-1 bg-indigo-950/60 p-1 rounded-xl border border-indigo-700/50">
-                    <button 
-                      onClick={() => setActiveTab('itinerary')}
-                      class={`px-4 py-2 text-sm font-medium rounded-lg transition-all duration-200 ${activeTab === 'itinerary' ? 'bg-indigo-600 text-white shadow-sm' : 'text-indigo-200 hover:text-white hover:bg-indigo-800/40'}`}
-                    >
-                      📅 5日神級行程
-                    </button>
-                    <button 
-                      onClick={() => setActiveTab('vjw')}
-                      class={`px-4 py-2 text-sm font-medium rounded-lg transition-all duration-200 ${activeTab === 'vjw' ? 'bg-indigo-600 text-white shadow-sm' : 'text-indigo-200 hover:text-white hover:bg-indigo-800/40'}`}
-                    >
-                      🛂 2026入境新制
-                    </button>
-                    <button 
-                      onClick={() => setActiveTab('tips')}
-                      class={`px-4 py-2 text-sm font-medium rounded-lg transition-all duration-200 ${activeTab === 'tips' ? 'bg-indigo-600 text-white shadow-sm' : 'text-indigo-200 hover:text-white hover:bg-indigo-800/40'}`}
-                    >
-                      🦀 避雷排隊秘笈
-                    </button>
-                    <button 
-                      onClick={() => setActiveTab('planner')}
-                      class={`px-4 py-2 text-sm font-medium rounded-lg transition-all duration-200 ${activeTab === 'planner' ? 'bg-indigo-600 text-white shadow-sm' : 'text-indigo-200 hover:text-white hover:bg-indigo-800/40'}`}
-                    >
-                      📋 大總管便忘錄
-                    </button>
-                  </nav>
+            <!-- Item -->
+            <div class="relative">
+              <span class="absolute -left-[31px] top-0 w-4 h-4 rounded-full bg-rose-600 border-4 border-white shadow"></span>
+              <div class="flex items-center gap-2 text-xs font-bold text-slate-400 mb-1">
+                <span>17:30 - 19:30</span>
+                <span class="px-1.5 py-0.5 bg-rose-50 text-rose-600 rounded"><i class="fa-solid fa-fire"></i> 晚餐大高潮</span>
+              </div>
+              <h3 class="text-base font-bold text-slate-800">成吉思汗烤羊肉大黑屋 薄野店 (爆汁厚切羊肉)</h3>
+              <p class="text-slate-500 text-sm mt-1">厚切羊肩肉完全沒有騷味，在熱滋滋的烤盤上煎香！配上生啤酒，氣氛最高潮！</p>
+              <div class="manager-tip bg-indigo-50 border border-indigo-200 rounded-xl p-3 mt-2 text-xs text-indigo-800">
+                <strong><i class="fa-solid fa-user-secret"></i> 主辦人特攻代排隊戰術：</strong>
+                17:30 回札幌後，先叫長輩、幼童回 Dormy Inn 房間躺平大睡。你跟平輩組成特攻隊走 8 分鐘到薄野大黑屋按機器抽 7 人大桌。快叫到號前 10 分鐘，在 LINE 群呼叫所有人搭小黃過來，無痛開吃！
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ==================== DAY 3 ==================== -->
+        <section id="content-3" class="tab-content bg-white rounded-2xl p-6 shadow-sm border border-slate-100">
+          <div class="flex items-center justify-between border-b border-slate-100 pb-4 mb-6">
+            <div class="flex items-center gap-3">
+              <span class="w-10 h-10 rounded-xl bg-teal-600 text-white flex items-center justify-center font-black text-lg">D3</span>
+              <div>
+                <h2 class="text-xl font-black">9/25 (五) 狸小路行李 0 元流 ➔ 乃之風頂級煙火大主秀</h2>
+                <p class="text-xs text-slate-400">雙手不提重物，中午兩大排隊神店快閃，下午車上睡午覺，晚間享用私人無邊際溫泉！</p>
+              </div>
+            </div>
+            <span class="text-xs px-2.5 py-1 bg-teal-50 text-teal-600 rounded-full font-bold">洞爺湖泡湯 D3</span>
+          </div>
+
+          <!-- Timeline -->
+          <div class="relative border-l-2 border-indigo-100 ml-4 pl-6 space-y-8">
+            <!-- Item -->
+            <div class="relative">
+              <span class="absolute -left-[31px] top-0 w-4 h-4 rounded-full bg-slate-400 border-4 border-white shadow"></span>
+              <div class="flex items-center gap-2 text-xs font-bold text-slate-400 mb-1">
+                <span>09:30</span>
+                <span class="px-1.5 py-0.5 bg-slate-100 text-slate-600 rounded"><i class="fa-solid fa-luggage-cart"></i> 行李保管</span>
+              </div>
+              <h3 class="text-base font-bold text-slate-800">退房 ➔ 行李續寄 Dormy Inn</h3>
+              <p class="text-slate-500 text-sm mt-1">Dormy Inn 辦理退房，6 個大行李箱免費寄放櫃檯，不花一毛車站行李保管費，輕鬆出發！</p>
+            </div>
+
+            <!-- Item -->
+            <div class="relative">
+              <span class="absolute -left-[31px] top-0 w-4 h-4 rounded-full bg-amber-500 border-4 border-white shadow"></span>
+              <div class="flex items-center gap-2 text-xs font-bold text-slate-400 mb-1">
+                <span>09:45 - 10:50</span>
+                <span class="px-1.5 py-0.5 bg-amber-50 text-amber-600 rounded"><i class="fa-solid fa-lemon"></i> 點心</span>
+              </div>
+              <h3 class="text-base font-bold text-slate-800">二條市場大嗑哈密瓜與現開生蠔</h3>
+              <p class="text-slate-500 text-sm mt-1">漫步 5 分鐘去市場，直接買一房現切超甜哈密瓜，大口大口吃。平輩現場享用現開大生蠔與烤扇貝。</p>
+            </div>
+
+            <!-- Item -->
+            <div class="relative">
+              <span class="absolute -left-[31px] top-0 w-4 h-4 rounded-full bg-indigo-500 border-4 border-white shadow"></span>
+              <div class="flex items-center gap-2 text-xs font-bold text-slate-400 mb-1">
+                <span>11:00 - 12:45</span>
+                <span class="px-1.5 py-0.5 bg-indigo-50 text-indigo-600 rounded"><i class="fa-solid fa-bolt"></i> 神操作雙料快閃</span>
+              </div>
+              <h3 class="text-base font-bold text-slate-800">GARAKU 湯咖哩與 BARISTART COFFEE</h3>
+              <p class="text-slate-500 text-sm mt-1">嫩到骨肉分離的雞腿湯咖哩，不辣湯底讓 5 歲小孩非常喜愛！</p>
+              <div class="manager-tip bg-amber-50 border border-amber-200 rounded-xl p-3 mt-2 text-xs text-amber-800">
+                <strong><i class="fa-solid fa-hat-wizard"></i> 主辦人特派員神操作：</strong>
+                11:00 長輩在二條市場大嗑哈密瓜時，你跟平輩一人先到 GARAKU 門口抽 11:30 第一波開門的號碼牌；另一人步行 2 分鐘到斜對面 BARISTART COFFEE 買爆用十勝/美瑛鮮乳調配的最濃郁外帶拿鐵。大部隊 11:15 過來大會師，喝著拿鐵聊天直接無痛第一批進場吃飯！
+              </div>
+            </div>
+
+            <!-- Item -->
+            <div class="relative">
+              <span class="absolute -left-[31px] top-0 w-4 h-4 rounded-full bg-blue-500 border-4 border-white shadow"></span>
+              <div class="flex items-center gap-2 text-xs font-bold text-slate-400 mb-1">
+                <span>12:45 - 16:00</span>
+                <span class="px-1.5 py-0.5 bg-blue-50 text-blue-600 rounded"><i class="fa-solid fa-bus"></i> 大巴士</span>
+              </div>
+              <h3 class="text-base font-bold text-slate-800">乃之風大巴專車 (全家大補眠午覺)</h3>
+              <p class="text-slate-500 text-sm mt-1">從 Dormy 提取 6 個大行李箱，搭兩台計程車直達札幌車站西口。登上乃之風專屬接駁大巴士，行李大箱由司機放入車底，全員在溫暖的車上大睡 2.5 小時至洞爺湖。</p>
+            </div>
+
+            <!-- Item -->
+            <div class="relative">
+              <span class="absolute -left-[31px] top-0 w-4 h-4 rounded-full bg-orange-500 border-4 border-white shadow"></span>
+              <div class="flex items-center gap-2 text-xs font-bold text-slate-400 mb-1">
+                <span>16:00 - 18:00</span>
+                <span class="px-1.5 py-0.5 bg-orange-50 text-orange-600 rounded"><i class="fa-solid fa-hot-tub-person"></i> 尊榮享受</span>
+              </div>
+              <h3 class="text-base font-bold text-slate-800">乃之風 Check-in & 天空露天大溫泉</h3>
+              <p class="text-slate-500 text-sm mt-1">爸媽專屬的「行政溫泉雙床房」自帶無敵湖景溫泉，在房間就能邊看湖邊泡湯。平輩帶 5 歲小孩去頂樓「TENKU」享受溫泉與湖景水天一線的極致震撼。</p>
+            </div>
+
+            <!-- Item -->
+            <div class="relative">
+              <span class="absolute -left-[31px] top-0 w-4 h-4 rounded-full bg-red-600 border-4 border-white shadow"></span>
+              <div class="flex items-center gap-2 text-xs font-bold text-slate-400 mb-1">
+                <span>18:30 - 21:05</span>
+                <span class="px-1.5 py-0.5 bg-red-50 text-red-600 rounded"><i class="fa-solid fa-fireworks"></i> 奢華夜宴</span>
+              </div>
+              <h3 class="text-base font-bold text-slate-800">波之音頂級 Buffet ➔ 頭等艙欣賞湖景煙火</h3>
+              <p class="text-slate-500 text-sm mt-1">
+                享用豪華百匯自助餐，有專為小孩打造的低櫃台美食區。
+                <strong>20:45 煙火施放</strong>：全體集合在爸媽房間的超大落地窗前。洞爺湖巨大煙火就在窗前接連炸開，完全不用在戶外受凍，極致尊榮！
+              </p>
+            </div>
+          </div>
+        </section>
+
+        <!-- ==================== DAY 4 ==================== -->
+        <section id="content-4" class="tab-content bg-white rounded-2xl p-6 shadow-sm border border-slate-100">
+          <div class="flex items-center justify-between border-b border-slate-100 pb-4 mb-6">
+            <div class="flex items-center gap-3">
+              <span class="w-10 h-10 rounded-xl bg-orange-600 text-white flex items-center justify-center font-black text-lg">D4</span>
+              <div>
+                <h2 class="text-xl font-black">9/26 (六) 百貨精品避寒行軍 ➔ 晚餐極致二選一</h2>
+                <p class="text-xs text-slate-400">大部隊完全免走戶外馬路，全程室內地下直通！下午放電，晚上迎來終極大餐！</p>
+              </div>
+            </div>
+            <span class="text-xs px-2.5 py-1 bg-orange-50 text-orange-600 rounded-full font-bold">札幌大會師 D4</span>
+          </div>
+
+          <!-- Timeline -->
+          <div class="relative border-l-2 border-indigo-100 ml-4 pl-6 space-y-8">
+            <!-- Item -->
+            <div class="relative">
+              <span class="absolute -left-[31px] top-0 w-4 h-4 rounded-full bg-blue-500 border-4 border-white shadow"></span>
+              <div class="flex items-center gap-2 text-xs font-bold text-slate-400 mb-1">
+                <span>10:00 - 12:30</span>
+                <span class="px-1.5 py-0.5 bg-blue-50 text-blue-600 rounded"><i class="fa-solid fa-bus"></i> 大巴士</span>
+              </div>
+              <h3 class="text-base font-bold text-slate-800">晨溫泉 ➔ 乃之風專車返札幌</h3>
+              <p class="text-slate-500 text-sm mt-1">早上泡湯、悠閒早餐。10:00 登車一路大睡返回札幌。12:30 在南口下車。</p>
+            </div>
+
+            <!-- Item -->
+            <div class="relative">
+              <span class="absolute -left-[31px] top-0 w-4 h-4 rounded-full bg-emerald-500 border-4 border-white shadow"></span>
+              <div class="flex items-center gap-2 text-xs font-bold text-slate-400 mb-1">
+                <span>12:30 - 13:45</span>
+                <span class="px-1.5 py-0.5 bg-emerald-50 text-emerald-600 rounded"><i class="fa-solid fa-location-arrow"></i> 地下直通</span>
+              </div>
+              <h3 class="text-base font-bold text-slate-800">格拉斯麗酒店 Check-in & 百貨奢華午餐</h3>
+              <p class="text-slate-500 text-sm mt-1 flex flex-wrap items-center gap-2">
+                直接推 6 大行李走進車站地下街APIYA，直入<strong>【格拉斯麗酒店】</strong>寄存行李，一滴冷風都不吹。中午去大丸百貨 B1 食品館隨心自選日式極致便當、現做飯糰與烤串，坐在室內愜意品嚐。
+              </p>
+            </div>
+
+            <!-- Item -->
+            <div class="relative">
+              <span class="absolute -left-[31px] top-0 w-4 h-4 rounded-full bg-amber-500 border-4 border-white shadow"></span>
+              <div class="flex items-center gap-2 text-xs font-bold text-slate-400 mb-1">
+                <span>14:00 - 15:00</span>
+                <span class="px-1.5 py-0.5 bg-amber-50 text-amber-600 rounded"><i class="fa-solid fa-cake-candles"></i> 文青甜點</span>
+              </div>
+              <h3 class="text-base font-bold text-slate-800">北菓樓 札幌本館 - 紅磚古蹟下午茶</h3>
+              <p class="text-slate-500 text-sm mt-1">走溫暖的 Chi-Ka-Ho 地下街 10 分鐘，在挑高優雅的文青圖書館書牆下，享用超人氣「夢不思議大泡芙」或拿破崙千層派配熱紅茶。</p>
+            </div>
+
+            <!-- Item -->
+            <div class="relative">
+              <span class="absolute -left-[31px] top-0 w-4 h-4 rounded-full bg-purple-500 border-4 border-white shadow"></span>
+              <div class="flex items-center gap-2 text-xs font-bold text-slate-400 mb-1">
+                <span>15:00 - 17:30</span>
+                <span class="px-1.5 py-0.5 bg-purple-50 text-purple-600 rounded"><i class="fa-solid fa-store"></i> 避寒血拼 & 小孩放電</span>
+              </div>
+              <h3 class="text-base font-bold text-slate-800">全室內百貨血拼防寒計畫 (二選一)</h3>
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-3 mt-2 text-xs">
+                <div class="bg-purple-50/50 p-3 rounded-xl border border-purple-100">
+                  <span class="font-bold text-purple-700 block mb-1">方案 A (薄野方向)</span>
+                  走地下街至 <strong>COCONO SUSUKINO</strong>，長輩在 4F 沙發區吹暖氣喝茶休息，平輩帶小孩去 GiGO 遊戲中心瘋狂扭蛋、打太鼓放電。
                 </div>
-              </header>
-
-              {toast.show && (
-                <div className="fixed bottom-6 right-6 z-50 max-w-sm w-full bg-slate-900 text-white p-4 rounded-xl shadow-2xl border border-indigo-500/30 flex items-center gap-3">
-                  <span className="text-xl">
-                    {toast.type === 'success' ? '✅' : toast.type === 'warning' ? '⚠️' : 'ℹ️'}
-                  </span>
-                  <p className="text-sm font-medium flex-1">{toast.message}</p>
-                </div>
-              )}
-
-              <div className="bg-slate-900 text-white py-10 px-4 sm:px-6 lg:px-8 relative overflow-hidden">
-                <div className="absolute inset-0 opacity-10 bg-[radial-gradient(#38bdf8_1px,transparent_1px)] [background-size:16px_16px]"></div>
-                <div className="max-w-7xl mx-auto relative z-10">
-                  <div className="grid grid-cols-1 md:grid-cols-3 gap-6 items-center">
-                    <div className="md:col-span-2">
-                      <span className="bg-indigo-500/20 text-indigo-300 border border-indigo-500/30 px-3 py-1 rounded-full text-xs font-semibold uppercase tracking-wider">
-                        👑 奢華孝親 ‧ 5歲兒童友善 ‧ 行程精雕細琢
-                      </span>
-                      <h2 className="text-3xl sm:text-4xl font-extrabold mt-3 tracking-tight">
-                        2026年9月北國黃金秋季之旅
-                    </h2>
-                      <p className="text-slate-300 mt-2 text-base sm:text-lg max-w-2xl leading-relaxed">
-                        結合大數據、旅遊部落客秘藏乾貨，為全家 6 個大行李箱、年邁長輩、精力充沛的 5 歲幼童量身定制的「無痛、不挨餓、防風寒、避開人潮」極致神盾方案。
-                      </p>
-                    </div>
-                    <div className="bg-slate-800/80 backdrop-blur-md p-6 rounded-2xl border border-slate-700 shadow-xl grid grid-cols-2 gap-4">
-                      <div className="text-center p-3 bg-slate-750 rounded-xl">
-                        <span className="block text-2xl">🍣</span>
-                        <span className="block text-xs text-slate-400 mt-1">美食大主秀</span>
-                        <span className="block text-sm font-bold text-slate-200">5 場頂級饗宴</span>
-                      </div>
-                      <div className="text-center p-3 bg-slate-750 rounded-xl">
-                        <span className="block text-2xl">♨️</span>
-                        <span className="block text-xs text-slate-400 mt-1">頂級溫泉</span>
-                        <span className="block text-sm font-bold text-slate-200">乃之風 ‧ 觀景房</span>
-                      </div>
-                      <div className="text-center p-3 bg-slate-750 rounded-xl">
-                        <span className="block text-2xl">🚕</span>
-                        <span className="block text-xs text-slate-400 mt-1">交通工具</span>
-                        <span className="block text-sm font-bold text-slate-200">小黃/接駁/U-Seat</span>
-                      </div>
-                      <div className="text-center p-3 bg-slate-750 rounded-xl">
-                        <span className="block text-2xl">💼</span>
-                        <span className="block text-xs text-slate-400 mt-1">大行李搬運</span>
-                        <span className="block text-sm font-bold text-slate-200">0元分流甩包</span>
-                      </div>
-                    </div>
-                  </div>
+                <div class="bg-emerald-50/50 p-3 rounded-xl border border-emerald-100">
+                  <span class="font-bold text-emerald-700 block mb-1">方案 B (車站方向)</span>
+                  直攻 <strong>大丸百貨 8 樓</strong> 巨型寶可夢中心。平輩帶 5 歲小孩玩玩具體驗桌，你帶長輩去隔壁 Bic Camera 退稅大搬保溫杯與電器。
                 </div>
               </div>
-
-              <main className="max-w-7xl mx-auto px-4 py-8 sm:px-6 lg:px-8">
-                {activeTab === 'itinerary' && (
-                  <div className="space-y-8">
-                    <div className="flex flex-wrap justify-center gap-2 sm:gap-4 p-2 bg-slate-200/60 rounded-2xl">
-                      {[1, 2, 3, 4, 5].map((d) => (
-                        <button
-                          key={d}
-                          onClick={() => setSelectedDay(d)}
-                          className={`flex-1 min-w-[80px] sm:min-w-[120px] py-3.5 px-4 rounded-xl font-bold text-sm transition-all duration-300 ${
-                            selectedDay === d 
-                              ? 'bg-slate-900 text-white shadow-md transform -translate-y-0.5' 
-                              : 'bg-white text-slate-600 hover:bg-slate-100'
-                          }`}
-                        >
-                          <span className="block text-xs opacity-75">DAY 0{d}</span>
-                          <span className="block text-base whitespace-nowrap">{daysData[d].date}</span>
-                        </button>
-                      ))}
-                    </div>
-
-                    <div className="bg-indigo-900 text-white p-6 rounded-2xl shadow-md border-b-4 border-indigo-500">
-                      <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
-                        <div>
-                          <h3 className="text-xs font-semibold uppercase tracking-widest text-indigo-300">
-                            Day {selectedDay} ‧ 戰略核心
-                          </h3>
-                          <h4 className="text-xl sm:text-2xl font-black mt-1 leading-snug">
-                            {daysData[selectedDay].theme}
-                          </h4>
-                        </div>
-                        <div className="bg-indigo-800 px-4 py-2 rounded-xl text-xs sm:text-sm border border-indigo-700 flex items-center gap-2">
-                          <span>🚗 交通戰術:</span>
-                          <span className="font-bold text-amber-300">
-                            {selectedDay === 1 && "計程車速攻 + U-Seat"}
-                            {selectedDay === 2 && "JR海景火車右側 + 無障礙堺町通"}
-                            {selectedDay === 3 && "雙計程車行李分流 + 專屬溫泉大巴"}
-                            {selectedDay === 4 && "全地下通道(Chi-Ka-Ho)神盾防風"}
-                            {selectedDay === 5 && "0元手推車分流甩行李戰略"}
-                          </span>
-                        </div>
-                      </div>
-                    </div>
-
-                    <div className="flex items-center bg-white border border-slate-200 rounded-xl px-4 py-3 shadow-sm focus-within:border-indigo-500 focus-within:ring-1 focus-within:ring-indigo-500 max-w-md">
-                      <span className="text-lg mr-2">🔍</span>
-                      <input
-                        type="text"
-                        placeholder="搜尋今日行程（例如：壽司、帝王蟹、計程車）..."
-                        value={searchQuery}
-                        onChange={(e) => setSearchQuery(e.target.value)}
-                        className="w-full bg-transparent border-none outline-none text-sm text-slate-700 placeholder-slate-400"
-                      />
-                      {searchQuery && (
-                        <button onClick={() => setSearchQuery('')} className="text-xs text-slate-400 hover:text-slate-600 px-1">
-                          清除
-                        </button>
-                      )}
-                    </div>
-
-                    <div className="relative border-l-2 border-indigo-100 pl-4 sm:pl-8 ml-2 sm:ml-4 space-y-8">
-                      {currentSpots.length > 0 ? (
-                        currentSpots.map((spot, idx) => (
-                          <div key={idx} className="relative group">
-                            <span className="absolute -left-[22px] sm:-left-[38px] top-1 bg-white border-4 border-indigo-600 w-6 h-6 rounded-full flex items-center justify-center shadow-sm">
-                              <span className="w-1.5 h-1.5 bg-indigo-600 rounded-full"></span>
-                            </span>
-
-                            <div className="bg-white rounded-2xl border border-slate-150 p-5 sm:p-6 shadow-sm hover:shadow-md transition-shadow duration-300 relative">
-                              <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-2 mb-3">
-                                <div className="flex items-center gap-3">
-                                  <span className="bg-indigo-900 text-white font-black text-sm px-3 py-1 rounded-lg shadow-inner">
-                                    {spot.time}
-                                  </span>
-                                  <h5 className="text-lg font-bold text-slate-900">
-                                    {spot.title}
-                                  </h5>
-                                </div>
-                                <span className={`border px-2.5 py-1 rounded-full text-xs font-semibold flex items-center gap-1 ${getBadgeStyle(spot.type)}`}>
-                                  <span>{getBadgeIcon(spot.type)}</span>
-                                  <span className="capitalize">{spot.type}</span>
-                                </span>
-                              </div>
-
-                              <p className="text-slate-600 text-sm leading-relaxed mb-4">
-                                {spot.desc}
-                              </p>
-
-                              {spot.tip && (
-                                <div className="bg-amber-50/70 border-l-4 border-amber-500 rounded-r-xl p-3 flex items-start gap-2.5 text-xs text-amber-900">
-                                  <span className="text-base mt-0.5">💡</span>
-                                  <div>
-                                    <span className="font-bold block mb-0.5">大總管神盾秘笈：</span>
-                                    {spot.tip}
-                                  </div>
-                                </div>
-                              )}
-
-                              <button
-                                onClick={() => {
-                                  const exists = myTripList.some(item => item.title === spot.title);
-                                  if (exists) {
-                                    showToast('行程已在您的口袋筆記中！', 'warning');
-                                    return;
-                                  }
-                                  const newT = {
-                                    id: `import_${Date.now()}_${idx}`,
-                                    day: selectedDay,
-                                    time: spot.time,
-                                    title: spot.title,
-                                    done: false
-                                  };
-                                  setMyTripList(prev => [...prev, newT].sort((a,b) => a.day - b.day || a.time.localeCompare(b.time)));
-                                  showToast(`✅ 已將「${spot.title}」導入您的口袋筆記！`, 'success');
-                                }}
-                                className="absolute bottom-3 right-3 text-[10px] text-slate-400 hover:text-indigo-600 bg-slate-50 hover:bg-indigo-50 border border-slate-200 hover:border-indigo-200 px-2 py-1 rounded-md transition-colors"
-                              >
-                                📍 帶入筆記
-                              </button>
-                            </div>
-                          </div>
-                        ))
-                      ) : (
-                        <p className="text-slate-500 text-sm py-8 text-center bg-white rounded-2xl border border-slate-150">
-                          沒有找到符合關鍵字的行程點。您可以嘗試其他關鍵字！
-                        </p>
-                      )}
-                    </div>
-
-                    <div className="bg-slate-100 rounded-2xl p-4 flex justify-between items-center text-xs text-slate-500">
-                      <span>💡 小提示：行程中標註 🍣 代表「頂級美食大主秀」，🏨 代表「星級泡湯住宿」。</span>
-                      <button 
-                        onClick={() => {
-                          setSelectedDay(prev => prev < 5 ? prev + 1 : 1);
-                          window.scrollTo({ top: 0, behavior: 'smooth' });
-                        }} 
-                        className="bg-indigo-600 hover:bg-indigo-700 text-white font-bold px-3 py-1.5 rounded-lg transition-colors"
-                      >
-                        前往下一天 ➔
-                      </button>
-                    </div>
-                  </div>
-                )}
-
-                {activeTab === 'vjw' && (
-                  <div className="space-y-8">
-                    <div className="bg-slate-900 text-white p-8 rounded-3xl relative overflow-hidden shadow-lg">
-                      <div className="absolute right-0 bottom-0 text-9xl opacity-10 select-none">🇯🇵</div>
-                      <span className="bg-red-500/20 text-red-300 border border-red-500/30 px-3.5 py-1 rounded-full text-xs font-semibold uppercase tracking-wider">
-                        🚨 2026 數位通關政策大補帖
-                      </span>
-                      <h3 className="text-2xl sm:text-3xl font-extrabold mt-3 tracking-tight">
-                        日本入境最新規定 ‧ 預先通關與 Joint Kiosk 教學
-                      </h3>
-                      <p className="text-slate-300 mt-2 text-sm sm:text-base max-w-3xl leading-relaxed">
-                        2026 年最新實施「 Joint Kiosk 自助通關機」，旅客僅需在出發前完成「Visit Japan Web」登入，在抵達新千歲、羽田、成田、關西等機場後，即可使用 QR Code 一次性完成入境審查和海關手續！
-                      </p>
-                    </div>
-
-                    <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                      <div className="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm flex items-start gap-4">
-                        <span className="text-3xl">🛂</span>
-                        <div>
-                          <h4 className="font-bold text-slate-900 text-base">2026 日本入境預先通關</h4>
-                          <p className="text-xs text-slate-500 mt-1 leading-relaxed">
-                            日本政府實施「入境事先確認」制度，台灣遊客優先適用。出發前在桃機等待時，先進行預先審查，抵達新千歲機場後可「光速通關」，秒殺以往排隊2小時的惡夢！
-                          </p>
-                        </div>
-                      </div>
-                      <div className="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm flex items-start gap-4">
-                        <span className="text-3xl">📱</span>
-                        <div>
-                          <h4 className="font-bold text-slate-900 text-base">Joint Kiosk 自助通關機</h4>
-                          <p className="text-xs text-slate-500 mt-1 leading-relaxed">
-                            三大國際機場引進此新機。完成「Visit Japan Web」登記後，於現場掃描二維碼、護照、拍大頭照並按壓指紋，一次搞定入境審查與海關申報。
-                          </p>
-                        </div>
-                      </div>
-                      <div className="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm flex items-start gap-4">
-                        <span className="text-3xl">🛍️</span>
-                        <div>
-                          <h4 className="font-bold text-slate-900 text-base">2026 免稅 QR 碼新功能</h4>
-                          <p className="text-xs text-slate-500 mt-1 leading-relaxed">
-                            在 VJW 選擇「在日本停留期間的手續」，以手機對準入境時海關貼在護照的「上陸許可證」條碼，即可產生免稅 QR Code，買伴手禮免再出示紙本護照（限支援店家）。
-                          </p>
-                        </div>
-                      </div>
-                    </div>
-
-                    <div className="bg-white p-6 sm:p-8 rounded-3xl border border-slate-200 shadow-sm">
-                      <h4 className="text-lg font-black text-slate-900 mb-6 flex items-center gap-2">
-                        <span>📋</span> Visit Japan Web 手把手登記步驟 (無腦版)
-                      </h4>
-                      <div className="space-y-6 relative border-l border-slate-200 pl-6 ml-3">
-                        {vjwSteps.map((s, idx) => (
-                          <div key={idx} className="relative">
-                            <span className="absolute -left-[35px] top-0 bg-indigo-600 text-white text-[10px] font-bold px-1.5 py-0.5 rounded-full shadow-sm">
-                              {idx + 1}
-                            </span>
-                            <h5 className="font-bold text-slate-900 text-base flex items-center gap-2">
-                              <span className="text-indigo-600 text-xs font-mono">{s.step}</span>
-                              <span>{s.title}</span>
-                            </h5>
-                            <p className="text-xs text-slate-600 mt-1.5 leading-relaxed">
-                              {s.desc}
-                            </p>
-                          </div>
-                        ))}
-                      </div>
-
-                      <div className="mt-8 bg-indigo-50 border border-indigo-200 rounded-2xl p-4 sm:p-6 flex items-start gap-3.5">
-                        <span className="text-2xl">🚨</span>
-                        <div>
-                          <h5 className="font-bold text-indigo-950 text-sm">重要安全警告：避免新千歲機場沒網路！</h5>
-                          <p className="text-xs text-indigo-800 mt-1 leading-relaxed">
-                            下飛機過海關時人滿為患，經常遇到機場免費 Wi-Fi 跑不動、SIM 卡尚未開通的情況。<strong>請務必在台灣出發前，在瀏覽器中將 VJW 頁面產生的「入境審查 QR」與「海關申報 QR」直接截圖並保存在手機相簿中</strong>。截圖可完全代替動態網頁過關，保護全家光速出關！
-                          </p>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                )}
-
-                {activeTab === 'tips' && (
-                  <div className="space-y-8">
-                    <div className="border-b border-slate-200 pb-4">
-                      <h3 className="text-2xl font-black text-slate-900 flex items-center gap-2">
-                        <span>🦀</span> 避雷防坑與排隊秘笈 ‧ 北海道老饕手冊
-                      </h3>
-                      <p className="text-sm text-slate-500 mt-1">集結二條市場、三角市場、乃之風及 GARAKU 湯咖哩的精華實測筆記。</p>
-                    </div>
-
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                      <div className="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm space-y-4">
-                        <div className="flex items-center gap-3">
-                          <span className="text-3xl">🍛</span>
-                          <div>
-                            <h4 className="font-bold text-slate-900 text-lg">GARAKU 湯咖哩與姊妹店 Treasure 秘辛</h4>
-                            <span className="bg-amber-100 text-amber-800 text-[10px] font-bold px-2 py-0.5 rounded-full">
-                              市區 vs 機場攻略
-                            </span>
-                          </div>
-                        </div>
-                        <div className="text-xs text-slate-600 space-y-2 leading-relaxed">
-                          <p>
-                            <strong>GARAKU 本店排隊噩夢：</strong>位於南2條西2丁目的 GARAKU 札幌本店，常年大排長龍，等待時間通常在 1.5 到 3 小時之間。
-                          </p>
-                          <p>
-                            <strong>神盾戰術 1：國內線機場店卡位。</strong>本行程 Day 5 設計在上午 10:30 由平輩特攻隊先去新千歲機場國內線 3 樓 GARAKU 排隊，11:00 準時開門入座大桌。機場店相比市區容易吃得多！
-                          </p>
-                          <p>
-                            <strong>神盾戰術 2：直攻姊妹店「TREASURE」。</strong>Treasure 就在 GARAKU 本店同一條街上，是同一個主廚開設，兩者共享靈魂香料秘方，但 Treasure 還融入了多種醬汁選擇（如原創、和風、椰奶）及更豐富的客製化搭配。最重要的是，排隊人潮只有 GARAKU 的三分之一！
-                          </p>
-                        </div>
-                      </div>
-
-                      <div className="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm space-y-4">
-                        <div className="flex items-center gap-3">
-                          <span className="text-3xl">🦀</span>
-                          <div>
-                            <h4 className="font-bold text-slate-900 text-lg">二條市場 vs 三角市場挑蟹指南</h4>
-                            <span className="bg-indigo-100 text-indigo-800 text-[10px] font-bold px-2 py-0.5 rounded-full">
-                              帝王蟹防坑技巧
-                            </span>
-                          </div>
-                        </div>
-                        <div className="text-xs text-slate-600 space-y-2 leading-relaxed">
-                          <p>
-                            <strong>小樽三角市場（Day 2）：</strong>離小樽站步行僅 1 分鐘，市場建在有傾斜的長廊上。此處海味以「新鮮活蟹」為王，可以當場挑選一隻巨大活帝王蟹，店家會當面秤重開價，做兩吃（烤腳 + 蒸蟹身）。記得確認「含水盆重」和「單價」，並請店員拿起來讓您與螃蟹合照！
-                          </p>
-                          <p>
-                            <strong>札幌二條市場（Day 3）：</strong>位於札幌市區，步行從大通或狸小路都很近。這裏觀機客較多，內側通道店家定價通常偏觀光客導向。
-                          </p>
-                          <p>
-                            <strong>大總管避雷法：</strong>二條市場直攻「外圍露天攤位」，挑選現剖海膽（¥1500-¥3000）或現開生蠔，品質與價格都較公開。
-                          </p>
-                        </div>
-                      </div>
-
-                      <div className="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm space-y-4">
-                        <div className="flex items-center gap-3">
-                          <span className="text-3xl">🏨</span>
-                          <div>
-                            <h4 className="font-bold text-slate-900 text-lg">洞爺湖乃之風 ‧ 煙火頭等艙攻略</h4>
-                            <span className="bg-emerald-100 text-emerald-800 text-[10px] font-bold px-2 py-0.5 rounded-full">
-                              乃之風行政房優勢
-                            </span>
-                          </div>
-                        </div>
-                        <div className="text-xs text-slate-600 space-y-2 leading-relaxed">
-                          <p>
-                            <strong>煙火免挨凍：</strong>洞爺湖煙火大會是在每年 4 月底至 10 月底的晚上 20:45 施放。一般旅客需要走到戶外湖畔，受寒風吹襲。
-                          </p>
-                          <p>
-                            <strong>觀景行政房（乃之風俱樂部）：</strong>本行程特選行政房型，房間擁有超大片整面落地玻璃窗，正對湖面施放點。當晚煙火會在您窗前完美展開。您可以將暖氣調至最舒適、穿著飯店浴衣，全家人圍坐在窗前大沙發，一邊喝著北海道牛奶，一邊獨享這 20 分鐘的震撼！
-                          </p>
-                        </div>
-                      </div>
-
-                      <div className="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm space-y-4">
-                        <div className="flex items-center gap-3">
-                          <span className="text-3xl">🍲</span>
-                          <div>
-                            <h4 className="font-bold text-slate-900 text-lg">蟹座 KANIZA 頂層高空和牛蒸蟹</h4>
-                            <span className="bg-rose-100 text-rose-800 text-[10px] font-bold px-2 py-0.5 rounded-full">
-                              尊榮吃到飽細節
-                            </span>
-                          </div>
-                        </div>
-                        <div className="text-xs text-slate-600 space-y-2 leading-relaxed">
-                          <p>
-                            <strong>薄野高空 9 樓美景：</strong>蟹座 KANIZA 位於すすきの南4西2大樓 9 樓，視野極佳，特別是晚上可以俯瞰薄野大十字路口的霓虹夜景。
-                          </p>
-                          <p>
-                            <strong>專人去殼、優雅吃蟹：</strong>一般吃螃蟹，最頭痛的就是用剪刀剪蟹殼，剪到雙手油膩、時間過去、胃口也沒了，長輩更是吃力。KANIZA 特色在於「預先開好殼的巨大蟹腳」，輕輕一剝整條蟹肉直接彈出，極其適合小孩與老人！大人還能專心涮著頂級和牛，是完美的尊榮大餐。
-                          </p>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                )}
-
-                {activeTab === 'planner' && (
-                  <div className="space-y-8">
-                    <div className="border-b border-slate-200 pb-4 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
-                      <div>
-                        <h3 className="text-xl sm:text-2xl font-black text-slate-900 flex items-center gap-2">
-                          <span>📋</span> 大總管客製化旅行便忘錄
-                        </h3>
-                        <p className="text-xs sm:text-sm text-slate-500 mt-1">
-                          您可以在此核對行前檢核表，或自行加入/調整 5 天的行程項目，打包成大總管小抄分享！
-                        </p>
-                      </div>
-                      <button
-                        onClick={handleCopyPlanner}
-                        className="bg-indigo-600 hover:bg-indigo-700 text-white font-bold text-xs px-4 py-2.5 rounded-xl shadow-md transition-all flex items-center gap-2 self-stretch sm:self-auto justify-center"
-                      >
-                        <span>📋</span> 複製尊榮計畫到 Line 分享
-                      </button>
-                    </div>
-
-                    <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-                      <div className="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm space-y-6 h-fit">
-                        <h4 className="font-bold text-slate-900 text-sm border-b pb-3 flex items-center gap-2">
-                          <span>✈️</span> 出發前重要物品與手續檢核
-                        </h4>
-                        <div className="space-y-3">
-                          <label className="flex items-start gap-3 p-3 bg-slate-50 rounded-xl hover:bg-slate-100 transition-colors cursor-pointer text-xs">
-                            <input
-                              type="checkbox"
-                              checked={checklist.passport}
-                              onChange={() => handleToggleChecklist('passport')}
-                              className="mt-0.5 h-4 w-4 rounded border-slate-300 text-indigo-600 focus:ring-indigo-500"
-                            />
-                            <div>
-                              <span className="font-bold text-slate-900 block">護照有效期限檢核</span>
-                              <span className="text-slate-500 block mt-0.5">全家 6 人護照需有 6 個月以上效期。</span>
-                            </div>
-                          </label>
-
-                          <label className="flex items-start gap-3 p-3 bg-slate-50 rounded-xl hover:bg-slate-100 transition-colors cursor-pointer text-xs">
-                            <input
-                              type="checkbox"
-                              checked={checklist.vjw}
-                              onChange={() => handleToggleChecklist('vjw')}
-                              className="mt-0.5 h-4 w-4 rounded border-slate-300 text-indigo-600 focus:ring-indigo-500"
-                            />
-                            <div>
-                              <span className="font-bold text-slate-900 block">Visit Japan Web 已登記與截圖</span>
-                              <span className="text-slate-500 block mt-0.5">出發前 6 小時全數登記並截圖 QR Code。</span>
-                            </div>
-                          </label>
-
-                          <label className="flex items-start gap-3 p-3 bg-slate-50 rounded-xl hover:bg-slate-100 transition-colors cursor-pointer text-xs">
-                            <input
-                              type="checkbox"
-                              checked={checklist.useat}
-                              onChange={() => handleToggleChecklist('useat')}
-                              className="mt-0.5 h-4 w-4 rounded border-slate-300 text-indigo-600 focus:ring-indigo-500"
-                            />
-                            <div>
-                              <span className="font-bold text-slate-900 block">JR Airport 號 U-Seat 已訂妥</span>
-                              <span className="text-slate-500 block mt-0.5">Day 1（機場-札幌）及 Day 5（札幌-機場）預約指定席。</span>
-                            </div>
-                          </label>
-
-                          <label className="flex items-start gap-3 p-3 bg-slate-50 rounded-xl hover:bg-slate-100 transition-colors cursor-pointer text-xs">
-                            <input
-                              type="checkbox"
-                              checked={checklist.warmClothes}
-                              onChange={() => handleToggleChecklist('warmClothes')}
-                              className="mt-0.5 h-4 w-4 rounded border-slate-300 text-indigo-600 focus:ring-indigo-500"
-                            />
-                            <div>
-                              <span className="font-bold text-slate-900 block">防寒、雨具衣服打包</span>
-                              <span className="text-slate-500 block mt-0.5">9月北海道早晚溫差大，備好長袖風衣、隨身折疊傘。</span>
-                            </div>
-                          </label>
-
-                          <label className="flex items-start gap-3 p-3 bg-slate-50 rounded-xl hover:bg-slate-100 transition-colors cursor-pointer text-xs">
-                            <input
-                              type="checkbox"
-                              checked={checklist.stroller}
-                              onChange={() => handleToggleChecklist('stroller')}
-                              className="mt-0.5 h-4 w-4 rounded border-slate-300 text-indigo-600 focus:ring-indigo-500"
-                            />
-                            <div>
-                              <span className="font-bold text-slate-900 block">5歲小孩輕便推車與水壺</span>
-                              <span className="text-slate-500 block mt-0.5">堺町通、狸小路推推，保障小孩不賴皮，大總管之盾。</span>
-                            </div>
-                          </label>
-
-                          <label className="flex items-start gap-3 p-3 bg-slate-50 rounded-xl hover:bg-slate-100 transition-colors cursor-pointer text-xs">
-                            <input
-                              type="checkbox"
-                              checked={checklist.taxFreeQr}
-                              onChange={() => handleToggleChecklist('taxFreeQr')}
-                              className="mt-0.5 h-4 w-4 rounded border-slate-300 text-indigo-600 focus:ring-indigo-500"
-                            />
-                            <div>
-                              <span className="font-bold text-slate-900 block">2026 免稅 QR Code 開通</span>
-                              <span className="text-slate-500 block mt-0.5">在 VJW 系統完成登入並貼上上陸許可，血拼更輕鬆。</span>
-                            </div>
-                          </label>
-                        </div>
-                      </div>
-
-                      <div className="lg:col-span-2 space-y-6">
-                        <div className="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm space-y-4">
-                          <h4 className="font-bold text-slate-900 text-sm flex items-center gap-2">
-                            <span>✍️</span> 大總管隨身記（點擊輸入）
-                          </h4>
-                          <textarea
-                            rows={3}
-                            placeholder="例如：爸媽隨身藥品放在背包前袋、5歲小孩必備軟糖多帶兩包、機場 Kinotoya 霜淇淋一定要排隊搶、Day 3 要打給乃之風確認大巴接駁時間..."
-                            value={customNotes}
-                            onChange={(e) => setCustomNotes(e.target.value)}
-                            className="w-full text-xs p-3.5 bg-slate-50 border border-slate-200 rounded-xl outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500"
-                          />
-                        </div>
-
-                        <div className="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm space-y-4">
-                          <h4 className="font-bold text-slate-900 text-sm border-b pb-3 flex items-center justify-between">
-                            <span>📍</span> 精選行程客製化備忘卡
-                            <span className="text-[10px] text-slate-400 font-normal">可勾選核對，或在下方自行追加新行程點</span>
-                          </h4>
-
-                          <div className="space-y-2 max-h-96 overflow-y-auto pr-1">
-                            {myTripList.length > 0 ? (
-                              myTripList.map((t) => (
-                                <div key={t.id} className="flex items-center justify-between p-3 bg-slate-50 hover:bg-slate-100 rounded-xl transition-all border border-slate-150">
-                                  <div className="flex items-center gap-3">
-                                    <input
-                                      type="checkbox"
-                                      checked={t.done}
-                                      onChange={() => handleToggleTripDone(t.id)}
-                                      className="h-4 w-4 rounded border-slate-300 text-indigo-600 focus:ring-indigo-500"
-                                    />
-                                    <div>
-                                      <span className="inline-block bg-indigo-100 text-indigo-800 text-[9px] font-bold px-1.5 py-0.5 rounded mr-1.5">
-                                        Day {t.day}
-                                      </span>
-                                      <span className="inline-block text-slate-500 text-xs font-mono font-semibold mr-2">{t.time}</span>
-                                      <span className={`text-xs ${t.done ? 'line-through text-slate-400' : 'text-slate-800 font-medium'}`}>
-                                        {t.title}
-                                      </span>
-                                    </div>
-                                  </div>
-                                  <button
-                                    onClick={() => handleDeleteTrip(t.id)}
-                                    className="text-xs text-red-400 hover:text-red-600 font-bold px-2 py-1"
-                                  >
-                                    ✕
-                                  </button>
-                                </div>
-                              ))
-                            ) : (
-                              <p className="text-slate-400 text-xs py-6 text-center">行程為空，可在下方添加！</p>
-                            )}
-                          </div>
-
-                          <div className="bg-slate-50 p-4 rounded-xl border border-slate-150 space-y-3">
-                            <span className="block text-[11px] font-bold text-slate-500">➕ 追加自訂行程點</span>
-                            <div className="grid grid-cols-1 sm:grid-cols-3 gap-2">
-                              <select
-                                value={newTripDay}
-                                onChange={(e) => setNewTripDay(e.target.value)}
-                                className="p-2 border border-slate-250 bg-white text-xs rounded-lg outline-none"
-                              >
-                                {[1,2,3,4,5].map(dayNum => (
-                                  <option key={dayNum} value={dayNum}>Day 0{dayNum}</option>
-                                ))}
-                              </select>
-                              <input
-                                type="time"
-                                value={newTripTime}
-                                onChange={(e) => setNewTripTime(e.target.value)}
-                                className="p-2 border border-slate-250 bg-white text-xs rounded-lg outline-none"
-                              />
-                              <input
-                                type="text"
-                                placeholder="例如：狸小路藥妝瘋狂大採購"
-                                value={newTripTitle}
-                                onChange={(e) => setNewTripTitle(e.target.value)}
-                                className="p-2 border border-slate-250 bg-white text-xs rounded-lg outline-none"
-                              />
-                            </div>
-                            <button
-                              onClick={handleAddCustomTrip}
-                              className="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-bold text-xs py-2 rounded-lg transition-colors shadow-sm"
-                            >
-                              新增至我的計畫卡
-                            </button>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                )}
-              </main>
-
-              <footer className="bg-slate-900 text-slate-400 py-12 px-4 sm:px-6 lg:px-8 mt-16 border-t border-slate-800">
-                <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-6">
-                  <div className="flex items-center gap-3">
-                    <span className="text-2xl">❄️</span>
-                    <div>
-                      <p className="text-sm font-bold text-white">0923～0927北海道 ‧ 尊榮家庭旅行神盾</p>
-                      <p className="text-xs text-slate-500 mt-0.5">© 2026 Trip.com Group & 0923～0927北海道. All rights reserved.</p>
-                    </div>
-                  </div>
-                  <div className="flex gap-6 text-xs text-slate-500">
-                    <span>使用貨幣: 日圓 JPY</span>
-                    <span>最新入境通關更新時間: 2026/06/01</span>
-                  </div>
-                </div>
-              </footer>
             </div>
-          );
-        }
 
-        // 將 App 組件渲染到畫面上
-        const root = ReactDOM.createRoot(document.getElementById('root'));
-        root.render(<App />);
-    </script>
+            <!-- Item -->
+            <div class="relative">
+              <span class="absolute -left-[31px] top-0 w-4 h-4 rounded-full bg-red-600 border-4 border-white shadow"></span>
+              <div class="flex items-center gap-2 text-xs font-bold text-slate-400 mb-1">
+                <span>18:00 - 20:00</span>
+                <span class="px-1.5 py-0.5 bg-red-50 text-red-600 rounded"><i class="fa-solid fa-utensils"></i> 週六終極晚宴</span>
+              </div>
+              <h3 class="text-base font-bold text-slate-800">壓軸晚宴大對決！(德壽和牛燒肉 vs 櫻百匯蒸三大蟹)</h3>
+              <p class="text-slate-500 text-sm mt-1">我們當天可以視全家人的疲勞狀態，一鍵點選查看最推薦的兩個方案：</p>
+              
+              <!-- 互動式晚餐對決開關 -->
+              <div class="bg-slate-100 rounded-2xl p-4 mt-3 border border-slate-200">
+                <div class="flex rounded-xl bg-slate-200 p-1 mb-4 no-print">
+                  <button onclick="toggleDinner('wagyu')" id="btn-dinner-wagyu" class="flex-1 py-2 rounded-lg text-xs font-bold text-slate-800 bg-white shadow transition-all flex items-center justify-center gap-1">
+                    <i class="fa-solid fa-meat text-rose-500"></i> A1：德壽和牛 (頂級包廂)
+                  </button>
+                  <button onclick="toggleDinner('crab')" id="btn-dinner-crab" class="flex-1 py-2 rounded-lg text-xs font-bold text-slate-600 hover:text-slate-800 transition-all flex items-center justify-center gap-1">
+                    <i class="fa-solid fa-crab text-red-500"></i> A2：櫻百匯 (熱蒸螃蟹)
+                  </button>
+                </div>
+
+                <!-- 晚餐卡片：和牛 -->
+                <div id="dinner-card-wagyu" class="bg-white rounded-xl p-4 border border-rose-100 space-y-2">
+                  <div class="flex items-center justify-between">
+                    <span class="text-xs bg-rose-100 text-rose-700 font-bold px-2 py-0.5 rounded">極致白老牛 · 單點包廂燒肉</span>
+                    <span class="text-xs text-slate-400 font-semibold"><i class="fa-solid fa-wallet"></i> 6大1小約 ¥5萬 ~ ¥7萬</span>
+                  </div>
+                  <h4 class="font-bold text-slate-800">德壽 しんら亭 (Shinratei)</h4>
+                  <p class="text-xs text-slate-500 leading-relaxed">
+                    <strong>對長輩與小孩最好的決定：</strong> 全店高級平板點餐送桌，長輩不用站立取餐。擁有官方特許 A5 級白老和牛，肉質細嫩「舌頭抿開即化」！無煙獨立包廂極其安靜，5歲小孩累了能直接躺沙發睡覺。
+                  </p>
+                </div>
+
+                <!-- 晚餐卡片：螃蟹 -->
+                <div id="dinner-card-crab" class="hidden bg-white rounded-xl p-4 border border-red-100 space-y-2">
+                  <div class="flex items-center justify-between">
+                    <span class="text-xs bg-red-100 text-red-700 font-bold px-2 py-0.5 rounded">溫熱蒸蟹 · 百匯吃到飽</span>
+                    <span class="text-xs text-slate-400 font-semibold"><i class="fa-solid fa-wallet"></i> 6大1小約 ¥3.8萬 ~ ¥4.2萬</span>
+                  </div>
+                  <h4 class="font-bold text-slate-800">THE SAKURA BUFFET (櫻百匯)</h4>
+                  <p class="text-xs text-slate-500 leading-relaxed">
+                    <strong>對螃蟹狂熱者的神級首選：</strong> 全札幌唯一的「熱呼呼木籠大火蒸氣螃蟹（帝王蟹/松葉蟹/毛蟹）」，大口吃不胃寒。熟食極多（現烤牛肉/壽司），小孩最愛的現擠霜淇淋機與巧克力噴泉樂園。
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ==================== DAY 5 ==================== -->
+        <section id="content-5" class="tab-content bg-white rounded-2xl p-6 shadow-sm border border-slate-100">
+          <div class="flex items-center justify-between border-b border-slate-100 pb-4 mb-6">
+            <div class="flex items-center gap-3">
+              <span class="w-10 h-10 rounded-xl bg-emerald-600 text-white flex items-center justify-center font-black text-lg">D5</span>
+              <div>
+                <h2 class="text-xl font-black">9/27 (日) 機場國內線夢幻巨型商圈 ➔ 完美回台</h2>
+                <p class="text-xs text-slate-400">果斷放棄 OUTLET，不推行李箱，全天溫暖室內，名產一次買齊！</p>
+              </div>
+            </div>
+            <span class="text-xs px-2.5 py-1 bg-emerald-50 text-emerald-600 rounded-full font-bold">完美歸國 D5</span>
+          </div>
+
+          <!-- Timeline -->
+          <div class="relative border-l-2 border-indigo-100 ml-4 pl-6 space-y-8">
+            <!-- Item -->
+            <div class="relative">
+              <span class="absolute -left-[31px] top-0 w-4 h-4 rounded-full bg-blue-500 border-4 border-white shadow"></span>
+              <div class="flex items-center gap-2 text-xs font-bold text-slate-400 mb-1">
+                <span>09:30 - 10:00</span>
+                <span class="px-1.5 py-0.5 bg-blue-50 text-blue-600 rounded"><i class="fa-solid fa-train"></i> JR指定席</span>
+              </div>
+              <h3 class="text-base font-bold text-slate-800">退房 ➔ 車站無縫上火車</h3>
+              <p class="text-slate-500 text-sm mt-1">格拉斯麗退房後，走 2 分鐘室內地下街直達札幌車站。買 U-Seat 指定席（37分鐘）直達機場。</p>
+            </div>
+
+            <!-- Item -->
+            <div class="relative">
+              <span class="absolute -left-[31px] top-0 w-4 h-4 rounded-full bg-slate-400 border-4 border-white shadow"></span>
+              <div class="flex items-center gap-2 text-xs font-bold text-slate-400 mb-1">
+                <span>10:40 - 11:15</span>
+                <span class="px-1.5 py-0.5 bg-slate-100 text-slate-600 rounded"><i class="fa-solid fa-luggage-cart"></i> 行李擺脫</span>
+              </div>
+              <h3 class="text-base font-bold text-slate-800">抵達國際線航廈 ➔ 第一時間托運 6 大箱</h3>
+              <p class="text-slate-500 text-sm mt-1">提早到亞洲航空櫃台，將 6 個大行李箱與不必要重物通通掛托運。雙手徹底解脫！</p>
+            </div>
+
+            <!-- Item -->
+            <div class="relative">
+              <span class="absolute -left-[31px] top-0 w-4 h-4 rounded-full bg-rose-500 border-4 border-white shadow"></span>
+              <div class="flex items-center gap-2 text-xs font-bold text-slate-400 mb-1">
+                <span>11:15 - 13:45</span>
+                <span class="px-1.5 py-0.5 bg-rose-50 text-rose-600 rounded"><i class="fa-solid fa-gift"></i> 機場狂歡</span>
+              </div>
+              <h3 class="text-base font-bold text-slate-800">夢幻國內線商圈大補貨 ＆ 小孩樂園</h3>
+              <div class="space-y-2 text-xs text-slate-600 mt-2">
+                <div class="flex items-start gap-2">
+                  <span class="px-2 py-0.5 bg-amber-100 text-amber-800 font-bold rounded-md shrink-0">名產補貨</span>
+                  <p>國內線 2 樓集結了全北海道最強名產店（六花亭、北菓樓年輪蛋糕、柳月年輪、Kinotoya 蘋果派），長輩在此一次補足親友伴手禮，不用在市區大包小包提著走。</p>
+                </div>
+                <div class="flex items-start gap-2">
+                  <span class="px-2 py-0.5 bg-sky-100 text-sky-800 font-bold rounded-md shrink-0">小孩樂園</span>
+                  <p>帶小孩衝 3 樓「多啦A夢空中樂園」與「Hello Kitty 飛行公園」，現場參觀「Royce' 巧克力工廠」巨型玻璃機器人生產線，看得目不轉睛。</p>
+                </div>
+                <div class="flex items-start gap-2">
+                  <span class="px-2 py-0.5 bg-emerald-100 text-emerald-800 font-bold rounded-md shrink-0">最後一擊</span>
+                  <p>在美食道場大嗑湯咖哩、拉麵或丼飯。必買 Kinotoya 極上生乳霜淇淋，鮮乳濃度高達天花板！</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Item -->
+            <div class="relative">
+              <span class="absolute -left-[31px] top-0 w-4 h-4 rounded-full bg-emerald-600 border-4 border-white shadow"></span>
+              <div class="flex items-center gap-2 text-xs font-bold text-slate-400 mb-1">
+                <span>14:40</span>
+                <span class="px-1.5 py-0.5 bg-emerald-50 text-emerald-600 rounded"><i class="fa-solid fa-plane-departure"></i> 歸途</span>
+              </div>
+              <h3 class="text-base font-bold text-slate-800">亞航準時起飛 ➔ 滿載美好回憶回台</h3>
+              <p class="text-slate-500 text-sm mt-1">走回國際線安檢，開開心心登機，行李全部托運完畢，雙手空空輕鬆返台。</p>
+            </div>
+          </div>
+        </section>
+
+      </div>
+
+      <!-- 右側邊欄：行前清單、生存備忘錄 (佔 1 欄) -->
+      <div class="space-y-6">
+        
+        <!-- 卡片 1：大總管大指揮官行前核對清單 (可互動) -->
+        <section id="checklist-sec" class="bg-white rounded-2xl p-6 shadow-sm border border-slate-100">
+          <div class="flex items-center justify-between border-b border-slate-100 pb-3 mb-4">
+            <h2 class="text-base font-black flex items-center gap-2 text-emerald-700">
+              <i class="fa-solid fa-clipboard-check"></i> 總管打包行前打勾清單
+            </h2>
+            <span id="checklist-prog" class="text-xs bg-emerald-50 text-emerald-600 px-2 py-0.5 rounded font-bold">0% 完成</span>
+          </div>
+
+          <p class="text-xs text-slate-400 mb-4">點選項目即可即時更新行前準備進度！</p>
+
+          <div class="space-y-3" id="checklist-items">
+            <!-- Item 1 -->
+            <label class="flex items-start gap-3 cursor-pointer p-2 rounded-lg hover:bg-slate-50 transition-all">
+              <input type="checkbox" onchange="updateChecklist()" class="mt-1 w-4 h-4 text-emerald-600 border-slate-300 rounded focus:ring-emerald-500 shrink-0">
+              <div class="text-xs">
+                <span class="font-bold text-slate-700 block">🧥 輕便禦寒大衣 & 防風帽</span>
+                <span class="text-slate-400">9月底傍晚起風偏冷（約12°C），保暖防風必備。</span>
+              </div>
+            </label>
+            <!-- Item 2 -->
+            <label class="flex items-start gap-3 cursor-pointer p-2 rounded-lg hover:bg-slate-50 transition-all">
+              <input type="checkbox" onchange="updateChecklist()" class="mt-1 w-4 h-4 text-emerald-600 border-slate-300 rounded focus:ring-emerald-500 shrink-0">
+              <div class="text-xs">
+                <span class="font-bold text-slate-700 block">💊 長輩常備藥物 & 牙籤剪刀</span>
+                <span class="text-slate-400">血壓藥、胃藥、感冒成藥、餐食輔助小工具。</span>
+              </div>
+            </label>
+            <!-- Item 3 -->
+            <label class="flex items-start gap-3 cursor-pointer p-2 rounded-lg hover:bg-slate-50 transition-all">
+              <input type="checkbox" onchange="updateChecklist()" class="mt-1 w-4 h-4 text-emerald-600 border-slate-300 rounded focus:ring-emerald-500 shrink-0">
+              <div class="text-xs">
+                <span class="font-bold text-slate-700 block">🍼 5歲小孩安撫法寶 (防丟繩)</span>
+                <span class="text-slate-400">充飽電的平板（車上補眠用）、少量餅乾零食、嬰兒車。</span>
+              </div>
+            </label>
+            <!-- Item 4 -->
+            <label class="flex items-start gap-3 cursor-pointer p-2 rounded-lg hover:bg-slate-50 transition-all">
+              <input type="checkbox" onchange="updateChecklist()" class="mt-1 w-4 h-4 text-emerald-600 border-slate-300 rounded focus:ring-emerald-500 shrink-0">
+              <div class="text-xs">
+                <span class="font-bold text-slate-700 block">🚌 預約 D3-D4 乃之風往返巴士</span>
+                <span class="text-slate-400">訂好房後，務必寫信預約札幌往返洞爺湖大巴！</span>
+              </div>
+            </label>
+            <!-- Item 5 -->
+            <label class="flex items-start gap-3 cursor-pointer p-2 rounded-lg hover:bg-slate-50 transition-all">
+              <input type="checkbox" onchange="updateChecklist()" class="mt-1 w-4 h-4 text-emerald-600 border-slate-300 rounded focus:ring-emerald-500 shrink-0">
+              <div class="text-xs">
+                <span class="font-bold text-slate-700 block">🦀 D4 晚宴大桌提前預約</span>
+                <span class="text-slate-400">しんら亭（包廂）或櫻百匯，一開位就預定 7 人位。</span>
+              </div>
+            </label>
+          </div>
+        </section>
+
+        <!-- 卡片 2：重要聯絡資訊 / 備忘錄 -->
+        <section class="bg-white rounded-2xl p-6 shadow-sm border border-slate-100 space-y-4">
+          <h2 class="text-base font-black flex items-center gap-2 text-blue-700">
+            <i class="fa-solid fa-circle-info"></i> 行程大總管求生電話簿
+          </h2>
+          <div class="space-y-3 text-xs">
+            <div class="p-2.5 bg-slate-50 rounded-xl">
+              <span class="text-slate-400 block font-semibold mb-0.5">D1-D2 住宿：Dormy Inn Premium 札幌</span>
+              <span class="font-bold text-slate-700 flex items-center justify-between">
+                <span>+81 11-232-0011</span>
+                <button onclick="copyToClipboard('+81 11-232-0011')" class="text-blue-600 hover:text-blue-800"><i class="fa-regular fa-copy"></i></button>
+              </span>
+            </div>
+            <div class="p-2.5 bg-slate-50 rounded-xl">
+              <span class="text-slate-400 block font-semibold mb-0.5">D3 住宿：洞爺湖乃之風渡假酒店</span>
+              <span class="font-bold text-slate-700 flex items-center justify-between">
+                <span>+81 570-026-571</span>
+                <button onclick="copyToClipboard('+81 570-026-571')" class="text-blue-600 hover:text-blue-800"><i class="fa-regular fa-copy"></i></button>
+              </span>
+            </div>
+            <div class="p-2.5 bg-slate-50 rounded-xl">
+              <span class="text-slate-400 block font-semibold mb-0.5">D4 住宿：札幌格拉斯麗酒店</span>
+              <span class="font-bold text-slate-700 flex items-center justify-between">
+                <span>+81 11-251-3211</span>
+                <button onclick="copyToClipboard('+81 11-251-3211')" class="text-blue-600 hover:text-blue-800"><i class="fa-regular fa-copy"></i></button>
+              </span>
+            </div>
+          </div>
+        </section>
+
+        <!-- 卡片 3：防寒 & 牙口友善終極攻略 -->
+        <section class="bg-gradient-to-br from-indigo-50 to-blue-50 rounded-2xl p-6 border border-blue-100 space-y-4">
+          <h2 class="text-base font-black flex items-center gap-2 text-indigo-900">
+            <i class="fa-solid fa-temperature-three-quarters"></i> 初秋抗風防寒小幫手
+          </h2>
+          <div class="space-y-2.5 text-xs text-indigo-950 leading-relaxed">
+            <p>
+              <strong>❄️ 傍晚體感變化：</strong><br>
+              9月下旬北海道太陽下山早（約17:30），氣溫會突然急降。當天下午出門前務必幫長輩、5歲小孩套上<strong>防風風衣</strong>和帽子，避免冷風直吹頭部造成偏頭痛或感冒。
+            </p>
+            <p>
+              <strong>🦷 長輩牙口體貼：</strong><br>
+              在小樽三角市場點蟹時，可以交代餐廳將大蟹腳肉<strong>「剪殼切塊」</strong>；成吉思汗烤羊肉的大黑屋肉質細嫩，牙口不好的長輩也可以輕鬆咬碎，請安心點餐！
+            </p>
+          </div>
+        </section>
+
+      </div>
+
+    </div>
+  </main>
+
+  <footer class="max-w-6xl mx-auto px-4 mt-12 border-t border-slate-200 pt-6 text-center text-xs text-slate-400 no-print">
+    <p>© 2026 北海道家庭尊榮自由行電子行程表 · 全權為你最親愛的家人量身定製</p>
+  </footer>
+
+  <!-- 提示浮動窗 -->
+  <div id="toast" class="fixed bottom-6 right-6 bg-slate-900 text-white text-xs font-bold px-4 py-3 rounded-xl shadow-2xl opacity-0 transform translate-y-2 pointer-events-none transition-all duration-300 z-50 flex items-center gap-2">
+    <i class="fa-solid fa-circle-check text-emerald-400"></i> <span id="toast-text">複製成功</span>
+  </div>
+
+  <script>
+    // Tab 切換邏輯
+    function switchTab(day) {
+      // 隱藏所有
+      const contents = document.querySelectorAll('.tab-content');
+      contents.forEach(content => content.classList.remove('active'));
+
+      // 重置 Tabs 樣式
+      const tabs = document.querySelectorAll('#tab-headers button');
+      tabs.forEach(tab => {
+        tab.classList.remove('border-blue-600', 'text-blue-600');
+        tab.classList.add('border-transparent', 'text-slate-600');
+      });
+
+      if (day === 'all') {
+        // 完整導覽：將所有內容全部秀出來
+        contents.forEach(content => content.classList.add('active'));
+        document.getElementById('tab-all').classList.add('border-blue-600', 'text-blue-600');
+        document.getElementById('tab-all').classList.remove('border-transparent', 'text-slate-600');
+      } else {
+        // 秀出指定日
+        document.getElementById(`content-${day}`).classList.add('active');
+        document.getElementById(`tab-${day}`).classList.add('border-blue-600', 'text-blue-600');
+        document.getElementById(`tab-${day}`).classList.remove('border-transparent', 'text-slate-600');
+      }
+    }
+
+    // 指揮官模式 / 正常模式 切換
+    const modeToggle = document.getElementById('mode-toggle');
+    const label = document.getElementById('view-mode-label');
+
+    modeToggle.addEventListener('change', function() {
+      const tips = document.querySelectorAll('.manager-tip');
+      if (this.checked) {
+        label.innerText = '👑 總管大指揮官模式';
+        label.className = 'text-sm font-bold text-amber-300';
+        tips.forEach(tip => tip.style.display = 'block');
+      } else {
+        label.innerText = '👨‍👩-👦 溫馨家人分享模式';
+        label.className = 'text-sm font-bold text-emerald-300';
+        tips.forEach(tip => tip.style.display = 'none');
+      }
+    });
+
+    // 晚餐 A1/A2 決選互動
+    function toggleDinner(type) {
+      const btnWagyu = document.getElementById('btn-dinner-wagyu');
+      const btnCrab = document.getElementById('btn-dinner-crab');
+      const cardWagyu = document.getElementById('dinner-card-wagyu');
+      const cardCrab = document.getElementById('dinner-card-crab');
+
+      if (type === 'wagyu') {
+        btnWagyu.className = "flex-1 py-2 rounded-lg text-xs font-bold text-slate-800 bg-white shadow transition-all flex items-center justify-center gap-1";
+        btnCrab.className = "flex-1 py-2 rounded-lg text-xs font-bold text-slate-600 hover:text-slate-800 transition-all flex items-center justify-center gap-1";
+        cardWagyu.classList.remove('hidden');
+        cardCrab.classList.add('hidden');
+      } else {
+        btnCrab.className = "flex-1 py-2 rounded-lg text-xs font-bold text-slate-800 bg-white shadow transition-all flex items-center justify-center gap-1";
+        btnWagyu.className = "flex-1 py-2 rounded-lg text-xs font-bold text-slate-600 hover:text-slate-800 transition-all flex items-center justify-center gap-1";
+        cardCrab.classList.remove('hidden');
+        cardWagyu.classList.add('hidden');
+      }
+    }
+
+    // 行前清單進度更新
+    function updateChecklist() {
+      const checkboxes = document.querySelectorAll('#checklist-items input[type="checkbox"]');
+      const total = checkboxes.length;
+      let checkedCount = 0;
+      checkboxes.forEach(box => {
+        if (box.checked) checkedCount++;
+      });
+      const progress = Math.round((checkedCount / total) * 100);
+      document.getElementById('checklist-prog').innerText = `${progress}% 完成`;
+      
+      if (progress === 100) {
+        document.getElementById('checklist-prog').className = "text-xs bg-emerald-500 text-white px-2 py-0.5 rounded font-bold";
+        showToast("🎉 太棒了！行前工作全數準備就緒！");
+      } else {
+        document.getElementById('checklist-prog').className = "text-xs bg-emerald-50 text-emerald-600 px-2 py-0.5 rounded font-bold";
+      }
+    }
+
+    // 滾動至行前清單
+    function scrollToChecklist() {
+      document.getElementById('checklist-sec').scrollIntoView({ behavior: 'smooth' });
+    }
+
+    // 剪貼簿複製
+    function copyToClipboard(text) {
+      const el = document.createElement('textarea');
+      el.value = text;
+      document.body.appendChild(el);
+      el.select();
+      document.execCommand('copy');
+      document.body.removeChild(el);
+      showToast("📞 電話複製成功：" + text);
+    }
+
+    // Toast 顯示
+    function showToast(msg) {
+      const toast = document.getElementById('toast');
+      const toastText = document.getElementById('toast-text');
+      toastText.innerText = msg;
+      toast.classList.remove('opacity-0', 'translate-y-2', 'pointer-events-none');
+      toast.classList.add('opacity-100', 'translate-y-0');
+      
+      setTimeout(() => {
+        toast.classList.remove('opacity-100', 'translate-y-0');
+        toast.classList.add('opacity-0', 'translate-y-2', 'pointer-events-none');
+      }, 2500);
+    }
+  </script>
 </body>
 </html>
