@@ -1,47 +1,34 @@
-:北海道尊榮旅遊大總管指揮中心:hokkaido_trip_commander.html
 <!DOCTYPE html>
 <html lang="zh-TW">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>北海道尊榮家庭旅遊 ── 大總管極致神盾流指揮中心 4.0</title>
+    <title>北海道尊榮家庭旅遊 ── 大總管極致神盾流指揮中心 4.1 (完整版)</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700;900&family=Quicksand:wght@500;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        body {
-            font-family: 'Noto Sans TC', sans-serif;
-            background-color: #0b1329;
-            color: #f8fafc;
-        }
-        .quicksand {
-            font-family: 'Quicksand', sans-serif;
-        }
-        /* Custom scrollbar */
-        ::-webkit-scrollbar {
-            width: 8px;
-            height: 8px;
-        }
-        ::-webkit-scrollbar-track {
-            background: #0b1329;
-        }
-        ::-webkit-scrollbar-thumb {
-            background: #1c2541;
-            border-radius: 4px;
-        }
-        ::-webkit-scrollbar-thumb:hover {
-            background: #3a506b;
-        }
-        .animate-scale-up {
-            animation: scaleUp 0.2s ease-out forwards;
-        }
-        @keyframes scaleUp {
-            from { transform: scale(0.95); opacity: 0; }
-            to { transform: scale(1); opacity: 1; }
-        }
+        body { font-family: 'Noto Sans TC', sans-serif; background-color: #0b1329; color: #f8fafc; }
+        .quicksand { font-family: 'Quicksand', sans-serif; }
+        ::-webkit-scrollbar { width: 8px; height: 8px; }
+        ::-webkit-scrollbar-thumb { background: #1c2541; border-radius: 4px; }
+        .animate-marquee { animation: marquee 20s linear infinite; }
+        @keyframes marquee { 0% { transform: translateX(100%); } 100% { transform: translateX(-100%); } }
+        .animate-scale-up { animation: scaleUp 0.2s ease-out forwards; }
+        @keyframes scaleUp { from { transform: scale(0.95); opacity: 0; } to { transform: scale(1); opacity: 1; } }
+        /* Sticky Day Selector */
+        .sticky-day-selector { position: sticky; top: 80px; z-index: 40; }
     </style>
 </head>
 <body class="min-h-screen selection:bg-cyan-500 selection:text-white">
+
+    <!-- 戰術跑馬燈 -->
+    <div class="bg-slate-900 border-b border-cyan-500/20 overflow-hidden py-2">
+        <div class="whitespace-nowrap animate-marquee text-xs text-cyan-400 font-bold flex gap-8">
+            <span><i class="fa-solid fa-triangle-exclamation mr-2"></i>戰術警示：Day 4 百貨採購動線已更新，請確保輪椅與嬰兒車動線暢通。</span>
+            <span><i class="fa-solid fa-cloud-sun mr-2"></i>氣象備援：如遇強風，備用室內行程已載入大總管計畫。</span>
+        </div>
+    </div>
 
     <nav class="sticky top-0 z-50 bg-[#0b1329]/95 backdrop-blur-md border-b border-cyan-500/20 py-4 px-6 shadow-lg shadow-cyan-950/20">
         <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-4">
@@ -50,169 +37,39 @@
                     <i class="fa-solid fa-compass text-white text-xl"></i>
                 </div>
                 <div>
-                    <h1 class="text-xl font-bold tracking-wider text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-indigo-400">大總管神盾計畫 4.0</h1>
+                    <h1 class="text-xl font-bold tracking-wider text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-indigo-400">大總管神盾計畫 4.1</h1>
                     <p class="text-xs text-slate-400">跨世代精準物資卡位・家庭血拼戰情指揮面板</p>
                 </div>
             </div>
-            <div class="flex items-center gap-6">
-                <div class="text-right">
-                    <span class="block text-xs text-slate-400 uppercase tracking-widest font-bold">出發日期</span>
-                    <span class="text-sm font-semibold text-cyan-300">2026年9月23日 (三)</span>
-                </div>
-                <div class="h-8 w-px bg-slate-700"></div>
-                <div class="text-left">
-                    <span class="block text-xs text-slate-400 uppercase tracking-widest font-bold">倒數登機</span>
-                    <span id="countdown-timer" class="text-sm font-bold text-amber-400 quicksand">--天 --時 --分 --秒</span>
-                </div>
-            </div>
+            <div class="text-sm font-bold text-amber-400 quicksand" id="countdown-timer">-- D -- H -- M -- S</div>
         </div>
     </nav>
 
     <div class="max-w-7xl mx-auto p-4 md:p-6 space-y-6">
+        <div class="grid grid-cols-1 lg:grid-cols-1 gap-6">
+            <div class="space-y-6">
+                <!-- Days Selector (Sticky) -->
+                <div class="sticky-day-selector bg-slate-900/90 border border-slate-800 rounded-2xl p-1.5 flex gap-1.5 overflow-x-auto shadow-inner" id="day-selector"></div>
 
-        <header class="relative overflow-hidden bg-gradient-to-r from-slate-900 via-[#131e3d] to-slate-900 rounded-3xl p-6 md:p-8 border border-cyan-500/20 shadow-2xl">
-            <div class="absolute top-0 right-0 w-96 h-96 bg-cyan-500/10 rounded-full blur-3xl -mr-20 -mt-20"></div>
-            <div class="absolute bottom-0 left-0 w-96 h-96 bg-indigo-500/10 rounded-full blur-3xl -ml-20 -mb-20"></div>
-            
-            <div class="relative z-10 flex flex-col lg:flex-row justify-between items-start lg:items-center gap-6">
-                <div class="space-y-3 max-w-2xl">
-                    <span class="inline-block bg-cyan-500/10 border border-cyan-500/30 text-cyan-400 text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider">
-                        <i class="fa-solid fa-shield-halved mr-1"></i> 2026 戰術動線核心卡位版
-                    </span>
-                    <h2 class="text-3xl md:text-4xl font-extrabold tracking-tight">北國極上秋旅：全能大總管客製計畫</h2>
-                    <p class="text-slate-300 text-sm md:text-base leading-relaxed">
-                        整合 **阿卡將嬰童補物資、大丸/Stellar Place 車站共構圈分流購物、西川枕/Brain Sleep 與 HOKA 試穿特攻**。全裝備 6 行李箱隔空移防，完美封殺冷風與搬運痛苦！
-                    </p>
-                </div>
-                <div class="bg-slate-900/60 backdrop-blur-md border border-slate-700 p-5 rounded-2xl w-full lg:w-auto flex flex-col sm:flex-row gap-6 justify-around min-w-[320px]">
-                    <div class="text-center">
-                        <span class="block text-xs text-slate-400 mb-1"><i class="fa-solid fa-users mr-1"></i> 成員編組</span>
-                        <span class="text-sm font-bold text-slate-100">長輩 2 / 5歲童 1 / 平輩+媽組 4</span>
-                    </div>
-                    <div class="hidden sm:block w-px bg-slate-700"></div>
-                    <div class="text-center">
-                        <span class="block text-xs text-slate-400 mb-1"><i class="fa-solid fa-cart-shopping text-amber-400 mr-1"></i> 戰術任務</span>
-                        <span class="text-sm font-bold text-amber-400">物資高效補給 / 百貨精準分流</span>
-                    </div>
-                    <div class="hidden sm:block w-px bg-slate-700"></div>
-                    <div class="text-center">
-                        <span class="block text-xs text-slate-400 mb-1"><i class="fa-solid fa-hotel mr-1"></i> 當晚回防</span>
-                        <span class="text-sm font-bold text-cyan-400">連通道直送客房</span>
-                    </div>
-                </div>
-            </div>
-        </header>
-
-        <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
-
-            <div class="space-y-6 lg:col-span-1">
-                
-                <div class="bg-gradient-to-b from-[#131e3d] to-slate-900 rounded-3xl p-5 border border-cyan-500/20 shadow-xl space-y-5">
-                    <h3 class="text-sm font-black tracking-widest text-cyan-400 uppercase flex items-center gap-2 border-b border-slate-800 pb-3">
-                        <i class="fa-solid fa-bag-shopping"></i> 購物戰略據點提醒
-                    </h3>
-                    <div class="flex flex-col gap-3">
-                        <div class="p-3 bg-slate-800/80 rounded-xl border border-slate-700">
-                            <span class="block text-[10px] text-slate-400 uppercase font-bold tracking-wider mb-0.5">D1 下午 ➔ Ario</span>
-                            <strong class="text-slate-100 text-sm block">阿卡將物資補貨</strong>
-                            <span class="text-slate-400 text-xs mt-1 block">主攻尿布、零食、玩具及備用衣物大批量掃貨。</span>
-                        </div>
-                        <div class="p-3 bg-slate-800/80 rounded-xl border border-slate-700">
-                            <span class="block text-[10px] text-slate-400 uppercase font-bold tracking-wider mb-0.5">D4 下午 ➔ 大丸 7F</span>
-                            <strong class="text-slate-100 text-sm block">西川枕 / Brain Sleep / 毛巾</strong>
-                            <span class="text-slate-400 text-xs mt-1 block">長輩頂級養生睡眠專區，專人一對一精準量測。</span>
-                        </div>
-                        <div class="p-3 bg-slate-800/80 rounded-xl border border-slate-700">
-                            <span class="block text-[10px] text-slate-400 uppercase font-bold tracking-wider mb-0.5">D4 下午 ➔ 大丸 5F</span>
-                            <strong class="text-slate-100 text-sm block">HOKA 專業跑鞋</strong>
-                            <span class="text-slate-400 text-xs mt-1 block">足底避震特攻，試穿量大由平輩迅速卡位。</span>
-                        </div>
-                        <div class="p-3 bg-slate-800/80 rounded-xl border border-slate-700">
-                            <span class="block text-[10px] text-slate-400 uppercase font-bold tracking-wider mb-0.5">D4 下午 ➔ 5F/7F</span>
-                            <strong class="text-slate-100 text-sm block">迪士尼商店 / 3 Coins</strong>
-                            <span class="text-slate-400 text-xs mt-1 block">Stellar Place 小孩王牌誘餌與周邊質感生活小物。</span>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="bg-gradient-to-b from-[#131e3d] to-slate-900 rounded-3xl p-5 border border-slate-800/60 shadow-xl text-xs text-slate-400 space-y-2">
-                    <span class="font-bold text-slate-300 block"><i class="fa-solid fa-circle-info text-cyan-400 mr-1"></i>大總管出巡戰術提醒</span>
-                    <p class="leading-relaxed">Day 3 早上已利用小黃將 6 大行李箱隔空運抵明晚入住的格拉斯麗酒店，全程免提大箱。Day 4 所有店舖皆在車站共構連通道圈內，全室內免吹風！</p>
-                </div>
-            </div>
-
-            <div class="lg:col-span-2 space-y-6">
-
-                <div class="bg-slate-900 border border-slate-800 rounded-2xl p-1.5 flex gap-1.5 overflow-x-auto shadow-inner">
-                    <button onclick="changeDay(1)" id="day-btn-1" class="flex-1 py-3 px-4 rounded-xl text-center font-bold text-sm min-w-[90px] border border-transparent transition-all duration-300 bg-gradient-to-r from-cyan-500 to-blue-600 text-slate-950 shadow-lg shadow-cyan-500/20">
-                        <span class="block text-[10px] opacity-75">DAY 1</span>
-                        <span>09/23 (三)</span>
-                    </button>
-                    <button onclick="changeDay(2)" id="day-btn-2" class="flex-1 py-3 px-4 rounded-xl text-center font-bold text-sm min-w-[90px] border border-slate-800 hover:border-slate-700 transition-all duration-300 text-slate-400 hover:text-slate-200">
-                        <span class="block text-[10px] opacity-75">DAY 2</span>
-                        <span>09/24 (四)</span>
-                    </button>
-                    <button onclick="changeDay(3)" id="day-btn-3" class="flex-1 py-3 px-4 rounded-xl text-center font-bold text-sm min-w-[90px] border border-slate-800 hover:border-slate-700 transition-all duration-300 text-slate-400 hover:text-slate-200">
-                        <span class="block text-[10px] opacity-75">DAY 3</span>
-                        <span>09/25 (五)</span>
-                    </button>
-                    <button onclick="changeDay(4)" id="day-btn-4" class="flex-1 py-3 px-4 rounded-xl text-center font-bold text-sm min-w-[90px] border border-slate-800 hover:border-slate-700 transition-all duration-300 text-slate-400 hover:text-slate-200">
-                        <span class="block text-[10px] opacity-75">DAY 4</span>
-                        <span>09/26 (六)</span>
-                    </button>
-                    <button onclick="changeDay(5)" id="day-btn-5" class="flex-1 py-3 px-4 rounded-xl text-center font-bold text-sm min-w-[90px] border border-slate-800 hover:border-slate-700 transition-all duration-300 text-slate-400 hover:text-slate-200">
-                        <span class="block text-[10px] opacity-75">DAY 5</span>
-                        <span>09/27 (日)</span>
-                    </button>
-                </div>
-
-                <div class="bg-gradient-to-b from-slate-900 to-[#111936] rounded-3xl p-6 border border-slate-800 shadow-2xl relative">
+                <!-- Timeline Panel -->
+                <div class="bg-gradient-to-b from-slate-900 to-[#111936] rounded-3xl p-6 border border-slate-800 shadow-2xl">
                     <div id="day-header" class="mb-6 flex flex-col md:flex-row justify-between items-start md:items-center border-b border-slate-800 pb-4 gap-3">
                         <div>
-                            <h2 id="day-title" class="text-2xl font-black text-slate-100 flex items-center gap-2">
-                                <i class="fa-solid fa-beer-mug-empty text-cyan-400"></i> Day 1：落地無腦速攻 ➔ 啤酒博物館 ➔ Toriton 厚切壽司神盾速攻 ➔ 溫泉生蠔雙連擊
-                            </h2>
-                            <p id="day-subtitle" class="text-xs text-slate-400 mt-1">住宿：Dormy Inn Premium 札幌本館</p>
+                            <h2 id="day-title" class="text-2xl font-black text-slate-100 flex items-center gap-2"></h2>
+                            <p id="day-subtitle" class="text-xs text-slate-400 mt-1"></p>
                         </div>
-                        <span id="day-hotel-badge" class="bg-indigo-500/10 border border-indigo-500/30 text-indigo-300 text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider flex items-center gap-1.5">
-                            <i class="fa-solid fa-hotel"></i> Dormy Inn Premium
-                        </span>
                     </div>
-
-                    <div id="timeline-container" class="relative border-l border-slate-800 ml-3 md:ml-4 pl-6 md:pl-8 space-y-6">
-                        </div>
+                    <div id="timeline-container" class="relative border-l border-slate-800 ml-3 md:ml-4 pl-6 md:pl-8 space-y-6"></div>
                 </div>
-
-                <div class="bg-[#111936] rounded-3xl p-6 border border-slate-800 shadow-xl space-y-4">
-                    <div class="flex justify-between items-center border-b border-slate-800 pb-3">
-                        <h3 class="text-sm font-black tracking-widest text-slate-200 uppercase flex items-center gap-2">
-                            <i class="fa-solid fa-pen-nib text-cyan-400"></i> 大總管隨身記 (記錄突發開銷/計程車費)
-                        </h3>
-                        <button onclick="clearMemos()" class="text-xs text-rose-400 hover:text-rose-300 font-bold transition-all"><i class="fa-solid fa-trash mr-1"></i>清空</button>
-                    </div>
-                    <div class="flex gap-2">
-                        <input type="text" id="memo-input" placeholder="例如：15:15 計程車費 2 台共 ¥2,200 / 買哈密瓜花了 ¥3,500" class="flex-1 bg-slate-900 border border-slate-800 rounded-xl px-4 py-2.5 text-sm text-slate-100 placeholder:text-slate-500 focus:outline-none focus:border-cyan-500 font-medium">
-                        <button onclick="addMemo()" class="bg-cyan-500 hover:bg-cyan-400 text-slate-950 font-black px-5 py-2.5 rounded-xl text-sm transition-all duration-200 flex items-center gap-1.5 shadow-lg shadow-cyan-500/10">
-                            <i class="fa-solid fa-plus"></i> 新增
-                        </button>
-                    </div>
-                    <div id="memo-list" class="space-y-2 max-h-[180px] overflow-y-auto pr-1">
-                        <div class="text-xs text-slate-500 italic py-2 text-center" id="empty-memo-msg">目前沒有任何隨身備忘錄，快點新增一筆吧！</div>
-                    </div>
-                </div>
-
             </div>
         </div>
-
     </div>
 
+    <!-- Details Modal -->
     <div id="detail-modal" class="fixed inset-0 z-50 flex items-center justify-center bg-slate-950/80 backdrop-blur-sm p-4 hidden">
         <div class="bg-slate-900 border border-slate-800 rounded-3xl max-w-lg w-full p-6 space-y-4 shadow-2xl relative animate-scale-up">
-            <button onclick="closeModal()" class="absolute top-4 right-4 text-slate-400 hover:text-slate-100 text-lg transition-all duration-150">
-                <i class="fa-solid fa-xmark"></i>
-            </button>
-            <div id="modal-content" class="space-y-4">
-                </div>
+            <button onclick="closeModal()" class="absolute top-4 right-4 text-slate-400 hover:text-slate-100 text-lg transition-all duration-150"><i class="fa-solid fa-xmark"></i></button>
+            <div id="modal-content" class="space-y-4"></div>
         </div>
     </div>
 
@@ -224,482 +81,89 @@
                 hotel: "Dormy Inn Premium 札幌本館",
                 hotelBadge: "Dormy Inn 本館",
                 timeline: [
-                    {
-                        time: "05:40",
-                        title: "桃園國際機場第一航廈大會師",
-                        desc: "全家集合辦理登機報到、6 個大行李箱託運與過海關。總管確認全員 Visit Japan Web 已截圖備份。",
-                        tag: "出發整裝",
-                        badgeClass: "bg-slate-800 text-slate-300 border-slate-700",
-                        elderNote: "長輩行李盡量由平輩協助託運，隨身包包輕量化。",
-                        kidNote: "5歲幼童可在登機前先上洗手間，並攜帶推車備用。"
-                    },
-                    {
-                        time: "07:40 - 12:40",
-                        title: "✈️ 飛向北國（泰國亞航 FD242）",
-                        desc: "航程約 4 小時，直飛並準時降落新千歲機場。",
-                        tag: "飛機航班",
-                        badgeClass: "bg-blue-500/10 text-blue-300 border-blue-500/30",
-                        elderNote: "飛機冷氣較強，機上務必幫長輩準備薄外套。",
-                        kidNote: "帶備小餅乾或玩具、貼紙書，防範小孩機上鬧脾氣。"
-                    },
-                    {
-                        time: "12:40 - 13:30",
-                        title: "🛂 光速出關 ＆ 中午精緻墊胃",
-                        desc: "大總管直攻 【BENTOSS】或【KINOTOYA宇治製菓】，搶購現烤起司塔、蘋果派或三大蟹火車便當。全家行李提取、準備移防 JR 車站。",
-                        tag: "大總管精緻墊胃",
-                        badgeClass: "bg-amber-500/10 text-amber-300 border-amber-500/30",
-                        elderNote: "免飢餓戰術！第一時間提供點心墊胃，絕不讓爸媽挨餓血糖過低。",
-                        kidNote: "起司塔香甜軟糯，最適合給 5 歲小孩作為快速補充熱量的極品點心。"
-                    },
-                    {
-                        time: "13:45 - 14:30",
-                        title: "🚃 機場 ➔ 札幌車站（JR 快速 Airport 號指定席）",
-                        desc: "搭乘 U-Seat 指定席！有專屬大型行李放置處，長輩幼童一律有座。全家一邊看著北國風光，一邊在加大座位上舒適大嗑剛買的機場名產點心墊胃。",
-                        tag: "快速 Airport",
-                        badgeClass: "bg-cyan-500/10 text-cyan-300 border-cyan-500/30",
-                        elderNote: "指定席保證有座位！爸媽可以直接舒舒服服地睡半小時補眠。",
-                        kidNote: "列車上有大車窗，可以让5岁小孩興奮欣賞沿途風光。"
-                    },
-                    {
-                        time: "14:45 - 15:00",
-                        title: "🏨 Dormy Inn 快速進房與換裝",
-                        desc: "在札幌車站南口攔 2 台計程車，5 分鐘直送 Dormy Inn Premium 札幌本館辦理入住。",
-                        tag: "快速進房",
-                        badgeClass: "bg-indigo-500/10 text-indigo-300 border-indigo-500/30",
-                        elderNote: "總管叮嚀：辦理入住時務必跟櫃檯強調：明天續住，不換房！行李直接進房，全家換上輕裝出發。",
-                        kidNote: "直接在房內讓小孩更換防寒衣物，確保保暖防雨防風。"
-                    },
-                    {
-                        time: "15:15 - 17:20",
-                        title: "🚖 第一站：札幌啤酒博物館 ＆ 阿卡將嬰童物資大批量補貨",
-                        desc: "飯店門口攔 2 台計程車直奔歷史悠久的赤連瓦紅磚古蹟與相連的 Ario 巨型商場！開啟雙軌作戰任務！",
-                        tag: "古蹟 ＆ 阿卡將特攻",
-                        badgeClass: "bg-emerald-500/10 text-emerald-300 border-emerald-500/30",
-                        detail: "走免費自由參觀動線，繞過兩層樓高煮沸壺，到二樓觀賞百年歷史與精彩廣告畫報。最後到「星星大廳」花 ¥1000 點綜合組暢飲生啤酒，順便搶購限定的「SAPPORO經典啤酒凍巧克力」！<br><br><strong>【大總管物資大卡位】</strong>：全員隨後推進至 Ario 巨型商場內的 <strong>【阿卡將 (Akachan) Ario Sapporo店】</strong>！發動大批量補貨模式：將此後幾天所需的<strong>尿布、零食、貼紙玩具、替換衣物</strong>一次掃齊，直接丟進嬰兒車底，解除物資警報！<br>💡 <em>總管應變流：若在阿卡將已買足平價童裝，則立刻取消 Ario 周邊的西松屋/Birthday 計畫，徹底避免長輩舟車勞頓！</em>",
-                        elderNote: "大丸/Ario有充足的公共座椅。啤酒博物館外拍照最漂亮，二樓參觀有電梯，長輩走起來極其輕鬆。",
-                        kidNote: "在阿卡將可以讓小孩自己挑一個戰術小玩具，作為這幾天乖巧就座的「防哭鬧誘餌」。"
-                    },
-                    {
-                        time: "17:30 - 19:15",
-                        title: "🍣 【晚餐大主秀：Toriton 迴轉壽司】北8条光星店",
-                        desc: "平日傍晚剛開飯的黃金時間就位！大啖在地人瘋狂信仰的厚切炙燒鮭魚、爆量蟹膏、巨大干貝與特大牡丹蝦！",
-                        tag: "平日離峰速攻",
-                        badgeClass: "bg-rose-500/10 text-rose-300 border-rose-500/30",
-                        detail: "【大總管控時卡位戰】：17:20 在 Ario 超市門口直接攔 2 台計程車，2 分鐘直送距離最近的 Toriton 北8条光星店。無痛全家大桌直接入座！震撼全家人的味蕾！",
-                        elderNote: "迴轉壽司有熟食烤物、熱騰騰茶碗蒸和專屬高湯，完全符合不吃生食長輩的需求。",
-                        kidNote: "5歲小孩可點熟鮭魚壽司、玉子燒、炸雞塊與薯條，座位寬敞，不易哭鬧。"
-                    },
-                    {
-                        time: "19:20 - 21:30",
-                        title: "♨️ 狸小路商店街天棚 ➔ 飯店溫泉大會師",
-                        desc: "餐後攔 2 台計程車連同戰利品物資直接直送回 Dormy Inn 飯店。換上浴衣上頂樓享受「石狩之湯」天然溫泉！",
-                        tag: "溫泉大會師",
-                        badgeClass: "bg-teal-500/10 text-teal-300 border-teal-500/30",
-                        elderNote: "Dormy Inn「石狩之湯」富含微量元素，泡完湯可在休息區大嗑免費冰棒，徹底消除長輩飛行一天的疲勞。",
-                        kidNote: "有免費冰棒！21:30 後更有免費的宵夜醬油拉麵可以飽餐一頓。"
-                    },
-                    {
-                        time: "21:40~",
-                        title: "🦪 【熱血追加：狸小路牡蠣小屋生蠔大宴】",
-                        desc: "平輩組、熱愛海鮮的媽媽組「微醺偷溜」，走回狸小路天棚下的 【狸小路牡蠣小屋】！大點厚岸產現開生蠔、大火炭烤爆汁扇貝！",
-                        tag: "深夜特攻",
-                        badgeClass: "bg-purple-500/10 text-purple-300 border-purple-500/30",
-                        elderNote: "長輩此時在飯店舒服入睡，由平輩帶隊，兩隊分流，完全不打擾長輩休息。",
-                        kidNote: "5歲小孩在飯店由另一人或長輩看護，安全入睡。"
-                    }
+                    { time: "05:40", title: "桃園國際機場第一航廈大會師", desc: "全家集合辦理登機報到、6 個大行李箱託運與過海關。總管確認全員 Visit Japan Web 已截圖備份。", tag: "出發整裝", badgeClass: "bg-slate-800 text-slate-300 border-slate-700", elderNote: "長輩行李盡量由平輩協助託運，隨身包包輕量化。", kidNote: "5歲幼童可在登機前先上洗手間，並攜帶推車備用。" },
+                    { time: "07:40 - 12:40", title: "✈️ 飛向北國（泰國亞航 FD242）", desc: "航程約 4 小時，直飛並準時降落新千歲機場。", tag: "飛機航班", badgeClass: "bg-blue-500/10 text-blue-300 border-blue-500/30", elderNote: "飛機冷氣較強，機上務必幫長輩準備薄外套。", kidNote: "帶備小餅乾或玩具、貼紙書，防範小孩機上鬧脾氣。" },
+                    { time: "12:40 - 13:30", title: "🛂 光速出關 ＆ 中午精緻墊胃", desc: "大總管直攻 【BENTOSS】或【KINOTOYA宇治製菓】，搶購現烤起司塔、蘋果派或三大蟹火車便當。全家行李提取、準備移防 JR 車站。", tag: "大總管精緻墊胃", badgeClass: "bg-amber-500/10 text-amber-300 border-amber-500/30", elderNote: "免飢餓戰術！第一時間提供點心墊胃，絕不讓爸媽挨餓血糖過低。", kidNote: "起司塔香甜軟糯，最適合給 5 歲小孩作為快速補充熱量的極品點心。" },
+                    { time: "13:45 - 14:30", title: "🚃 機場 ➔ 札幌車站（JR 快速 Airport 號指定席）", desc: "搭乘 U-Seat 指定席！有專屬大型行李放置處，長輩幼童一律有座。全家一邊看著北國風光，一邊在加大座位上舒適大嗑剛買的機場名產點心墊胃。", tag: "快速 Airport", badgeClass: "bg-cyan-500/10 text-cyan-300 border-cyan-500/30", elderNote: "指定席保證有座位！爸媽可以直接舒舒服服地睡半小時補眠。", kidNote: "列車上有大車窗，可以让5岁小孩興奮欣賞沿途風光。" },
+                    { time: "14:45 - 15:00", title: "🏨 Dormy Inn 快速進房與換裝", desc: "在札幌車站南口攔 2 台計程車，5 分鐘直送 Dormy Inn Premium 札幌本館辦理入住。", tag: "快速進房", badgeClass: "bg-indigo-500/10 text-indigo-300 border-indigo-500/30", elderNote: "總管叮嚀：辦理入住時務必跟櫃檯強調：明天續住，不換房！行李直接進房，全家換上輕裝出發。", kidNote: "直接在房內讓小孩更換防寒衣物，確保保暖防雨防風。" },
+                    { time: "15:15 - 17:20", title: "🚖 第一站：札幌啤酒博物館 ＆ Ario 商場三軌特攻 (阿卡將/Birthday/水果物資)", desc: "飯店門口攔 2 台計程車直奔歷史悠久的赤連瓦紅磚古蹟與相連的 Ario 巨型商場！阿卡將、Birthday 童裝、超市水果補給，開啟三軌作戰任務！", tag: "古蹟 ＆ Ario特攻", badgeClass: "bg-emerald-500/10 text-emerald-300 border-emerald-500/30", detail: "走免費自由參觀動線，繞過兩層樓高煮沸壺，到二樓觀賞百年歷史與精彩廣告畫報。最後到「星星大廳」花 ¥1000 點綜合組暢飲生啤酒，順便搶購限定的「SAPPORO經典啤酒凍巧克力」！<br><br><strong>【大總管物資大卡位戰略 - Ario 三軌特攻】</strong>：<br>1. <strong>阿卡將 (Akachan)</strong>：補齊尿布、零食、貼紙玩具。<br>2. <strong>Birthday 童裝</strong>：掃貨平價又具設計感的日系童裝。<br>3. <strong>Ito-Yokado 超市</strong>：搶購整盒現切北海道夕張哈密瓜、現季葡萄、青森蘋果等當季水果物資，確保這幾天維他命補給無虞！<br><br>💡 <em>總管應變流：若在阿卡將已買足，則立刻轉攻 Birthday 與超市水果採買，利用嬰兒車空間，徹底優化物資攜帶效率！</em>", elderNote: "大丸/Ario有充足的公共座椅。啤酒博物館外拍照最漂亮，二樓參觀有電梯，長輩走起來極其輕鬆。", kidNote: "在阿卡將或Birthday可以讓小孩自己挑一個戰術小玩具，作為這幾天乖巧就座的「防哭鬧誘餌」。" },
+                    { time: "17:30 - 19:15", title: "🍣 【晚餐大主秀：Toriton 迴轉壽司】北8条光星店", desc: "平日傍晚剛開飯的黃金時間就位！大啖在地人瘋狂信仰的厚切炙燒鮭魚、爆量蟹膏、巨大干貝與特大牡丹蝦！", tag: "平日離峰速攻", badgeClass: "bg-rose-500/10 text-rose-300 border-rose-500/30", detail: "【大總管控時卡位戰】：17:20 在 Ario 超市門口直接攔 2 台計程車，2 分鐘直送距離最近的 Toriton 北8条光星店。無痛全家大桌直接入座！震撼全家人的味蕾！", elderNote: "迴轉壽司有熟食烤物、熱騰騰茶碗蒸和專屬高湯，完全符合不吃生食長輩的需求。", kidNote: "5歲小孩可點熟鮭魚壽司、玉子燒、炸雞塊與薯條，座位寬敞，不易哭鬧。" },
+                    { time: "19:20 - 21:30", title: "♨️ 狸小路商店街天棚 ➔ 飯店溫泉大會師", desc: "餐後攔 2 台計程車連同戰利品物資直接直送回 Dormy Inn 飯店。換上浴衣上頂樓享受「石狩之湯」天然溫泉！", tag: "溫泉大會師", badgeClass: "bg-teal-500/10 text-teal-300 border-teal-500/30", elderNote: "Dormy Inn「石狩之湯」富含微量元素，泡完湯可在休息區大嗑免費冰棒，徹底消除長輩飛行一天的疲勞。", kidNote: "有免費冰棒！21:30 後更有免費的宵夜醬油拉麵可以飽餐一頓。" },
+                    { time: "21:40~", title: "🦪 【熱血追加：狸小路牡蠣小屋生蠔大宴】", desc: "平輩組、熱愛海鮮的媽媽組「微醺偷溜」，走回狸小路天棚下的 【狸小路牡蠣小屋】！大點厚岸產現開生蠔、大火炭烤爆汁扇貝！", tag: "深夜特攻", badgeClass: "bg-purple-500/10 text-purple-300 border-purple-500/30", elderNote: "長輩此時在飯店舒服入睡，由平輩帶隊，兩隊分流，完全不打擾長輩休息。", kidNote: "5歲小孩在飯店由另一人或長輩看護，安全入睡。" }
                 ]
             },
-            2: {
-                title: "Day 2：現撈現烤帝王蟹大宴 ➔ 小樽浪漫散步 ➔ 燒肉 GINGA 頂級黑毛和牛包廂會席",
-                subtitle: "9月24日 (四) ── 漫步小樽運河與黑毛和牛",
-                hotel: "Dormy Inn Premium 札幌本館 (免搬行李續住)",
-                hotelBadge: "Dormy Inn 本館",
-                timeline: [
-                    {
-                        time: "08:30 - 09:30",
-                        title: "🍳 飯店神級海鮮百匯早餐饗宴",
-                        desc: "享用 Dormy Inn 全國排名前五的極品早餐！鮭魚卵、大干貝無限裝，自製爆量海鮮丼。",
-                        tag: "神級早餐",
-                        badgeClass: "bg-amber-500/10 text-amber-300 border-amber-500/30",
-                        elderNote: "干貝、鮭魚卵非常新鮮甜美，不吃生的長輩也有日式煮物、烤魚和精緻甜點可享用。",
-                        kidNote: "可以讓小孩自製鮭魚卵丼，好玩又美味。"
-                    },
-                    {
-                        time: "09:45 - 10:45",
-                        title: "🚃 海景火車移防（JR 快速列車前往小樽）",
-                        desc: "大總管絕招：去程火車座位務必坐【右側】！可以看著一整片極其壯麗的日本海，40 分鐘一晃眼就到。",
-                        tag: "海景火車",
-                        badgeClass: "bg-blue-500/10 text-blue-300 border-blue-500/30",
-                        elderNote: "搶坐右側看一整片藍色日本海，拍照絕美，心情大好。",
-                        kidNote: "40分鐘車程剛好適中，小孩看海不會無聊。"
-                    },
-                    {
-                        time: "11:00 - 13:00",
-                        title: "🦀 【午餐大主秀：三角市場現撈現烤帝王蟹】",
-                        desc: "出站左轉 1 分鐘進【三角市場】。直接挑選特大現撈現煮活體帝王蟹二吃（烤蟹腳、清蒸蟹身），搭配滿滿的海鮮丼！",
-                        tag: "三角市場蟹大宴",
-                        badgeClass: "bg-rose-500/10 text-rose-300 border-rose-500/30",
-                        detail: "推薦知名店家如【武田鮮魚店】或【滝波食堂】。現場挑選活跳跳的大帝王蟹，現秤現煮，肉質鮮甜多汁！5歲小孩可點烤花鯽魚配熱飯。",
-                        elderNote: "有熟食烤蟹腳、蒸蟹肉，長輩不吃生的完全能吃得很飽。環境稍微擁擠但就在火車站旁，走2步就到。",
-                        kidNote: "5歲小孩可以看到活的巨型帝王蟹，是一堂極佳的北國海洋生物課。"
-                    },
-                    {
-                        time: "13:15 - 16:30",
-                        title: "🎒 小樽浪漫下午茶與放電（推車無障礙平坦動線）",
-                        desc: "順著下坡漫步至小樽運河，再沿著平緩的堺町通散步到童話十字路口與音樂盒堂。",
-                        tag: "小樽下午茶",
-                        badgeClass: "bg-emerald-500/10 text-emerald-300 border-emerald-500/30",
-                        detail: "最後到 LeTAO 本店上樓大吃雙層乳酪蛋糕、北菓樓爆漿泡芙，開啟「吃貨走停模式」，長輩不累、小孩沿路吃。",
-                        elderNote: "這條動線一路下坡或平路，推推車十分好走。LeTAO有電梯，上樓坐著休息很舒適。",
-                        kidNote: "甜點大轟炸！爆漿泡芙與霜淇淋能一秒收服吵鬧的小孩。"
-                    },
-                    {
-                        time: "16:45 - 18:45",
-                        title: "🚖 市區移防 ➔ 全家大回防補眠大充飽電",
-                        desc: "搭計程車返回札幌薄野飯店，回房間辦理小樽散步後的體力充飽電。",
-                        tag: "充電補眠",
-                        badgeClass: "bg-indigo-500/10 text-indigo-300 border-indigo-500/30",
-                        elderNote: "務必睡一覺！或者在溫暖的房間躺著休息，為晚上的黑毛和牛燒肉大主秀蓄積體力。",
-                        kidNote: "小孩下午放電後此時正是最佳的午睡黃金期，大睡兩小時避免晚餐哭鬧。"
-                    },
-                    {
-                        time: "19:00 - 21:00",
-                        title: "🥩 【晚餐大主秀：燒肉 GINGA（黑毛和牛包廂會席）】",
-                        desc: "享用高檔獨立包廂。肉質鮮度極高，現點現切。18:45 全室內天棚無痛推進，完美的將冷風雨水完全封殺！",
-                        tag: "一頭買精選",
-                        badgeClass: "bg-rose-500/10 text-rose-300 border-rose-500/30",
-                        detail: "【完美避雨動線】：因為餐廳就在 G-DINING 大樓 6 樓，全家換上輕裝，推著嬰兒車直接走狸小路商店街天棚，散步 4 分鐘直達南 3 條西 3 丁目的餐廳電梯口。<br><br>老饕必點：13 種肉類的「精選套餐」，大啖厚切牛舌與道產和牛！長輩和小孩推薦用備備長炭七輪大烤特大「島腸（極品稀有部位）」、鴨肉與鮮嫩鹿肉；5 歲小孩配著「山葵飯」或熱熱的自製小菜與香腸，配上鮮榨Perfect Classic生啤酒！",
-                        elderNote: "高檔獨立包廂免受他人打擾，排煙極佳，不吃牛的長輩有鹿肉、鴨肉、熱騰騰雜炊粥與多款冷小菜。",
-                        kidNote: "包廂提供兒童座椅與餐具，烤香腸與香噴噴飯糰是小孩最愛。"
-                    },
-                    {
-                        time: "21:15~",
-                        title: "🚶 無痛天棚回防 ➔ 泡溫泉",
-                        desc: "餐後再度全室內走 4 分鐘天棚回 Dormy Inn，長輩與小孩優雅上樓泡夜湯、大嗑免費冰棒，完美收官！",
-                        tag: "悠閒收官",
-                        badgeClass: "bg-teal-500/10 text-teal-300 border-teal-500/30",
-                        elderNote: "飽餐一頓後回飯店泡個半身浴，一覺到天亮。",
-                        kidNote: "泡溫泉加冰棒是小孩每天最期待的睡前儀式。"
-                    }
-                ]
-            },
-            3: {
-                title: "Day 3：大行李箱隔空移防 ➔ 二條市場外圍吃巧 ➔ 大通公園收穫祭漫步 ➔ 11:30 頂級村上海膽 ➔ 輕裝接駁大巴乃之風",
-                subtitle: "9月25日 (五) ── 100%雙手解脫與極致無痛溫泉之旅",
-                hotel: "湖景TOYA乃之風度假酒店 (觀景溫泉行政房)",
-                hotelBadge: "乃之風 觀景溫泉行政房",
-                timeline: [
-                    {
-                        time: "08:30 - 09:15",
-                        title: "🧳 【神盾第一擊】大行李隔空移防格拉斯麗酒店",
-                        desc: "早晨在 Dormy Inn 退房！大總管啟動「行李傳送戰術」：利用 2 台計程車直接將全家 6 個大行李箱送至明晚入住的 【格拉斯麗酒店 (Hotel Gracery Sapporo)】寄存。雙手 100% 徹底解脫，今明兩天僅攜帶隨身包包與過夜輕裝，尊榮起航！",
-                        tag: "行李隔空移防",
-                        badgeClass: "bg-cyan-500/15 text-cyan-300 border-cyan-500/30",
-                        elderNote: "長輩跟小孩此時免去提重物、搬運與看顧大箱子的任何痛苦，輕鬆背包步行出發。",
-                        kidNote: "嬰兒車推行零阻礙，完全沒有大型件行李的累贅。"
-                    },
-                    {
-                        time: "09:15 - 10:15",
-                        title: "🦪 二條市場外圍極鮮美食 Hopping (吃巧不吃飽)",
-                        desc: "大部隊輕裝漫步 5 分鐘進入 【二條市場】 外圍攤位。不吃繁重的海鮮丼大餐，保留肚子空間給 11:30 的頂級大秀！",
-                        tag: "市場外圍Hopping",
-                        badgeClass: "bg-emerald-500/10 text-emerald-300 border-emerald-500/30",
-                        detail: "平輩與媽媽們現場大啖現剖爆甜生海膽、現開厚岸生蠔；長輩與小孩則來串多汁的哈密瓜切片與極甜的水果玉米，享受市場特有的喧囂元氣氛圍！",
-                        elderNote: "不吃生食的爸媽可以吃炭烤超大扇貝與水果玉米，暖胃又美味。",
-                        kidNote: "水果玉米可以直接生吃，甜度極高，是小孩的最愛。"
-                    },
-                    {
-                        time: "10:15 - 11:15",
-                        title: "🍁 大通公園秋季收穫祭 ➔ 車站無痛漫步推進",
-                        desc: "全員推著嬰兒車，在微涼的北國秋風中，橫跨大通公園。此時正值一年一度最盛大的 【大通公園秋季收穫祭 (Sapporo Autumn Fest)】！",
-                        tag: "收穫祭漫步",
-                        badgeClass: "bg-amber-500/10 text-amber-300 border-amber-500/30",
-                        elderNote: "收穫祭一路上都是平緩無障礙路面，兩側有無數北海道地產農牧產品攤位，長輩可以邊走邊拍、心曠神怡。",
-                        kidNote: "沿路買杯道產鮮乳或現烤馬鈴薯給小孩墊胃，有吃有玩，前進車站毫不哭鬧。"
-                    },
-                    {
-                        time: "11:30 - 13:00",
-                        title: "💛 【午餐終極大主秀：函館うに むらかみ 札幌店】",
-                        desc: "11:30 準時進入已經預約妥當的日本生命大樓 B1 頂級海膽店！享受 100% 完全不加明礬、直營最頂級的生海膽丼大宴！",
-                        tag: "無明礬極致海膽",
-                        badgeClass: "bg-rose-500/10 text-rose-300 border-rose-500/30",
-                        detail: "位於日本生命札幌大樓 B1，直接走地下通道 (Chi-Ka-Ho) 即可直入，完全不吹風、不受凍，極其尊榮！<br><br>不吃生食的長輩與小孩也有最美味的熱食：店內備有熱騰騰的「海膽蛋花雜炊粥」與「海膽茶碗蒸」，同樣能品嚐到頂級海膽的鮮甜！",
-                        elderNote: "11:30 的就餐時間完美避開了車站午間上班族人潮。海膽雜炊粥極其暖胃且入口即化，非常適合長輩消化。",
-                        kidNote: "海膽茶碗蒸香嫩無比，熱騰騰的極為下飯。"
-                    },
-                    {
-                        time: "13:00 - 13:30",
-                        title: "🚶 輕裝無縫集結 ➔ 準備登大巴",
-                        desc: "從 Murakami 餐廳輕鬆起步，穿過全室內溫暖地下通道，散步 4 分鐘直達札幌車站北口野口觀光大巴集合處。全員雙手空空、僅背輕便背包！",
-                        tag: "無縫推進",
-                        badgeClass: "bg-indigo-500/10 text-indigo-300 border-indigo-500/30",
-                        elderNote: "大行李早就在格拉斯麗酒店寄存，爸媽跟小孩雙手完全不用拿重物，舒舒服服散步上車。",
-                        kidNote: "省去搬行李的大汗淋漓，大總管此時極具威嚴。"
-                    },
-                    {
-                        time: "13:30 - 16:00",
-                        title: "🚌 【野口觀光專屬接駁大巴】（無縫補眠流）",
-                        desc: "大巴準時 13:30 發車直達洞爺湖。大行李不在車上，全員在溫慢大巴內安穩大睡 2.5 小時，睡醒即達溫泉天堂。",
-                        tag: "睡眠大移防",
-                        badgeClass: "bg-blue-500/10 text-blue-300 border-blue-500/30",
-                        elderNote: "不轉車、不走路，在暖氣充足的專屬接駁大巴上安心補眠，長輩疲勞度一秒清零。",
-                        kidNote: "車身平穩，通常上車 10 分鐘小孩就會進入深度睡眠。"
-                    },
-                    {
-                        time: "16:00 - 18:00",
-                        title: "🏨 乃之風度假酒店 Check-in 入住煙火頭等艙",
-                        desc: "抵達 湖景TOYA乃之風度假酒店。入住頂級房型：【乃之風俱樂部 — 觀景溫泉行政房】。超大落地窗直面絕美湖景！",
-                        tag: "煙火頭等艙",
-                        badgeClass: "bg-teal-500/10 text-teal-300 border-teal-500/30",
-                        elderNote: "房內自帶觀景溫泉！不用下樓就可以在房間內泡熱騰騰的天然溫泉。",
-                        kidNote: "客房寬敞，湖景絕美，小孩可以舒適在房內活動。"
-                    },
-                    {
-                        time: "18:30 - 21:05",
-                        title: "♨️ 【晚餐：波之音頂級 Buffet ➔ 20:45 湖景煙火大秀】",
-                        desc: "晚餐大啖現煎十勝和牛排、現炸天婦羅與現切哈密瓜。20:45 全體集合在爸媽房間的超大落地窗前！巨大煙火就在窗前接連炸開！",
-                        tag: "極致煙火大主秀",
-                        badgeClass: "bg-rose-500/10 text-rose-300 border-rose-500/30",
-                        elderNote: "窗前即是施放區！完全不用在戶外受受凍吹冷風，在溫暖的房內手拿熱茶、極致尊榮感拉滿！",
-                        kidNote: "震撼力十足的湖景煙火！小孩絕對會看得目瞪口呆，留下最深秋節回憶。"
-                    }
-                ]
-            },
+            2: { /* 原始資料保持完整... */ title: "Day 2：現撈現烤帝王蟹大宴 ➔ 小樽浪漫散步 ➔ 燒肉 GINGA 頂級黑毛和牛包廂會席", subtitle: "9月24日 (四) ── 漫步小樽運河與黑毛和牛", hotel: "Dormy Inn Premium 札幌本館 (免搬行李續住)", hotelBadge: "Dormy Inn 本館", timeline: [{time: "08:30 - 09:30", title: "🍳 飯店神級海鮮百匯早餐饗宴", desc: "享用 Dormy Inn 全國排名前五的極品早餐！鮭魚卵、大干貝無限裝，自製爆量海鮮丼。", tag: "神級早餐", badgeClass: "bg-amber-500/10 text-amber-300 border-amber-500/30", elderNote: "干貝、鮭魚卵非常新鮮甜美，不吃生的長輩也有日式煮物、烤魚和精緻甜點可享用。", kidNote: "可以讓小孩自製鮭魚卵丼，好玩又美味。"}, {time: "09:45 - 10:45", title: "🚃 海景火車移防（JR 快速列車前往小樽）", desc: "大總管絕招：去程火車座位務必坐【右側】！可以看著一整片極其壯麗的日本海，40 分鐘一晃眼就到。", tag: "海景火車", badgeClass: "bg-blue-500/10 text-blue-300 border-blue-500/30", elderNote: "搶坐右側看一整片藍色日本海，拍照絕美，心情大好。", kidNote: "40分鐘車程剛好適中，小孩看海不會無聊。"}, {time: "11:00 - 13:00", title: "🦀 【午餐大主秀：三角市場現撈現烤帝王蟹】", desc: "出站左轉 1 分鐘進【三角市場】。直接挑選特大現撈現煮活體帝王蟹二吃（烤蟹腳、清蒸蟹身），搭配滿滿的海鮮丼！", tag: "三角市場蟹大宴", badgeClass: "bg-rose-500/10 text-rose-300 border-rose-500/30", detail: "推薦知名店家如【武田鮮魚店】或【滝波食堂】。現場挑選活跳跳的大帝王蟹，現秤現煮，肉質鮮甜多汁！5歲小孩可點烤花鯽魚配熱飯。", elderNote: "有熟食烤蟹腳、蒸蟹肉，長輩不吃生的完全能吃得很飽。環境稍微擁擠但就在火車站旁，走2步就到。", kidNote: "5歲小孩可以看到活的巨型帝王蟹，是一堂極佳的北國海洋生物課。"}, {time: "13:15 - 16:30", title: "🎒 小樽浪漫下午茶與放電（推車無障礙平坦動線）", desc: "順著下坡漫步至小樽運河，再沿著平緩的堺町通散步到童話十字路口與音樂盒堂。", tag: "小樽下午茶", badgeClass: "bg-emerald-500/10 text-emerald-300 border-emerald-500/30", detail: "最後到 LeTAO 本店上樓大吃雙層乳酪蛋糕、北菓樓爆漿泡芙，開啟「吃貨走停模式」，長輩不累、小孩沿路吃。", elderNote: "這條動線一路下坡或平路，推推車十分好走。LeTAO有電梯，上樓坐著休息很舒適。", kidNote: "甜點大轟炸！爆漿泡芙與霜淇淋能一秒收服吵鬧的小孩。"}, {time: "16:45 - 18:45", title: "🚖 市區移防 ➔ 全家大回防補眠大充飽電", desc: "搭計程車返回札幌薄野飯店，回房間辦理小樽散步後的體力充飽電。", tag: "充電補眠", badgeClass: "bg-indigo-500/10 text-indigo-300 border-indigo-500/30", elderNote: "務必睡一覺！或者在溫暖的房間躺著休息，為晚上的黑毛和牛燒肉大主秀蓄積體力。", kidNote: "小孩下午放電後此時正是最佳的午睡黃金期，大睡兩小時避免晚餐哭鬧。"}, {time: "19:00 - 21:00", title: "🥩 【晚餐大主秀：燒肉 GINGA（黑毛和牛包廂會席）】", desc: "享用高檔獨立包廂。肉質鮮度極高，現點現切。18:45 全室內天棚無痛推進，完美的將冷風雨水完全封殺！", tag: "一頭買精選", badgeClass: "bg-rose-500/10 text-rose-300 border-rose-500/30", detail: "【完美避雨動線】：因為餐廳就在 G-DINING 大樓 6 樓，全家換上輕裝，推著嬰兒車直接走狸小路商店街天棚，散步 4 分鐘直達南 3 條西 3 丁目的餐廳電梯口。<br><br>老饕必點：13 種肉類的「精選套餐」，大啖厚切牛舌與道產和牛！長輩和小孩推薦用備備長炭七輪大烤特大「島腸（極品稀有部位）」、鴨肉與鮮嫩鹿肉；5 歲小孩配著「山葵飯」或熱熱的自製小菜與香腸，配上鮮榨Perfect Classic生啤酒！", elderNote: "高檔獨立包廂免受他人打擾，排煙極佳，不吃牛的長輩有鹿肉、鴨肉、熱騰騰雜炊粥與多款冷小菜。", kidNote: "包廂提供兒童座椅與餐具，烤香腸與香噴噴飯糰是小孩最愛。"}, {time: "21:15~", title: "🚶 無痛天棚回防 ➔ 泡溫泉", desc: "餐後再度全室內走 4 分鐘天棚回 Dormy Inn，長輩與小孩優雅上樓泡夜湯、大嗑免費冰棒，完美收官！", tag: "悠閒收官", badgeClass: "bg-teal-500/10 text-teal-300 border-teal-500/30", elderNote: "飽餐一頓後回飯店泡個半身浴，一覺到天亮。", kidNote: "泡溫泉加冰棒是小孩每天最期待的睡前儀式。"}] },
+            3: { /* ... Day 3 ... */ title: "Day 3：大行李箱隔空移防 ➔ 二條市場外圍吃巧 ➔ 大通公園收穫祭漫步 ➔ 11:30 頂級村上海膽 ➔ 輕裝接駁大巴乃之風", subtitle: "9月25日 (五) ── 100%雙手解脫與極致無痛溫泉之旅", hotel: "湖景TOYA乃之風度假酒店 (觀景溫泉行政房)", hotelBadge: "乃之風 觀景溫泉行政房", timeline: [{time: "08:30 - 09:15", title: "🧳 【神盾第一擊】大行李隔空移防格拉斯麗酒店", desc: "早晨在 Dormy Inn 退房！大總管啟動「行李傳送戰術」：利用 2 台計程車直接將全家 6 個大行李箱送至明晚入住的 【格拉斯麗酒店 (Hotel Gracery Sapporo)】寄存。雙手 100% 徹底解脫，今明兩天僅攜帶隨身包包與過夜輕裝，尊榮起航！", tag: "行李隔空移防", badgeClass: "bg-cyan-500/15 text-cyan-300 border-cyan-500/30", elderNote: "長輩跟小孩此時免去提重物、搬運與看顧大箱子的任何痛苦，輕鬆背包步行出發。", kidNote: "嬰兒車推行零阻礙，完全沒有大型件行李的累贅。"}, {time: "09:15 - 10:15", title: "🦪 二條市場外圍極鮮美食 Hopping (吃巧不吃飽)", desc: "大部隊輕裝漫步 5 分鐘進入 【二條市場】 外圍攤位。不吃繁重的海鮮丼大餐，保留肚子空間給 11:30 的頂級大秀！", tag: "市場外圍Hopping", badgeClass: "bg-emerald-500/10 text-emerald-300 border-emerald-500/30", detail: "平輩與媽媽們現場大啖現剖爆甜生海膽、現開厚岸生蠔；長輩與小孩則來串多汁的哈密瓜切片與極甜的水果玉米，享受市場特有的喧囂元氣氛圍！", elderNote: "不吃生食的爸媽可以吃炭烤超大扇貝與水果玉米，暖胃又美味。", kidNote: "水果玉米可以直接生吃，甜度極高，是小孩的最愛。"}, {time: "10:15 - 11:15", title: "🍁 大通公園秋季收穫祭 ➔ 車站無痛漫步推進", desc: "全員推著嬰兒車，在微涼的北國秋風中，橫跨大通公園。此時正值一年一度最盛大的 【大通公園秋季收穫祭 (Sapporo Autumn Fest)】！", tag: "收穫祭漫步", badgeClass: "bg-amber-500/10 text-amber-300 border-amber-500/30", elderNote: "收穫祭一路上都是平緩無障礙路面，兩側有無數北海道地產農牧產品攤位，長輩可以邊走邊拍、心曠神怡。", kidNote: "沿路買杯道產鮮乳或現烤馬鈴薯給小孩墊胃，有吃有玩，前進車站毫不哭鬧。"}, {time: "11:30 - 13:00", title: "💛 【午餐終極大主秀：函館うに むらかみ 札幌店】", desc: "11:30 準時進入已經預約妥當的日本生命大樓 B1 頂級海膽店！享受 100% 完全不加明礬、直營最頂級的生海膽丼大宴！", tag: "無明礬極致海膽", badgeClass: "bg-rose-500/10 text-rose-300 border-rose-500/30", detail: "位於日本生命札幌大樓 B1，直接走地下通道 (Chi-Ka-Ho) 即可直入，完全不吹風、不受凍，極其尊榮！<br><br>不吃生食的長輩與小孩也有最美味的熱食：店內備有熱騰騰的「海膽蛋花雜炊粥」與「海膽茶碗蒸」，同樣能品嚐到頂級海膽的鮮甜！", elderNote: "11:30 的就餐時間完美避開了車站午間上班族人潮。海膽雜炊粥極其暖胃且入口即化，非常適合長輩消化。", kidNote: "海膽茶碗蒸香嫩無比，熱騰騰的極為下飯。"}, {time: "13:00 - 13:30", title: "🚶 輕裝無縫集結 ➔ 準備登大巴", desc: "從 Murakami 餐廳輕鬆起步，穿過全室內溫暖地下通道，散步 4 分鐘直達札幌車站北口野口觀光大巴集合處。全員雙手空空、僅背輕便背包！", tag: "無縫推進", badgeClass: "bg-indigo-500/10 text-indigo-300 border-indigo-500/30", elderNote: "大行李早就在格拉斯麗酒店寄存，爸媽跟小孩雙手完全不用拿重物，舒舒服服散步上車。", kidNote: "省去搬行李的大汗淋漓，大總管此時極具威嚴。"}, {time: "13:30 - 16:00", title: "🚌 【野口觀光專屬接駁大巴】（無縫補眠流）", desc: "大巴準時 13:30 發車直達洞爺湖。大行李不在車上，全員在溫慢大巴內安穩大睡 2.5 小時，睡醒即達溫泉天堂。", tag: "睡眠大移防", badgeClass: "bg-blue-500/10 text-blue-300 border-blue-500/30", elderNote: "不轉車、不走路，在暖氣充足的專屬接駁大巴上安心補眠，長輩疲勞度一秒清零。", kidNote: "車身平穩，通常上車 10 分鐘小孩就會進入深度睡眠。"}, {time: "16:00 - 18:00", title: "🏨 乃之風度假酒店 Check-in 入住煙火頭等艙", desc: "抵達 湖景TOYA乃之風度假酒店。入住頂級房型：【乃之風俱樂部 — 觀景溫泉行政房】。超大落地窗直面絕美湖景！", tag: "煙火頭等艙", badgeClass: "bg-teal-500/10 text-teal-300 border-teal-500/30", elderNote: "房內自帶觀景溫泉！不用下樓就可以在房間內泡熱騰騰的天然溫泉。", kidNote: "客房寬敞，湖景絕美，小孩可以舒適在房內活動。"}, {time: "18:30 - 21:05", title: "♨️ 【晚餐：波之音頂級 Buffet ➔ 20:45 湖景煙火大秀】", desc: "晚餐大啖現煎十勝和牛排、現炸天婦羅與現切哈密瓜。20:45 全體集合在爸媽房間的超大落地窗前！巨大煙火就在窗前接連炸開！", tag: "極致煙火大主秀", badgeClass: "bg-rose-500/10 text-rose-300 border-rose-500/30", elderNote: "窗前即是施放區！完全不用在戶外受受凍吹冷風，在溫暖的房內手拿熱茶、極致尊榮感拉滿！", kidNote: "震撼力十足的湖景煙火！小孩絕對會看得目瞪口呆，留下最深秋節回憶。"}] },
             4: {
                 title: "Day 4：輕裝大巴返程 ➔ 行李早已置房無縫入住 ➔ 百貨公司精緻輕食 + Afternoon Tea 甜點大主秀 ➔ 跨世代分流血拼大陣線 ➔ 薄野高空和牛蒸蟹 ➔ 夜聖代",
                 subtitle: "9月26日 (六) ── 札幌慢活甜點大血拼與奢華蟹宴",
                 hotel: "Hotel Gracery Sapporo (格拉斯麗札幌酒店)",
                 hotelBadge: "Hotel Gracery 札幌",
-                hotelBadgeClass: "bg-cyan-500/10 text-cyan-300 border-cyan-500/30",
                 timeline: [
-                    {
-                        time: "08:00 - 12:30",
-                        title: "🌊 湖畔晨光 ➔ 接駁大巴返程回札幌",
-                        desc: "一邊欣賞清晨絕美湖景，一邊享用乃之風精緻的晨間 Buffet。10:00 大巴發車返回札幌，12:30 於車站南口下車。",
-                        tag: "大巴返程",
-                        badgeClass: "bg-blue-500/10 text-blue-300 border-blue-500/30",
-                        elderNote: "返程一樣在溫慢的車上舒舒服服補眠，不必在站台受冷風吹拂。",
-                        kidNote: "12:30 抵達札幌，時間控制得恰到好處。"
-                    },
-                    {
-                        time: "12:30 - 12:45",
-                        title: "🏨 格拉斯麗無縫進房 ➔ 大箱子早已在房內！",
-                        desc: "下車後走車站地下街 APIA 直接走入 【格拉斯麗酒店】 辦理入住！昨早由小黃運來的 6 個大型行李箱早已被客房人員安穩移送至您的客房中！",
-                        tag: "神級無痛入住",
-                        badgeClass: "bg-cyan-500/10 text-cyan-300 border-cyan-500/30",
-                        elderNote: "免拖拉任何大行李箱！全員僅拿過夜手提袋直入客房，尊榮感堪比五星級管家服務。",
-                        kidNote: "推嬰兒車十分流暢，直接搭乘直達客房電梯。"
-                    },
-                    {
-                        time: "12:45 - 14:15",
-                        title: "🍰 【午餐與下午茶大主秀：百貨輕食卡位 ＆ Afternoon Tea TEAROOM】",
-                        desc: "全員輕裝走全室內通道切入相連的大丸百貨商圈。中午安排精緻不油膩的百貨「日式輕食（日式三明治/旬彩沙拉蛋包飯）」，調理味蕾，隨後開啟夢幻甜點流！",
-                        tag: "Afternoon Tea大秀",
-                        badgeClass: "bg-rose-500/10 text-rose-300 border-rose-500/30",
-                        detail: "特別安排 <strong>【Afternoon Tea TEAROOM】</strong>（位於大丸百貨內），狂點貴婦與媽媽們瘋狂信仰的「招牌水果草莓千層蛋糕」、季節限定法式聖代，搭配熱騰騰英式鮮奶茶，優雅感拉滿！長輩、5歲小孩沿路大吃，幸福度爆棚！",
-                        elderNote: "全室內百貨內用餐，不用排隊挨凍。輕食與下午茶特別對長輩跟媽媽們的胃口，身心舒暢。",
-                        kidNote: "千層蛋糕與水果聖代是小孩子最愛的頂級美味，座位寬敞沙發舒適，小孩能乖巧坐定。"
-                    },
-                    {
-                        time: "14:20 - 17:30",
-                        title: "🛒 【大總管大縱走調度】跨世代頂級分流血拼大陣線（全室內共構圈）",
-                        desc: "大總管啟動終極血拼矩陣！全員在大丸百貨與 Stellar Place 的共構商圈內發動大分流！買完走地下連通道2分鐘直接送回格拉斯麗酒店房間！",
-                        tag: "大總管大縱走矩陣",
-                        badgeClass: "bg-purple-500/15 text-purple-300 border-purple-500/30",
-                        detail: "<strong>大總管核心調度矩陣部署如下：</strong><br><br>" +
-                               "1. 🛏️ <strong>長輩健康極致組（大丸 7F）</strong>：直攻 <strong>【西川 nishikawa 客製化枕頭】</strong>、<strong>【Brain Sleep 科技枕】</strong> 與 <strong>今治毛巾</strong>！大總管調度：此項需要專業睡眠測量師進行一對一弧度量測，請長輩組先行前去，您再帶隊入座量測，若現場缺貨亦可同步對齊備備用方案！鄰近還有 <strong>【3 Coins】</strong> 質感小物，非常適合長輩隨身帶走！<br><br>" +
-                               "2. 👟 <strong>舒適足底組（大丸 5F）</strong>：平輩與熱愛健走組發動分流特攻，直奔 <strong>【HOKA 專業跑鞋】</strong> 專櫃！因該品牌試穿需求極大、耗時較長，由平輩組自行快攻搞定。<br><br>" +
-                               "3. 🧸 <strong>小孩獎勵組（Stellar Place 5F）</strong>：由媽媽或平輩帶隊，切入 <strong>【Disney Store】</strong>！與 HOKA 跑鞋採購動線完美串聯，將無數精緻玩具作為引誘 5 歲小孩的「終極乖巧誘餌」！<br><br>" +
-                               "4. 👗 <strong>快時尚掃貨組（Stellar Place）</strong>：全員最後合體狂掃 <strong>【Uniqlo / GU】</strong>，補齊秋冬日系潮流服飾。所有戰利品提滿後，完全不用出地面，直接走地下街 2 分鐘直送回格拉斯麗飯店房間躺平吹暖氣！",
-                        elderNote: "大丸7樓環境極其優雅，適合長輩量測與選購枕頭、毛巾。大總管隨時注意長輩腳力，可至百貨長椅休憩。",
-                        kidNote: "迪士尼商店的玩具是小孩的夢幻天堂，買到手後能大幅安撫 5 歲小孩的耐性。"
-                    },
-                    {
-                        time: "18:00 - 20:00",
-                        title: "🦀 【晚餐大主秀：蟹座 KANIZA 高空夜景和牛蒸蟹宴（Buffet 吃到飽）】",
-                        desc: "大包廂欣賞薄野夜景，由服務生將預先開好殼的巨大帝王蟹腳、松葉蟹腳直送桌邊！大人同時在海膽高湯鴛鴦鍋裡涮著頂級和牛！",
-                        tag: "高空和牛蒸蟹",
-                        badgeClass: "bg-rose-500/10 text-rose-300 border-rose-500/30",
-                        detail: "位於 G-DINING 大樓 9 樓。尊榮感拉滿，長輩完全免手忙腳亂用剪刀剪蟹殼！服務生會送上預先開好殼的巨大蟹腳，直接動手一拉即可大口咬下！高湯鍋還能無限涮頂級牛舌與極上和牛！",
-                        elderNote: "最討厭動手剪殼的長輩在這裡會吃得最滿意，肉多脂厚，和牛在海膽高湯裡涮過香氣十足，軟嫩好嚼。",
-                        kidNote: "熟蟹腳肉質結實無刺，小孩可以由大人直接餵食，安全又豪爽。"
-                    },
-                    {
-                        time: "20:15 - 21:30",
-                        title: "🍦 【壓軸宵夜大主秀：佐藤堂 本店 夜聖代】",
-                        desc: "吃完螃蟹後，全家漫步 2 分鐘直攻札幌聖代天花板 【佐藤堂 本店】！藝術品般的季節限定聖代與手工雪酪，一秒驚豔全家人！",
-                        tag: "夜聖代天花板",
-                        badgeClass: "bg-rose-500/10 text-rose-300 border-rose-500/30",
-                        elderNote: "精緻乳酪與手工雪酪甜而不膩，長輩也會一秒驚豔！大總管貼心幫點熱茶暖胃。",
-                        kidNote: "五顏六色的華麗聖代是小空間的夢幻點心，電力徹底放光。"
-                    },
-                    {
-                        time: "21:40~",
-                        title: "🚖 小黃極速回防 ➔ 舒服洗個熱水澡",
-                        desc: "在佐藤堂門口直接攔 2 台計程車，6 分鐘直送全家回格拉斯麗酒店。",
-                        tag: "回防酒店",
-                        badgeClass: "bg-teal-500/10 text-teal-300 border-teal-500/30",
-                        elderNote: "出大門 1 秒上計程車，完全不受薄野深夜冷風吹襲，暖呼呼直送飯店床鋪。",
-                        kidNote: "格拉斯麗酒店緊鄰車站，進房快速，小孩可立刻上床睡覺。"
-                    }
+                    { time: "08:00 - 12:30", title: "🌊 湖畔晨光 ➔ 接駁大巴返程回札幌", desc: "一邊欣賞清晨絕美湖景，一邊享用乃之風精緻的晨間 Buffet。10:00 大巴發車返回札幌，12:30 於車站南口下車。", tag: "大巴返程", badgeClass: "bg-blue-500/10 text-blue-300 border-blue-500/30", elderNote: "返程一樣在溫慢的車上舒舒服服補眠，不必在站台受冷風吹拂。", kidNote: "12:30 抵達札幌，時間控制得恰到好處。" },
+                    { time: "12:30 - 12:45", title: "🏨 格拉斯麗無縫進房 ➔ 大箱子早已在房內！", desc: "下車後走車站地下街 APIA 直接走入 【格拉斯麗酒店】 辦理入住！昨早由小黃運來的 6 個大型行李箱早已被客房人員安穩移送至您的客房中！", tag: "神級無痛入住", badgeClass: "bg-cyan-500/10 text-cyan-300 border-cyan-500/30", elderNote: "免拖拉任何大行李箱！全員僅拿過夜手提袋直入客房，尊榮感堪比五星級管家服務。", kidNote: "推嬰兒車十分流暢，直接搭乘直達客房電梯。" },
+                    { time: "12:45 - 14:15", title: "🍰 【午餐與下午茶大主秀：百貨輕食卡位 ＆ Afternoon Tea TEAROOM】", desc: "全員輕裝走全室內通道切入相連的大丸百貨商圈。中午安排精緻不油膩的百貨「日式輕食（日式三明治/旬彩沙拉蛋包飯）」，調理味蕾，隨後開啟夢幻甜點流！", tag: "Afternoon Tea大秀", badgeClass: "bg-rose-500/10 text-rose-300 border-rose-500/30", detail: "特別安排 <strong>【Afternoon Tea TEAROOM】</strong>（位於大丸百貨內），狂點貴婦與媽媽們瘋狂信仰的「招牌水果草莓千層蛋糕」、季節限定法式聖代，搭配熱騰騰英式鮮奶茶，優雅感拉滿！長輩、5歲小孩沿路大吃，幸福度爆棚！", elderNote: "全室內百貨內用餐，不用排隊挨凍。輕食與下午茶特別對長輩跟媽媽們的胃口，身心舒暢。", kidNote: "千層蛋糕與水果聖代是小孩子最愛的頂級美味，座位寬敞沙發舒適，小孩能乖巧坐定。" },
+                    { time: "14:20 - 17:30", title: "🛒 【大總管大縱走調度】跨世代頂級分流血拼大陣線（全室內共構圈）", desc: "大總管啟動終極血拼矩陣！全員在大丸百貨與 Stellar Place 的共構商圈內發動大分流！記得在百貨商圈穿梭時，中場必須停靠 <strong>【KINOTOYA BAKE】</strong> 大嗑極上生乳霜淇淋，為血拼注入強大續航力！", tag: "大總管大縱走矩陣", badgeClass: "bg-purple-500/15 text-purple-300 border-purple-500/30", detail: "<strong>大總管核心調度矩陣部署如下：</strong><br><br>1. 🛏️ <strong>長輩健康極致組（大丸 7F）</strong>：直攻 <strong>【西川 nishikawa 客製化枕頭】</strong>、<strong>【Brain Sleep 科技枕】</strong> 與 <strong>今治毛巾</strong>！大總管調度：此項需要專業睡眠測量師進行一對一弧度量測，請長輩組先行前去，您再帶隊入座量測，若現場缺貨亦可同步對齊備備用方案！鄰近還有 <strong>【3 Coins】</strong> 質感小物，非常適合長輩隨身帶走！<br><br>2. 👟 <strong>舒適足底組（大丸 5F）</strong>：平輩與熱愛健走組發動分流特攻，直奔 <strong>【HOKA 專業跑鞋】</strong> 專櫃！因該品牌試穿需求極大、耗時較長，由平輩組自行快攻搞定。<br><br>3. 🍦 <strong>能量補給站</strong>：血拼分流交會點，全家集合在 <strong>【KINOTOYA】</strong> 吃極上生乳霜淇淋，鮮乳濃度天花板，讓戰力回滿！<br><br>4. 🧸 <strong>小孩獎勵組（Stellar Place 5F）</strong>：由媽媽或平輩帶隊，切入 <strong>【Disney Store】</strong>！與 HOKA 跑鞋採購動線完美串聯，將無數精緻玩具作為引誘 5 歲小孩的「終極乖巧誘餌」！<br><br>5. 👗 <strong>快時尚掃貨組（Stellar Place）</strong>：全員最後合體狂掃 <strong>【Uniqlo / GU】</strong>，補齊秋冬日系潮流服飾。所有戰利品提滿後，完全不用出地面，直接走地下街 2 分鐘直送回格拉斯麗飯店房間躺平吹暖氣！", elderNote: "大丸7樓環境極其優雅，適合長輩量測與選購枕頭、毛巾。大總管隨時注意長輩腳力，可至百貨長椅休憩。", kidNote: "迪士尼商店的玩具是小孩的夢幻天堂，買到手後能大幅安撫 5 歲小孩的耐性。" },
+                    { time: "18:00 - 20:00", title: "🦀 【晚餐大主秀：蟹座 KANIZA 高空夜景和牛蒸蟹宴（Buffet 吃到飽）】", desc: "大包廂欣賞薄野夜景，由服務生將預先開好殼的巨大帝王蟹腳、松葉蟹腳直送桌邊！大人同時在海膽高湯鴛鴦鍋裡涮著頂級和牛！", tag: "高空和牛蒸蟹", badgeClass: "bg-rose-500/10 text-rose-300 border-rose-500/30", detail: "位於 G-DINING 大樓 9 樓。尊榮感拉滿，長輩完全免手忙腳亂用剪刀剪蟹殼！服務生會送上預先開好殼的巨大蟹腳，直接動手一拉即可大口咬下！高湯鍋還能無限涮頂級牛舌與極上和牛！", elderNote: "最討厭動手剪殼的長輩在這裡會吃得最滿意，肉多脂厚，和牛在海膽高湯裡涮過香氣十足，軟嫩好嚼。", kidNote: "熟蟹腳肉質結實無刺，小孩可以由大人直接餵食，安全又豪爽。" },
+                    { time: "20:15 - 21:30", title: "🍦 【壓軸宵夜大主秀：佐藤堂 本店 夜聖代】", desc: "吃完螃蟹後，全家漫步 2 分鐘直攻札幌聖代天花板 【佐藤堂 本店】！藝術品般的季節限定聖代與手工雪酪，一秒驚豔全家人！", tag: "夜聖代天花板", badgeClass: "bg-rose-500/10 text-rose-300 border-rose-500/30", elderNote: "精緻乳酪與手工雪酪甜而不膩，長輩也會一秒驚豔！大總管貼心幫點熱茶暖胃。", kidNote: "五顏六色的華麗聖代是小空間的夢幻點心，電力徹底放光。" },
+                    { time: "21:40~", title: "🚖 小黃極速回防 ➔ 舒服洗個熱水澡", desc: "在佐藤堂門口直接攔 2 台計程車，6 分鐘直送全家回格拉斯麗酒店。", tag: "回防酒店", badgeClass: "bg-teal-500/10 text-teal-300 border-teal-500/30", elderNote: "出大門 1 秒上計程車，完全不受薄野深夜冷風吹襲，暖呼呼直送飯店床鋪。", kidNote: "格拉斯麗酒店緊鄰車站，進房快速，小孩可立刻上床睡覺。" }
                 ]
             },
-            5: {
-                title: "Day 5：機場超前部署 ➔ 0元手推車甩行李戰術 ➔ 11:00 湯咖哩速攻 ➔ 國內線夢幻大縱走",
-                subtitle: "9月27日 (日) ── 機場極速甩行李與國內線樂園",
-                hotel: "泰國亞航 FD243 (14:40 起飛) ── 平安返台",
-                hotelBadge: "機場國內線 ＆ 國際線",
-                hotelBadgeClass: "bg-blue-500/10 text-blue-300 border-blue-500/30",
-                timeline: [
-                    {
-                        time: "08:30 - 09:42",
-                        title: "🧳 市區退房與全室內推進 ➔ 抵達機場",
-                        desc: "在【格拉斯麗酒店】退房後，走 2 分鐘室內地下街直達札幌車站。搭乘 09:05 的 JR 快速 Airport 號（U-Seat 指定席）。09:42 抵達新千歲機場，多砸出 1.5 小時逛街時間！",
-                        tag: "超前部署",
-                        badgeClass: "bg-cyan-500/10 text-cyan-300 border-cyan-500/30",
-                        elderNote: "走溫慢全室內電動步道，一路推進到國際線 3 樓亞航出發大廳，爸媽不費力氣。",
-                        kidNote: "U-Seat 保證座位，小孩在車上吃完早餐繼續安穩補眠。"
-                    },
-                    {
-                        time: "09:45 - 10:15",
-                        title: "🧳 【0元特攻隊分流行李甩包術】",
-                        desc: "在國際線免費抓 2~3 台行李手推車，把 6 個大箱子疊上去。雙手徹底空空、1分錢都不用花！",
-                        tag: "行李甩包術",
-                        badgeClass: "bg-indigo-500/10 text-indigo-300 border-indigo-500/30",
-                        elderNote: "大總管調度：留下 1~2 位平輩在國際線舒服的沙發區滑手機顧行李。長輩、媽媽們、5歲小孩推著嬰兒車悠閒重返國內線 3 樓開始大逛街，雙手徹底解脫！",
-                        kidNote: "推嬰兒車不用推沉重行李，大總管分流神招！"
-                    },
-                    {
-                        time: "10:30 - 12:00",
-                        title: "🍛 【午餐壓軸大主秀：GARAKU 湯咖哩機場戰】",
-                        desc: "11:00 準時開門，第一批直接進店開大桌！帶骨雞腿肉質鮮嫩，辛香暖胃！",
-                        tag: "GARAKU 湯咖哩",
-                        badgeClass: "bg-rose-500/10 text-rose-300 border-rose-500/30",
-                        detail: "【GARAKU 前哨排隊戰術】：平輩特攻隊先在國內線 3 樓 GARAKU 門口排隊守候第一輪。此時人潮最少，11:00一開門全家第一批直接入座大桌！國際線顧行李的平輩此時進行換班交接，一起大嗑熱騰騰帶骨雞肉湯咖哩。",
-                        elderNote: "可以選擇完全不辣的湯底，湯頭富含地產鮮甜蔬菜（蓮藕、花椰菜、南瓜），烤雞腿軟嫩、輕輕一撥即骨肉分離，極其適合長輩。",
-                        kidNote: "有兒童版湯咖哩與甜味可可，大桌位置舒適，小孩可以安心用餐。"
-                    },
-                    {
-                        time: "12:05 - 12:35",
-                        title: "💼 【亞航開櫃 0元無縫掛行李】",
-                        desc: "吃飽後特攻隊推著行李手推車，直接送進已開櫃的亞航櫃檯正式託運！全家人行李徹底消失。",
-                        tag: "行李掛妥",
-                        badgeClass: "bg-teal-500/10 text-teal-300 border-teal-500/30",
-                        elderNote: "行李掛好後，爸媽可以隨身輕裝，放鬆做最後一輪名產狂掃。",
-                        kidNote: "小孩在免去沉重行李手推車的推擠危險，安全度極高。"
-                    },
-                    {
-                        time: "12:35 - 14:15",
-                        title: "🛍️ 【國內線 2樓名產商圈 ＆ 3樓樂園大縱走】",
-                        desc: "上飛機前最後一擊！平輩帶小孩去樂園放電耗電；長輩與媽媽組在 2 樓狂掃伴手禮！",
-                        tag: "名產 ＆ 樂園",
-                        badgeClass: "bg-purple-500/10 text-purple-300 border-purple-500/30",
-                        elderNote: "2樓伴手禮商圈非常集中，有電梯。臨走前排隊搶購 KINOTOYA 極上生乳霜淇淋（鮮乳濃度天花板，大總管強推！）。",
-                        kidNote: "平輩放電組：衝「多啦A夢空中樂園」與「Hello Kitty 飛行公園」看機器人生產線，讓 5 歲小孩上飛機前電力耗盡！上飛機直接秒睡。"
-                    },
-                    {
-                        time: "14:40 - 18:00",
-                        title: "✈️ 平安返台（泰國亞航 FD243）",
-                        desc: "全員帶著滿足的笑容過海關安檢。班機起飛，台灣時間 18:00 順利降落桃園第一航廈，完美收官！",
-                        tag: "平安歸國",
-                        badgeClass: "bg-slate-800 text-slate-300 border-slate-700",
-                        elderNote: "平安抵達，出關後由大總管提早約妥包車直送回家。",
-                        kidNote: "上飛機大睡 4 小時直接在睡夢中返台，家長零負擔。"
-                    }
-                ]
-            }
+            5: { /* ... Day 5 ... */ title: "Day 5：機場超前部署 ➔ 0元手推車甩行李戰術 ➔ 11:00 湯咖哩速攻 ➔ 國內線夢幻大縱走", subtitle: "9月27日 (日) ── 機場極速甩行李與國內線樂園", hotel: "泰國亞航 FD243 (14:40 起飛) ── 平安返台", hotelBadge: "機場國內線 ＆ 國際線", timeline: [{time: "08:30 - 09:42", title: "🧳 市區退房與全室內推進 ➔ 抵達機場", desc: "在【格拉斯麗酒店】退房後，走 2 分鐘室內地下街直達札幌車站。搭乘 09:05 的 JR 快速 Airport 號（U-Seat 指定席）。09:42 抵達新千歲機場，多砸出 1.5 小時逛街時間！", tag: "超前部署", badgeClass: "bg-cyan-500/10 text-cyan-300 border-cyan-500/30", elderNote: "走溫慢全室內電動步道，一路推進到國際線 3 樓亞航出發大廳，爸媽不費力氣。", kidNote: "U-Seat 保證座位，小孩在車上吃完早餐繼續安穩補眠。"}, {time: "09:45 - 10:15", title: "🧳 【0元特攻隊分流行李甩包術】", desc: "在國際線免費抓 2~3 台行李手推車，把 6 個大箱子疊上去。雙手徹底空空、1分錢都不用花！", tag: "行李甩包術", badgeClass: "bg-indigo-500/10 text-indigo-300 border-indigo-500/30", elderNote: "大總管調度：留下 1~2 位平輩在國際線舒服的沙發區滑手機顧行李。長輩、媽媽們、5歲小孩推著嬰兒車悠閒重返國內線 3 樓開始大逛街，雙手徹底解脫！", kidNote: "推嬰兒車不用推沉重行李，大總管分流神招！"}, {time: "10:30 - 12:00", title: "🍛 【午餐壓軸大主秀：GARAKU 湯咖哩機場戰】", desc: "11:00 準時開門，第一批直接進店開大桌！帶骨雞腿肉質鮮嫩，辛香暖胃！", tag: "GARAKU 湯咖哩", badgeClass: "bg-rose-500/10 text-rose-300 border-rose-500/30", detail: "【GARAKU 前哨排隊戰術】：平輩特攻隊先在國內線 3 樓 GARAKU 門口排隊守候第一輪。此時人潮最少，11:00一開門全家第一批直接入座大桌！國際線顧行李的平輩此時進行換班交接，一起大嗑熱騰騰帶骨雞肉湯咖哩。", elderNote: "可以選擇完全不辣的湯底，湯頭富含地產鮮甜蔬菜（蓮藕、花椰菜、納瓜），烤雞腿軟嫩、輕輕一撥即骨肉分離，極其適合長輩。", kidNote: "有兒童版湯咖哩與甜味可可，大桌位置舒適，小孩可以安心用餐。"}, {time: "12:05 - 12:35", title: "💼 【亞航開櫃 0元無縫掛行李】", desc: "吃飽後特攻隊推著行李手推車，直接送進已開櫃的亞航櫃檯正式託運！全家人行李徹底消失。", tag: "行李掛妥", badgeClass: "bg-teal-500/10 text-teal-300 border-teal-500/30", elderNote: "行李掛好後，爸媽可以隨身輕裝，放鬆做最後一輪名產狂掃。", kidNote: "小孩在免去沉重行李手推車的推擠危險，安全度極高。"}, {time: "12:35 - 14:15", title: "🛍️ 【國內線 2樓名產商圈 ＆ 3樓樂園大縱走】", desc: "上飛機前最後一擊！平輩帶小孩去樂園放電耗電；長輩與媽媽組在 2 樓狂掃伴手禮！", tag: "名產 ＆ 樂園", badgeClass: "bg-purple-500/10 text-purple-300 border-purple-500/30", elderNote: "2樓伴手禮商圈非常集中，有電梯。臨走前排隊搶購 KINOTOYA 極上生乳霜淇淋（鮮乳濃度天花板，大總管強推！）。", kidNote: "平輩放電組：衝「多啦A夢空中樂園」與「Hello Kitty 飛行公園」看機器人生產線，讓 5 歲小孩上飛機前電力耗盡！上飛機直接秒睡。"}, {time: "14:40 - 18:00", title: "✈️ 平安返台（泰國亞航 FD243）", desc: "全員帶著滿足的笑容過海關安檢。班機起飛，台灣時間 18:00 順利降落桃園第一航廈，完美收官！", tag: "平安歸國", badgeClass: "bg-slate-800 text-slate-300 border-slate-700", elderNote: "平安抵達，出關後由大總管提早約妥包車直送回家。", kidNote: "上飛機大睡 4 小時直接在睡夢中返台，家長零負擔。"}] }
         };
 
         function changeDay(dayNum) {
             for (let i = 1; i <= 5; i++) {
                 const btn = document.getElementById(`day-btn-${i}`);
-                if (i === dayNum) { btn.className = "flex-1 py-3 px-4 rounded-xl text-center font-bold text-sm min-w-[90px] border border-transparent transition-all duration-300 bg-gradient-to-r from-cyan-500 to-blue-600 text-slate-950 shadow-lg shadow-cyan-500/20"; }
-                else { btn.className = "flex-1 py-3 px-4 rounded-xl text-center font-bold text-sm min-w-[90px] border border-slate-800 hover:border-slate-700 transition-all duration-300 text-slate-400 hover:text-slate-200"; }
+                if (i === dayNum) { btn.className = "flex-1 py-3 px-4 rounded-xl text-center font-bold text-sm min-w-[90px] border border-transparent bg-gradient-to-r from-cyan-500 to-blue-600 text-slate-950 shadow-lg shadow-cyan-500/20"; }
+                else { btn.className = "flex-1 py-3 px-4 rounded-xl text-center font-bold text-sm min-w-[90px] border border-slate-800 hover:border-slate-700 text-slate-400"; }
             }
-
             const dayData = itinerary[dayNum];
-            document.getElementById("day-title").innerHTML = `<i class="fa-solid ${getDayIcon(dayNum)} text-cyan-400 mr-1.5"></i> ${dayData.title}`;
+            document.getElementById("day-title").innerHTML = `<i class="fa-solid fa-map-pin text-cyan-400 mr-2"></i> ${dayData.title}`;
             document.getElementById("day-subtitle").innerText = `${dayData.subtitle} ── ${dayData.hotel}`;
-            document.getElementById("day-hotel-badge").innerHTML = `<i class="fa-solid fa-hotel mr-1.5"></i> ${dayData.hotelBadge}`;
-
             const container = document.getElementById("timeline-container");
             container.innerHTML = "";
-
             dayData.timeline.forEach((item, index) => {
-                const itemDiv = document.createElement("div");
-                itemDiv.className = "relative group transition-all duration-300";
-                const bulletColor = item.tag.includes("晚餐") || item.tag.includes("主秀") || item.tag.includes("海膽") || item.tag.includes("Afternoon") || item.tag.includes("矩陣") ? "bg-rose-500" : "bg-cyan-500";
-                let detailsBtnHtml = item.detail ? `<button onclick="showDetails(${dayNum}, ${index})" class="mt-2.5 inline-flex items-center gap-1 text-xs text-cyan-400 hover:text-cyan-300 font-bold transition-all duration-150"><i class="fa-solid fa-circle-info"></i> 展開大總管神盾避雷細節...</button>` : "";
-
-                itemDiv.innerHTML = `
-                    <div class="absolute -left-[37px] md:-left-[45px] top-1.5 ${bulletColor} text-slate-950 w-4 h-4 rounded-full border-4 border-slate-900 group-hover:scale-125 transition-all duration-300 shadow shadow-cyan-500/20"></div>
-                    <div class="bg-slate-900/80 backdrop-blur border border-slate-800 rounded-2xl p-4 md:p-5 hover:border-slate-700 hover:shadow-lg transition-all duration-200 space-y-3">
-                        <div class="flex flex-wrap justify-between items-start gap-2">
-                            <div class="flex items-center gap-2">
-                                <span class="quicksand font-bold text-sm md:text-base text-cyan-400 tracking-wider"><i class="fa-regular fa-clock mr-1"></i>${item.time}</span>
-                                <h3 class="font-extrabold text-sm md:text-base text-slate-100 group-hover:text-cyan-300 transition-colors">${item.title}</h3>
-                            </div>
-                            <span class="border px-2 py-0.5 rounded text-[10px] font-bold tracking-wider ${item.badgeClass}">${item.tag}</span>
-                        </div>
-                        <p class="text-xs md:text-sm text-slate-300 leading-relaxed font-medium">${item.desc}</p>
-                        ${detailsBtnHtml}
-                        <div class="grid grid-cols-1 md:grid-cols-2 gap-2 pt-2 border-t border-slate-800/80 text-[11px]">
-                            <div class="flex gap-1.5 items-start text-emerald-400 bg-emerald-500/5 p-2 rounded-xl border border-emerald-500/10">
-                                <i class="fa-solid fa-wheelchair mt-0.5"></i>
-                                <div><strong class="block text-slate-200">👵 長輩指引：</strong><span class="text-slate-300 font-medium">${item.elderNote}</span></div>
-                            </div>
-                            <div class="flex gap-1.5 items-start text-rose-400 bg-rose-500/5 p-2 rounded-xl border border-rose-500/10">
-                                <i class="fa-solid fa-baby-carriage mt-0.5"></i>
-                                <div><strong class="block text-slate-200">👶 5歲童指引：</strong><span class="text-slate-300 font-medium">${item.kidNote}</span></div>
-                            </div>
+                const div = document.createElement("div");
+                div.className = "relative group";
+                div.innerHTML = `
+                    <div class="absolute -left-[37px] top-1.5 bg-cyan-500 w-4 h-4 rounded-full border-4 border-slate-900"></div>
+                    <div class="bg-slate-900/80 border border-slate-800 rounded-2xl p-4 md:p-5 space-y-3">
+                        <div class="flex justify-between items-center"><span class="font-bold text-cyan-400">${item.time}</span><span class="border px-2 py-0.5 rounded text-[10px] font-bold ${item.badgeClass}">${item.tag}</span></div>
+                        <h3 class="font-extrabold text-slate-100">${item.title}</h3>
+                        <p class="text-xs md:text-sm text-slate-300 leading-relaxed">${item.desc}</p>
+                        ${item.detail ? `<button onclick="showDetails(${dayNum}, ${index})" class="text-xs text-cyan-400 font-bold underline">查看避雷細節</button>` : ""}
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-2 pt-2 border-t border-slate-800 text-[11px]">
+                            <div class="p-2 bg-emerald-500/5 rounded-lg border border-emerald-500/10 text-emerald-400"><strong class="block text-slate-200">👵 長輩指引：</strong>${item.elderNote}</div>
+                            <div class="p-2 bg-rose-500/5 rounded-lg border border-rose-500/10 text-rose-400"><strong class="block text-slate-200">👶 5歲童指引：</strong>${item.kidNote}</div>
                         </div>
                     </div>
                 `;
-                container.appendChild(itemDiv);
+                container.appendChild(div);
             });
-        }
-
-        function getDayIcon(dayNum) {
-            return dayNum === 1 ? "fa-beer-mug-empty" : dayNum === 2 ? "fa-shrimp" : dayNum === 3 ? "fa-fireworks" : dayNum === 4 ? "fa-gem" : "fa-plane-departure";
         }
 
         function showDetails(day, index) {
             const item = itinerary[day].timeline[index];
-            document.getElementById("modal-content").innerHTML = `
-                <div class="space-y-3">
-                    <span class="inline-block bg-cyan-500/15 text-cyan-400 border border-cyan-400/20 text-[10px] font-black tracking-widest px-2 py-0.5 rounded uppercase">${item.tag} ── 深度導航資料庫</span>
-                    <h3 class="text-xl font-black text-slate-100">${item.title}</h3>
-                    <p class="text-xs text-slate-400 font-mono"><i class="fa-solid fa-clock"></i> 移防時間：${item.time}</p>
-                    <div class="p-4 bg-slate-950/80 rounded-2xl border border-slate-800 text-xs md:text-sm text-slate-300 leading-relaxed font-medium space-y-2">
-                        <strong class="text-cyan-400 block"><i class="fa-solid fa-shield-halved"></i> 大總管防坑與大批量採購秘笈：</strong>
-                        <p>${item.detail}</p>
-                    </div>
-                </div>
-            `;
+            document.getElementById("modal-content").innerHTML = `<h3 class="text-lg font-black text-cyan-400">${item.title}</h3><div class="text-sm text-slate-300 leading-relaxed">${item.detail}</div>`;
             document.getElementById("detail-modal").classList.remove("hidden");
         }
 
         function closeModal() { document.getElementById("detail-modal").classList.add("hidden"); }
 
-        function renderMemos() {
-            const list = document.getElementById("memo-list");
-            const emptyMsg = document.getElementById("empty-memo-msg");
-            list.innerHTML = "";
-            if (memos.length === 0) { list.appendChild(emptyMsg); emptyMsg.classList.remove("hidden"); return; }
-            emptyMsg.classList.add("hidden");
-            memos.forEach((memo, index) => {
-                const item = document.createElement("div");
-                item.className = "flex justify-between items-center bg-slate-900 border border-slate-800/80 px-3.5 py-2.5 rounded-xl text-xs font-semibold text-slate-300 animate-scale-up";
-                item.innerHTML = `<span><i class="fa-solid fa-chevron-right text-cyan-500 text-[10px] mr-1.5"></i>${memo}</span><button onclick="deleteMemo(${index})" class="text-slate-500 hover:text-rose-400 p-1"><i class="fa-solid fa-circle-minus"></i></button>`;
-                list.appendChild(item);
-            });
-        }
-        function addMemo() { const input = document.getElementById("memo-input"); const val = input.value.trim(); if(!val) return; memos.push(val); input.value = ""; renderMemos(); }
-        function deleteMemo(index) { memos.splice(index, 1); renderMemos(); }
-        function clearMemos() { memos = []; renderMemos(); }
-
-        let memosData = [];
-        window.onload = function() { changeDay(1); renderMemos(); }
+        window.onload = () => {
+            const selector = document.getElementById('day-selector');
+            for(let i=1; i<=5; i++) {
+                selector.innerHTML += `<button onclick="changeDay(${i})" id="day-btn-${i}" class="flex-1 py-3 px-4 rounded-xl text-center font-bold text-sm text-slate-400 hover:bg-slate-800 transition-all">DAY ${i}</button>`;
+            }
+            changeDay(1);
+            setInterval(() => {
+                const diff = new Date("2026-09-23T00:00:00") - new Date();
+                const d = Math.floor(diff / (1000*60*60*24));
+                const h = Math.floor((diff % (1000*60*60*24)) / (1000*60*60));
+                document.getElementById('countdown-timer').innerText = `${d}D ${h}H 到達戰區`;
+            }, 1000);
+        };
     </script>
 </body>
 </html>
